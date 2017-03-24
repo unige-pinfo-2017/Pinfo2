@@ -1,3 +1,0 @@
-Text
-Arrêtez de commit chaque 30s.
-Merci.
