@@ -1,8 +1,5 @@
 FROM jboss/wildfly
 
-ADD ./config_wildfly.sh /opt/jboss/wildfly/
-RUN sed -i_back 's/\r//g' /opt/jboss/wildfly/config_wildfly.sh
-
 USER root
 RUN mkdir -p /opt/jboss/wildfly/standalone/deployments
 
