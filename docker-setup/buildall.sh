@@ -3,3 +3,5 @@ for image in ./*-pinfo2 ; do
     docker build -t ${image##*/} . &
     cd ..
 done
+
+wait

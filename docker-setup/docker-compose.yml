@@ -24,6 +24,9 @@ services:
         image: "mariadb-pinfo2:latest"
         environment:
             MYSQL_ROOT_PASSWORD: "admin"
+            MYSQL_DATABASE: "meskyne"
         ports:
             - "3306:3306"
+        volumes:
+            - "/tmp/docker-deploy/database:/var/lib/mysql"
         restart: always
