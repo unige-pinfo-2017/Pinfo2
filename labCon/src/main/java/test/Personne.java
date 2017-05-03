@@ -20,34 +20,29 @@ import javax.validation.constraints.Size;
  * @author hostettler
  * modifié par Vincent
  */
-@Entity
-@NamedQuery(name = "findAllStudentsByFirstName", query = "SELECT s FROM Student s WHERE s.lastName = :lastname")
-@Table(name = "STUDENTS")
+@Entity(name = "PERSON")
+//@NamedQuery(name = "findAllStudentsByFirstName", query = "SELECT s FROM Student s WHERE s.lastName = :lastname")
+//@Table(name = "PERSON")
 public class Personne implements Serializable {
 
 	/** The serial-id. */
 	private static final long serialVersionUID = -6146935825517747043L;
-
+	
 	/** The unique id in a technical sense. */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private Long id;
-
-	/** The student unique id in a business sense. */
-	@NotNull
-	@Column(name = "STUDENT_ID")
-	private Integer studentId;
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	//@Column(name = "ID")
+	private int id;
 
 	/** The student last name. */
-	@NotNull
-	@Size(min = 2, max = 35)
+	//@NotNull
+	//@Size(min = 2, max = 35)
 	@Column(name = "LAST_NAME")
 	private String lastName;
 
 	/** The student first name. */
-	@NotNull
-	@Size(min = 2, max = 35)
+	//@NotNull
+	//@Size(min = 2, max = 35)
 	@Column(name = "FIRST_NAME")
 	private String firstName;
 
@@ -62,13 +57,10 @@ public class Personne implements Serializable {
 	 * @param firstName
 	 *            The student first name.
 	 */
-	public Personne(final String lastName, final String firstName) {
+	public Personne(final String lastName, final String firstName, final int id) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-	}
-
-	public Long getId() {
-		return id;
+		this.id = id;
 	}
 
 
@@ -102,24 +94,16 @@ public class Personne implements Serializable {
 		this.firstName = pFirstName;
 	}
 
-
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the studentId
 	 */
-	public Integer getStudentId() {
-		return studentId;
+	public int getId() {
+		return id;
 	}
 
-	/**
-	 * @param studentId
-	 *            the studentId to set
-	 */
-	public void setStudentId(Integer studentId) {
-		this.studentId = studentId;
-	}
 
 }
