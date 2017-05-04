@@ -1,12 +1,50 @@
-﻿<div class="col-md-6 col-md-offset-3">
-    <h1>Hi {{currentUser.firstName}}!</h1>
-    <p>You're logged in with Angular 2!!</p>
-    <h3>All registered users:</h3>
-    <ul>
-        <li *ngFor="let user of users">
-            {{user.username}} ({{user.firstName}} {{user.lastName}})
-            - <a (click)="deleteUser(user.id)">Delete</a>
-        </li>
-    </ul>
-    <p><a [routerLink]="['/login']">Logout</a></p>
+﻿<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:14%">
+        <h3 class="w3-bar-item">Menu</h3>
+         <div class="w3-dropdown-hover">
+            <button class="w3-button w3-white">{{title}}</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border"> </div>
+        </div>
+
+        <div class="w3-dropdown-hover">
+            <button class="w3-button w3-gray">{{wscomp.title}}</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+            </div>
+        </div>
+
+        <div class="w3-dropdown-hover">
+            <button class="w3-button w3-black">{{ccomp.title}}</button>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+            <a href="#" class="w3-bar-item w3-button">Link 1</a>
+            <a href="#" class="w3-bar-item w3-button">Link 2</a>
+            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+            </div>
+        </div>
+    </div>
+
+<!-- Page Content -->
+<div style="margin-left:25%">
+    <div class="w3-container w3-teal">
+        <h1>Home</h1>
+    </div>
+
+
+    <div class="w3-container">
+        <p> You're logged in. </p>        
+        <p> <a [routerLink]="['/login']">Logout</a> </p>
+    </div>
 </div>
+
+     
+</body>
+</html> 
