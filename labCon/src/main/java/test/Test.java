@@ -1,8 +1,11 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -56,4 +59,45 @@ public class Test {
 		// je retourne ses attributs pour l'afficher sur la webapp
 		return "Affichage du last name de la personne avec l'ID 1 : " + personneRecuperee;
 	}
+	
+	@GET
+	@Path("/testPlot")
+	@Produces({ "application/json" })
+	@Transactional
+	public Json testPlot(){
+		
+		ArrayList<ValueForPlot> arrayValueForPlot = new ArrayList<ValueForPlot>();
+		
+		for (int i = 0; i<100; i++){
+			
+			ValueForPlot value = new ValueForPlot(i, Math.random(), i);
+			arrayValueForPlot.add(value);
+		}
+		
+		String hql = "SELECT x FROM VALUEFORPLOT";
+		Query query = em.createQuery(hql);
+		List<?> valuesExisting = query.getResultList();
+		// ajout dans la DB grace a l'entity Manager du gestionnaire si ils y sont pas
+		if (valuesExisting.isEmpty()) {
+			for (int i = 0; i<100; i++){
+				em.persist(arrayValueForPlot.get(i));
+			}
+		}
+		// querry pour récupérer les données qu'on vient de mettre dans la DB
+		//hql = "SELECT x,y FROM VALUEFORPLOT";
+		hql = "SELECT id,x,y NEW test.ValueForPlot(c.id, c., o.count)";
+		query = em.createQuery(hql);
+		List<Object[]> listValueForPlot = query.getResultList();
+		JsonArrayBuilder JsonArrayValues = Json.createArrayBuilder();	
+				
+		for (Object[] row : listValueForPlot) {
+			System.out.println((String)row[0] + (double)row[1] + (double)row[2]);
+			JsonArrayValues.add(Json.createObjectBuilder().add("name", (String) row[1]).add("value", (double) row[2]));
+		    
+		}
+		
+		return (Json) JsonArrayValues.build();
+		
+	}
+	
 }
