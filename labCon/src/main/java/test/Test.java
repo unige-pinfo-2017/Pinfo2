@@ -84,8 +84,7 @@ public class Test {
 			}
 		}
 		// querry pour récupérer les données qu'on vient de mettre dans la DB
-		//hql = "SELECT x,y FROM VALUEFORPLOT";
-		hql = "SELECT id,x,y NEW test.ValueForPlot(c.id, c., o.count)";
+		hql = "SELECT x,y FROM VALUEFORPLOT";
 		query = em.createQuery(hql);
 		List<Object[]> listValueForPlot = query.getResultList();
 		JsonArrayBuilder JsonArrayValues = Json.createArrayBuilder();	
