@@ -4,8 +4,8 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
-  * This class defines the new application and the root-path.
-  * on est obligé d'avoir celui-là
+  * J'ai été obligé de rajouter cette classe sinon j'ai un 'Forbiden' quand
+  * j'essaie d'aller sur la webapp
   */
 @ApplicationPath("/")
 public class App extends Application{

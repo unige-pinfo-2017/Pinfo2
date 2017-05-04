@@ -1,47 +1,59 @@
 package test;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
+import javax.transaction.UserTransaction;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-
 /*
- * Base-class of our app.
- * We define (inject) here which baker we want to use (GermanBaker, FrenchBaker).
- * Depending on our choice we will receive different dishes.
+ * Test-class
  */
 
 @Path("/")
 public class Test {
 
-	
 	public Test() {
 	}
-	
-	/**
-	 * The entity manager that manages the persistence. As there is only one
-	 * persistence unit, it takes it by default.
-	 */
-	@PersistenceContext
-	private EntityManager entityManager;
-	
-	/*
-	 * Test routine to check that the server works.
-	 */
+
+	// Ce qui permet de commiter sur la DB
+	// Il faut bien utiliser ce nom la car c'est celui spécifié dans le
+	// persistance.xml
+	@PersistenceContext(name = "ProjectPersistence")
+	private EntityManager em;
+
+	@Resource
+	private UserTransaction userTransaction;
+
 	@GET
 	@Path("/")
 	@Produces({ "application/json" })
+	// Mot clé obligatoire pour commiter la transaction (j'aimerais faire sans)
 	@Transactional
-	public String test(){
-		//je créé l'entité
+	public String test() {
+		// je créé les entités
 		Personne pers = new Personne("Cabrini", "Vincent", 1);
-		//pers.setId(100);
-		//ajout dans la DB grace a l'entity Manager
-		entityManager.persist(pers);
-		//je retourne ses attributs pour l'afficher sur la webapp
-		return "Affichage de deux attributs d'une entité: "+pers.getFirstName()+" " + pers.getLastName();
+		Personne pers2 = new Personne("Cule", "Jean", 100);
+		// querry pour voir si il y a pas deja les entrées pers et pers1 dans la table
+		String hql = "SELECT lastName FROM PERSONNE";
+		Query query = em.createQuery(hql);
+		List<?> personneExistante = query.getResultList();
+		// ajout dans la DB grace a l'entity Manager du gestionnaire si ils y sont pas
+		if (personneExistante.isEmpty()) {
+			em.persist(pers);
+			em.persist(pers2);
+		}
+		// querry pour récupérer les données qu'on vient de mettre dans la DB
+		hql = "SELECT lastName FROM PERSONNE WHERE ID=1";
+		query = em.createQuery(hql);
+		Object personneRecuperee = query.getSingleResult();
+		// je retourne ses attributs pour l'afficher sur la webapp
+		return "Affichage du last name de la personne avec l'ID 1 : " + personneRecuperee;
 	}
 }
