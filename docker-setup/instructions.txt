@@ -1,8 +1,4 @@
-# !!!! Ne pas oublier de construire les images avant de lancer docker-compose
-# construire les images:
-./builadd.sh
-
-# lancer les images:
+# Construire et lancer les images:
 docker-compose up
 
 # lancer les images en background (daemon):
