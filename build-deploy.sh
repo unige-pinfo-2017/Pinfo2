@@ -15,4 +15,5 @@ tail -f $dockerlogfile | while read line ; do
     fi
 done
 cd ..
+sleep 3
 cd labCon; mvn install; cd ..
