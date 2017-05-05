@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <title>W3.CSS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=4">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<body>
+<body class="w3-content" style="width:1200px">
 
     <!-- Sidebar -->
     <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:14%">
@@ -14,26 +14,30 @@
         </div>
 
         <div class="w3-dropdown-hover">
-            <button class="w3-button w3-gray">{{wscomp.title}}</button>
-            <div class="w3-dropdown-content w3-bar-block w3-border">
-            <a href="#" class="w3-bar-item w3-button">Link 1</a>
-            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+            <button class="w3-button w3-gray">Ws. Comp.</button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <ul class="w3-ul devices">
+                    <li *ngFor="let device of devices">
+                        <a href="#" class="w3-bar-item w3-button">Machine {{device.id}}</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
         <div class="w3-dropdown-hover">
-            <button class="w3-button w3-black">{{ccomp.title}}</button>
+            <button class="w3-button w3-black">C. Comp</button>
             <div class="w3-dropdown-content w3-bar-block w3-border">
-            <a href="#" class="w3-bar-item w3-button">Link 1</a>
-            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-            <a href="#" class="w3-bar-item w3-button">Link 3</a>
+                <ul class="w3-ul workstats">
+                    <li *ngFor="let workstat of wworkstations">
+                        <a href="#" class="w3-bar-item w3-button">{{workstat.id}}</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 
 <!-- Page Content -->
-<div style="margin-left:25%">
+<div style="margin-left:19%">
     <div class="w3-container w3-teal">
         <h1>Home</h1>
     </div>

@@ -1,10 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
-import { WsComp } from './wscomp.component';
-import { CComp } from './ccomp.component';
-import { Device } from "./device";
-import { DEVICES } from "./mock-devices";
+import { Device } from "./device/device";
+import { DEVICES } from "./device/mock-devices";
 import { Workstation } from "./workstation";
 
 @Component({
@@ -18,12 +16,9 @@ export class HomeComponent implements OnInit{
     selectedDevice: Device;
     selectedWs: Workstation;
     devices: Device[];
-    wscomp: WsComp;
-    ccomp: CComp;
+    workstats: Workstation[];
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.ccomp = new CComp();
-        this.wscomp = new WsComp();
     }
     selectedTitle() : String {
         return '';
