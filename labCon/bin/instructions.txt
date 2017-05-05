@@ -1,0 +1,14 @@
+#Construire le projet maven (il faut etre dans ce dossier):
+mvn clean install
+
+#deployer sur wildfly:
+- aller à: http://localhost:9990/console/App.html#standalone-deployments
+- ajouter le .war qui se situe dans labCon/target
+
+#tester le code
+- http://localhost:8080/labCon/
+
+
+—> De plus il faudrait demander a steve ou stefan pourquoi il y a besoin du @Transactional 
+au dessus de la méthode test de la classe Test car eux ne s’en servent pas dans les exemples.
+->Aussi demander si on peut faire sans la classe ‘App’ et pas avoir l’erreur ‘Forbidden’ quand on va a l’adresse
