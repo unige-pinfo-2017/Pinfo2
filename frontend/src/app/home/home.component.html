@@ -6,7 +6,7 @@
 <body class="w3-content" style="width:1200px">
 
     <!-- Sidebar -->
-    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:14%">
+    <div class="w3-sidebar w3-light-grey w3-bar-block w3-card-2" style="width:150px">
         <h3 class="w3-bar-item">Menu</h3>
          <div class="w3-dropdown-hover">
             <button class="w3-button w3-white">{{title}}</button>
@@ -37,18 +37,23 @@
     </div>
 
 <!-- Page Content -->
-<div style="margin-left:19%">
+<div style="margin-left:151px">
     <div class="w3-container w3-teal">
         <h1>Home</h1>
     </div>
 
+    <div>
+        <p> You're logged in {{currentUser.firstName}} !</p>
+        <div class="w3-container">
+            <h1>Conso.</h1>
+            <img src="./mock_plot.png" alt="Plot" style="width:100%">
+        </div>
 
-    <div class="w3-container">
-        <p> You're logged in. </p>        
         <p> <a [routerLink]="['/login']">Logout</a> </p>
     </div>
-</div>
 
+
+</div>
      
 </body>
 </html> 
