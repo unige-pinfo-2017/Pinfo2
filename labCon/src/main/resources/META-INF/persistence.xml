@@ -6,9 +6,15 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<jta-data-source>meskyne</jta-data-source>
+		<jta-data-source></jta-data-source>
 
 		<class>test.Personne</class>
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+		</properties>
+		<class>test.ValueForPlot</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
