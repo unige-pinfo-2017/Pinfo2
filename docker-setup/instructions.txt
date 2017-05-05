@@ -1,0 +1,11 @@
+# Construire et lancer les images:
+docker-compose up
+
+# lancer les images en background (daemon):
+docker-compose up -d
+
+# stopper les images démoniaques:
+docker-compose down
+
+# Remplacer la base de donnée mariadb:
+mv mydatabase.sql /tmp/docker-deploy/database/

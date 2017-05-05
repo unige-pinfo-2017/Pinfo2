@@ -1,16 +1,10 @@
 # Contient les instructions pour lancer la configuration docker pour la webapp.
 
-version: "2"
+version: "3"
 services:
-    # apache:
-    #     image: "apache2-pinfo2:latest"
-    #     volumes:
-    #         - "/tmp/docker-deploy/webapp:/usr/local/apache2/htdocs/"
-    #     ports:
-    #         - "80:80"
-    #     restart: always
     appserver:
-        image: "wildfly-pinfo2:latest"
+        build: "wildfly-pinfo2"
+        image: "wildfly-pinfo2"
         volumes:
             - "/tmp/docker-deploy/deployments:/opt/jboss/wildfly/standalone/deployments/"
         ports:
@@ -21,9 +15,13 @@ services:
             - "database"
         restart: always
     database:
-        image: "mariadb-pinfo2:latest"
+        build: "mariadb-pinfo2"
+        image: "mariadb-pinfo2"
         environment:
             MYSQL_ROOT_PASSWORD: "admin"
+            MYSQL_DATABASE: "meskyne"
         ports:
             - "3306:3306"
+        volumes:
+            - "/tmp/docker-deploy/database:/var/lib/mysql"
         restart: always
