@@ -6,7 +6,7 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<jta-data-source>meskyne</jta-data-source>
+		<jta-data-source></jta-data-source>
 
 		<class>test.Personne</class>
 		<properties>

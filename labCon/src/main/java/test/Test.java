@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -62,15 +64,15 @@ public class Test {
 	
 	@GET
 	@Path("/testPlot")
-	@Produces({ "application/json" })
+	@Produces({ "text/plain" })
 	@Transactional
-	public Json testPlot(){
+	public String testPlot(){
 		
 		ArrayList<ValueForPlot> arrayValueForPlot = new ArrayList<ValueForPlot>();
 		
-		for (int i = 0; i<100; i++){
+		for (int i = 0; i<10; i++){
 			
-			ValueForPlot value = new ValueForPlot(i, Math.random(), i);
+			ValueForPlot value = new ValueForPlot(i, Math.random()*10+i, i);
 			arrayValueForPlot.add(value);
 		}
 		
@@ -79,7 +81,7 @@ public class Test {
 		List<?> valuesExisting = query.getResultList();
 		// ajout dans la DB grace a l'entity Manager du gestionnaire si ils y sont pas
 		if (valuesExisting.isEmpty()) {
-			for (int i = 0; i<100; i++){
+			for (int i = 0; i<10; i++){
 				em.persist(arrayValueForPlot.get(i));
 			}
 		}
@@ -90,12 +92,13 @@ public class Test {
 		JsonArrayBuilder JsonArrayValues = Json.createArrayBuilder();	
 				
 		for (Object[] row : listValueForPlot) {
-			System.out.println((String)row[0] + (double)row[1] + (double)row[2]);
-			JsonArrayValues.add(Json.createObjectBuilder().add("name", (String) row[1]).add("value", (double) row[2]));
+			JsonArrayValues.add(Json.createObjectBuilder().add("name",  row[0].toString()).add("value", Double.parseDouble(row[1].toString())));
 		    
 		}
 		
-		return (Json) JsonArrayValues.build();
+		JsonObjectBuilder JsonValues = Json.createObjectBuilder().add("Values", JsonArrayValues);
+		
+		return JsonValues.build().toString();
 		
 	}
 	

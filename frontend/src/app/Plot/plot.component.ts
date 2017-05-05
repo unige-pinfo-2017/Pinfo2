@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataForPlotService } from '../_services'
+import { Injectable } from '@angular/core';
+import { DataForPlotService } from '../_services';
+import { ValueForPlot } from '../_models/value-for-plot';
 
 @Component({
     selector: 'plot',
@@ -10,8 +12,9 @@ import { DataForPlotService } from '../_services'
 })
 
 export class PlotComponent implements OnInit {
-  values :any[]
-
+    errorMessage : any;
+  values :ValueForPlot[];
+  
   view: any[] = [700, 400];
 
   // options
@@ -31,15 +34,38 @@ export class PlotComponent implements OnInit {
   // line, area
   autoScale = true;
   
+  plot : PlotComponent;
+
   setValuesForPlot(): void{
-      this.dataForPlotService.getValues().then(values => this.values=values)
+      this.dataForPlotService.getValues().subscribe(values => {
+                                                        this.values=values;
+                                                        console.log("Depuis plot.component.ts setValuesForPlot");
+                                                        console.log(this.values[0].value);
+                                                        
+                                                        },
+                                                    error => this.errorMessage = <any> error);
+
+
+
   }
 
   ngOnInit(): void {
       this.setValuesForPlot();
+       /*this.values = [
+          {
+              name:"60",
+              value:35
+          },
+          {
+              name:"20",
+              value:50
+          }
+      ]*/
+      
   }
 
   constructor(private dataForPlotService: DataForPlotService) {
+     
   }
 
 

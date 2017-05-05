@@ -25,6 +25,7 @@ import { PlotComponent } from './Plot/plot.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,7 @@ import { PlotComponent } from './Plot/plot.component';
       HomeComponent,
       LoginComponent,
       RegisterComponent,
-      PlotComponent
+      PlotComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +49,7 @@ import { PlotComponent } from './Plot/plot.component';
     AlertService,
     AuthenticationService,
     UserService,
+    //DataForPlotService,
 
     // providers used to create fake backend
     fakeBackendProvider,
