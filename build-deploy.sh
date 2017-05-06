@@ -6,42 +6,52 @@
 
 cd $(find ../.. -name docker-setup)
 
-docker-compose down
+docker-compose down # kill old network if needed
+docker-compose build # Update images if needed
 
-dockerlogfile="/tmp/docker-log-$(date +%a-%H-%M)"
-docker-compose build
-docker-compose up 2>&1 1>$dockerlogfile &
+dockerlogfile="/tmp/docker-log-$(date +%a-%H-%M)" # Create the log file
+
+# Create a fifo for the loop
+fifo=/tmp/build-deploy.fifo.$$
+mkfifo $fifo
+tail -F $dockerlogfile >$fifo & # Redirect tail output to the fifo
+tailpid=$!
+
+docker-compose up 2>&1 1>$dockerlogfile & # Start docker servers images
 
 # Reads log file until both servers are ready.
-declare -i ready_count=0
-tail -f $dockerlogfile | while read line ; do
+declare mariaready=0
+declare wildflyready=0
+while read line ; do
     if [[ $line =~ 'mysqld: ready for connections' ]] ; then
-        echo "mariadb server ready"
-        ready_count=$((ready_count + 1))
+        echo "==== mariadb server ready ===="
+        mariaready=1
     elif [[ $line =~ 'Admin console listening' ]] ; then
-        echo "wildfly server ready"
-        ready_count=$((ready_count + 1))
+        echo "==== wildfly server ready ===="
+        wildflyready=1
     fi
-    if (( ready_count == 2 )) ; then
+    if (( mariaready && wildflyready )) ; then
         break
     fi
-done
-echo $(jobs)
-echo "Both servers are ready, deploying..."
-sleep 1
+done < $fifo
+
+kill $tailpid
+rm $fifo
+
+echo "==== Both servers are ready, deploying... ===="
 
 cd ../labCon
 mvn install
 if [[ $(tail -1 $dockerlogfile) =~ 'Deployed "labCon.war"' ]] ; then
-    echo "Wildfly log repports a successful deployement"
+    echo "==== Wildfly log repports a successful deployement ===="
 else
-    echo "Hmm..."
+    echo "==== Hmm... ===="
 fi
 
 cd ../frontend
 
-echo "starting web client server... Kill me if you want to kill it."
+echo "==== starting web client server... Kill me if you want to kill it. ===="
 npm run-script ng serve
 
-echo "Shutting down... Docker network might still be alive"
+echo "====Shutting down... Docker network might still be alive===="
 cd ..
