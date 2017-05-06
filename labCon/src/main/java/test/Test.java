@@ -16,13 +16,14 @@ import javax.transaction.UserTransaction;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Application;
 
 /*
  * Test-class
  */
 
 @Path("/")
-public class Test {
+public class Test extends Application {
 
 	public Test() {
 	}
@@ -30,7 +31,7 @@ public class Test {
 	// Ce qui permet de commiter sur la DB
 	// Il faut bien utiliser ce nom la car c'est celui spécifié dans le
 	// persistance.xml
-	@PersistenceContext(name = "ProjectPersistence")
+	@PersistenceContext(name ="ProjectPersistence")
 	private EntityManager em;
 
 	@Resource
