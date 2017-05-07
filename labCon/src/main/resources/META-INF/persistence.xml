@@ -9,13 +9,13 @@
 		<jta-data-source></jta-data-source>
 		
 		<class>ch.unige.pinfo2.dom.User</class>
-		<class>test.Personne</class>
+		<class>ch.unige.pinfo2.test.Personne</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 		</properties>
-		<class>test.ValueForPlot</class>
+		<class>ch.unige.pinfo2.test.ValueForPlot</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
