@@ -2,11 +2,12 @@ package ch.unige.pinfo2.service;
 
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
 
 import ch.unige.pinfo2.dom.User;
 
-
+@Local
 public interface UserService {
 	
 	/**
