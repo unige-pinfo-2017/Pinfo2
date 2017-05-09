@@ -5,13 +5,14 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
 import { PlotComponent} from './Plot/plot.component';
+import { DevicesComponent } from './devices/devices.component' ;
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-
-    {path: 'testPlot', component: PlotComponent},
+    { path: 'devices', component: DevicesComponent },
+    { path: 'testPlot', component: PlotComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

@@ -1,0 +1,22 @@
+{"Device": [
+    {
+        "id": "100",
+        "state": true
+    },
+    {
+        "id": "101",
+        "state": false
+    },
+    {
+        "id": "110",
+        "state":true
+    },
+    {
+        "id": "111",
+        "state":false
+    },
+    {
+        "id": "112",
+        "state":true
+    }
+]}
