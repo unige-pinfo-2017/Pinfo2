@@ -69,7 +69,7 @@ public interface UserService {
 	 *
 	 *@return the user corresponding to the first name
 	 */
-	List<User> getUserByFiratName(String firstName);
+	List<User> getUserByFirstName(String firstName);
 	
 	
 	
