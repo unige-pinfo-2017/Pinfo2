@@ -1,12 +1,13 @@
 <ul>
     <li *ngFor="let dev of devices">
         <label>{{dev?.id}}</label>
-        <label id="state"> {{dev?.state}}</label>
         <label class="switch">
             <input type="checkbox" [checked]="dev?.state" value="dev?.state">
             <div class="slider round"></div>
         </label>
     </li>
 </ul>
+
+<hub> </hub>
 
 

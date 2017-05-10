@@ -4,6 +4,7 @@ import { Light } from '../_models/light' ;
 import { Hub } from '../_models/hub' ;
 import { Socket } from '../_models/socket' ;
 import { DeviceService } from '../_services' ;
+import { HubComponent } from './hub.component' ;
 
 @Component({
     selector: 'devices',

@@ -23,6 +23,7 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
 import { DevicesComponent } from './devices/devices.component' ;
+import { HubComponent } from './devices/hub.component' ;
 
 
 
@@ -34,7 +35,8 @@ import { DevicesComponent } from './devices/devices.component' ;
       LoginComponent,
       RegisterComponent,
       PlotComponent,
-      DevicesComponent
+      DevicesComponent,
+      HubComponent
   ],
   imports: [
     BrowserModule,
