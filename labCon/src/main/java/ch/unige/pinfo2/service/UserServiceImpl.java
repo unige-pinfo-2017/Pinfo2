@@ -7,22 +7,21 @@ import javax.ejb.Stateless;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 
-import ch.unige.pinfo2.dom.User;
+import ch.unige.pinfo2.dom.RegularUser;
 
 @Stateless
 public class UserServiceImpl implements UserService{
 	@PersistenceContext(name ="ProjectPersistence")
 	private EntityManager em;
 
-	public void addUser(User user) {
-		//Creation de la requete SQL
-		String sql="SELECT u FROM USER u";
+	public void addUser(RegularUser user) {
+		
+		String sql="SELECT ru FROM RegularUser ru";
 		Query query=em.createQuery(sql);
-		//Resultat de la requete SQL
-		List<User> listUsers=query.getResultList();
+		List<RegularUser> listUsers=query.getResultList();
+		
 		int i=0;
 		int userNotInDB=1;
-		//On parcourt la liste des Users et on regarde l'unicité de certains des attibuts de user
 		while (i<listUsers.size()){
 			if((listUsers.get(i).getUserName()==user.getUserName())||(listUsers.get(i).getId()==user.getId())){
 				userNotInDB=0;
@@ -31,21 +30,20 @@ public class UserServiceImpl implements UserService{
 			}
 			i++;
 		}
-		//Si le user n'est pas dans la base de données, on le met dans la base de données
-		if(userNotInDB==0){
+		if(userNotInDB==1){
 			em.getTransaction().begin();
 			em.persist(user);
 			em.getTransaction().commit();
 		}
 	}
 
-	public boolean alreadyRegistered(User user) {
-		String sql="SELECT u FROM USER u WHERE u.ID = ?1 AND u.FIRST_NAME = ?2 AND u.LAST_NAME = ?3 AND u.USERNAME = ?4";
+	public boolean alreadyRegistered(RegularUser user) {
+		String sql="SELECT u FROM RegularUser u WHERE u.id = :arg1 AND u.firstName = :arg2 AND u.lastName = :arg3 AND u.userName = :arg4";
 		Query query=em.createQuery(sql);
-		query.setParameter(1, user.getId());
-		query.setParameter(2, user.getFirstName());
-		query.setParameter(3, user.getLastName());
-		query.setParameter(4, user.getUserName());
+		query.setParameter("arg1", user.getId());
+		query.setParameter("arg2", user.getFirstName());
+		query.setParameter("arg3", user.getLastName());
+		query.setParameter("arg4", user.getUserName());
 		if(query.getResultList().isEmpty()){
 			return false;
 		}
@@ -53,54 +51,58 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public long loginUser(String username, String password) {
-		String sql="SELECT u.TOKEN FROM USER u WHERE u.USERNAME = ?1 AND u.PASSWORD = ?2";
+		String sql="SELECT u.token FROM RegularUser u WHERE u.userName = :arg1 AND u.password = :arg2";
 		Query query=em.createQuery(sql);
-		query.setParameter(1, username);
-		query.setParameter(2, password);
+		query.setParameter("arg1", username);
+		query.setParameter("arg2", password);
+		List<RegularUser> users=query.getResultList();
 		if(query.getResultList().isEmpty()){
 			return (Long) null;
 		}
-		return query.getFirstResult();
+		return (long) query.getResultList().get(0);
 	}
 
-	public User getUserById(long id) {
-		String sql="SELECT u FROM USER u WHERE u.ID = ?1";
+	public RegularUser getUserById(long id) {
+		String sql="SELECT u FROM RegularUser u WHERE u.id = :arg1";
 		Query query=em.createQuery(sql);
-		query.setParameter(1, id);
+		query.setParameter("arg1", id);
 		if(query.getResultList().isEmpty()){
 			return null;
 		}
-		return (User) query.getSingleResult();
+		return (RegularUser) query.getSingleResult();
 	}
 
-	public User getUserByToken(long token) {
-		String sql="SELECT u FROM USER u WHERE u.TOKEN = ?1";
+	public RegularUser getUserByToken(long token) {
+		String sql="SELECT u FROM RegularUser u WHERE u.token = :arg1";
 		Query query=em.createQuery(sql);
-		query.setParameter(1, token);
+		query.setParameter("arg1", token);
 		if(query.getResultList().isEmpty()){
 			return null;
 		}
-		return (User) query.getSingleResult();
+		return (RegularUser) query.getResultList().get(0);
 	}
 
-	public List<User> getUserByLastName(String lastName) {
-		String sql="SELECT u FROM USER u WHERE u.LASTNAME = ?1";
+	public List<RegularUser> getUserByLastName(String lastName) {
+		String sql="SELECT u FROM RegularUser u WHERE u.lastName = :arg1";
 		Query query=em.createQuery(sql);
-		query.setParameter(1, lastName);
-		if(query.getResultList().isEmpty()){
-			return null;
-		}
-		return query.getResultList();
+		query.setParameter("arg1", lastName);
+		List<RegularUser> users=query.getResultList();
+		return users;
 	}
 
-	public List<User> getUserByFirstName(String firstName) {
-		String sql="SELECT u FROM USER u WHERE u.FIRSTNAME = ?1";
+	public List<RegularUser> getUserByFirstName(String firstName){
+		String sql="SELECT u FROM RegularUser u WHERE u.firstName = :arg1";
+		Query query=em.createQuery(sql);
+		query.setParameter("arg1", firstName);
+		List<RegularUser> users=query.getResultList();
+		return users;
+		/*String sql="SELECT u FROM USER u WHERE u.FIRSTNAME = ?1";
 		Query query=em.createQuery(sql);
 		query.setParameter(1, firstName);
 		if(query.getResultList().isEmpty()){
 			return null;
 		}
-		return query.getResultList();
+		return query.getResultList();*/
 	}
 
 	

@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import ch.unige.pinfo2.dom.User;
+import ch.unige.pinfo2.dom.RegularUser;
 
 @Path("/rest")
 public class UserServiceRs {

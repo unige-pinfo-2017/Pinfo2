@@ -8,7 +8,7 @@
 
 		<jta-data-source></jta-data-source>
 		
-		<class>ch.unige.pinfo2.dom.User</class>
+		<class>ch.unige.pinfo2.dom.RegularUser</class>
 		<class>ch.unige.pinfo2.test.Personne</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />

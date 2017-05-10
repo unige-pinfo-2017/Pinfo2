@@ -3,7 +3,7 @@
     <persistence-unit name="TestPersistence" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         
-        <class>ch.unige.pinfo2.dom.User</class>
+        <class>ch.unige.pinfo2.dom.RegularUser</class>
 		<class>ch.unige.pinfo2.test.Personne</class>
 		<class>ch.unige.pinfo2.test.ValueForPlot</class>
         <properties>

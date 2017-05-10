@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="REGULAR_USER")
-public class User implements Serializable {
+@Table(name="RegularUser")
+public class RegularUser implements Serializable {
 
 	/**
 	 * 
@@ -23,10 +23,10 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="FIRST_NAME")
+	@Column(name="FIRSTNAME")
 	private String firstName;
 
-	@Column(name="LAST_NAME")
+	@Column(name="LASTNAME")
 	private String lastName;
 	
 	@Column(name="USERNAME")
@@ -38,7 +38,7 @@ public class User implements Serializable {
 	@Column(name="TOKEN")
 	private Long token;
 
-	public User() {
+	public RegularUser() {
 	}
 
 	public String getUserName() {
@@ -49,7 +49,7 @@ public class User implements Serializable {
 		this.userName = userName;
 	}
 
-	protected String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 

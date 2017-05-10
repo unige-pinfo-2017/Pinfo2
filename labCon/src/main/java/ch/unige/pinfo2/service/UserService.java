@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
 
-import ch.unige.pinfo2.dom.User;
+import ch.unige.pinfo2.dom.RegularUser;
 
 @Local
 public interface UserService {
@@ -16,7 +16,7 @@ public interface UserService {
 	 * @param user to add
 	 *
 	 */
-	void addUser(@NotNull User user);
+	void addUser(@NotNull RegularUser user);
 	
 	/**
 	 * check if a User is already registered
@@ -24,7 +24,7 @@ public interface UserService {
 	 * @param user to verify 
 	 *
 	 */
-	boolean alreadyRegistered(@NotNull User user);
+	boolean alreadyRegistered(@NotNull RegularUser user);
 	
 	/**
 	 * check the login is correct and give the user's token
@@ -42,7 +42,7 @@ public interface UserService {
 	 * @param id of the user
 	 *
 	 */
-	User getUserById(long id);
+	RegularUser getUserById(long id);
 	
 	/**
 	 * find a User by the token
@@ -51,7 +51,7 @@ public interface UserService {
 	 *
 	 *@return the user corresponding to the token
 	 */
-	User getUserByToken(long token);
+	RegularUser getUserByToken(long token);
 	
 	/**
 	 * find a User by the lastName
@@ -60,7 +60,7 @@ public interface UserService {
 	 *
 	 *@return the user corresponding to the last name
 	 */
-	List<User> getUserByLastName(String lastName);
+	List<RegularUser> getUserByLastName(String lastName);
 	
 	/**
 	 * find a User by the firstName
@@ -69,7 +69,7 @@ public interface UserService {
 	 *
 	 *@return the user corresponding to the first name
 	 */
-	List<User> getUserByFirstName(String firstName);
+	List<RegularUser> getUserByFirstName(String firstName);
 	
 	
 	
