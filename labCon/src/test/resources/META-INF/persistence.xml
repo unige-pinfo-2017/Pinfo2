@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="TestPersistence" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        
+        <class>ch.unige.pinfo2.dom.User</class>
+		<class>ch.unige.pinfo2.test.Personne</class>
+		<class>ch.unige.pinfo2.test.ValueForPlot</class>
+        <properties>
+            <properties>
+            <property name="eclipselink.target-database" value="DERBY" />
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:StudentsDB;create=true" />
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+            
+            <property name="javax.persistence.jdbc.user" value="" />
+            <property name="javax.persistence.jdbc.password" value="" />
+        </properties> 
+        </properties>        
+    </persistence-unit>
+</persistence>

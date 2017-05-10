@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER")
+@Table(name="LABCON_USER")
 public class User implements Serializable {
 
 	/**
@@ -19,22 +19,23 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 4561966035983412307L;
 
 	@Id
+	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "FIRST_NAME")
+	@Column(name="FIRST_NAME")
 	private String firstName;
 
-	@Column(name = "LAST_NAME")
+	@Column(name="LAST_NAME")
 	private String lastName;
 	
-	@Column(name = "USERNAME")
+	@Column(name="USERNAME")
 	private String userName;
 	
-	@Column(name = "PASSWORD")
+	@Column(name="PASSWORD")
 	private String password;
 	
-	@Column(name = "TOKEN")
+	@Column(name="TOKEN")
 	private Long token;
 
 	public User() {
