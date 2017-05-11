@@ -1,9 +1,9 @@
 import { Workstation } from './workstation';
-import { DeviceType } from './deviceType';
 export abstract class Device {
     id: number;
     name: string;
     state: boolean;
+    consommation: number;
 
     constructor(idd: number){
         this.id = idd;

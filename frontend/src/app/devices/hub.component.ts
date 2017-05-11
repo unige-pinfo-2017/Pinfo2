@@ -9,5 +9,5 @@ import { Device } from '../_models/device' ;
 })
 
 export class HubComponent {
-    hub: Device;
+    hub: Hub;
 }

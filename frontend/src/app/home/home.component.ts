@@ -3,6 +3,7 @@ import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 import { Light } from '../_models/light';
 import { Workstation } from '../_models/workstation';
+import { DevicesComponent } from '../devices/devices.component';
 
 @Component({
     moduleId: module.id,
@@ -13,8 +14,6 @@ export class HomeComponent implements OnInit{
     title = 'Home';
     currentUser: User;
     selectedWs: Workstation;
-    lights: Light[];
-    workstats: Workstation[];
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
