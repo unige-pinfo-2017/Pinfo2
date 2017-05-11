@@ -18,9 +18,9 @@ export class DataForPlotService {
 
     private extractValues(res: Response) {
         let body = res.json();
-        console.log(body);
         return body.Values || { };
     }
+
 
     private handleError(error: Response | any) {
         let errMsg: string;

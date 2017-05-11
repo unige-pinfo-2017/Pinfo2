@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Injectable } from '@angular/core';
 import { DataForPlotService } from '../_services';
 
 
@@ -10,6 +9,7 @@ import { DataForPlotService } from '../_services';
         DataForPlotService
     ]
 })
+
 
 export class PlotComponent implements OnInit {
     errorMessage : any;
@@ -39,7 +39,7 @@ export class PlotComponent implements OnInit {
     ];
     lineChartLegend:boolean = true;
     lineChartType:string = 'line';
-
+    
     constructor(private dataForPlotService: DataForPlotService) {
     }
 
@@ -74,5 +74,4 @@ export class PlotComponent implements OnInit {
     public chartHovered(e:any):void {
         console.log(e);
     }
-    
 }
