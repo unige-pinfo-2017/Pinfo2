@@ -6,7 +6,7 @@ import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
 import { PlotComponent} from './Plot/plot.component';
 import { DevicesComponent } from './devices/devices.component' ;
-import { HubComponent, LightComponent } from './devices/index' ;
+import { HubComponent, LightComponent, SocketComponent } from './devices/index' ;
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -16,6 +16,8 @@ const appRoutes: Routes = [
     { path: 'testPlot', component: PlotComponent },
     { path: 'hub', component: HubComponent},
     { path: 'light/:id', component: LightComponent},
+    { path: 'hub/:id', component: HubComponent},
+    { path: 'socket/:id', component: SocketComponent},
     {path: 'testPlot', component: PlotComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

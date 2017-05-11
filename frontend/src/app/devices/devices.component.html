@@ -62,7 +62,9 @@ input:checked + .slider:before {
         <div id="li" class="w3-dropdown-content w3-bar-block">
            <ul class="w3-ul w3-bar-block">
                 <li *ngFor="let light of lights">
-                  <a href="/light/{{light?.id}}"> <p>{{light?.id}}</p> </a>
+                  <a (click)="selectLight(light)" href="/light/{{light?.id}}">
+                    <p>{{light?.id}}</p>
+                  </a>
                 </li>
             </ul>
         </div>
@@ -73,7 +75,7 @@ input:checked + .slider:before {
         <div id="hu" class="w3-dropdown-content">
             <ul class="w3-ul w3-content">
                 <li *ngFor="let hub of hubs">
-                    <a href="/hub/{{hub?.id}}"> <p>{{hub?.id}}</p> </a>
+                    <a (click)="selectHub(hub)" href="/hub/{{hub?.id}}"> <p>{{hub?.id}}</p> </a>
                 </li>
             </ul>
         </div>
@@ -84,12 +86,10 @@ input:checked + .slider:before {
         <div id="so" class="w3-dropdown-content">
             <ul>
                 <li *ngFor="let socket of sockets">
-                    <a href="/socket/{{socket?.id}}"> <p>{{socket?.id}}</p> </a>
+                    <a (click)="selectSocket(socket)" href="/socket/{{socket?.id}}"> <p>{{socket?.id}}</p> </a>
                 </li>
             </ul>
         </div>
 </div>
-
-
 
 

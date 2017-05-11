@@ -4,6 +4,7 @@ import { UserService } from '../_services/index';
 import { Light } from '../_models/light';
 import { Workstation } from '../_models/workstation';
 import { DevicesComponent } from '../devices/devices.component';
+import { PlotComponent } from '../Plot/plot.component';
 
 @Component({
     moduleId: module.id,

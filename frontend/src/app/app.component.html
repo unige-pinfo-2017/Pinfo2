@@ -1,8 +1,26 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- Sidebar -->
+            <div class="w3-sidebar w3-light-grey w3-bar-block w3-card-2" style="width:200px">
+                <h3 class="w3-bar-item">Menu</h3>
+                <div class="w3-dropdown-hover">
+                    <a href="">
+                        <button class="w3-button w3-white">{{title}}</button>
+                    </a>
+                </div>
+
+                <devices></devices>
+            </div>
+
 <!-- main app container -->
-<div class="jumbotron">
+<div class="jumbotron" style="margin-left:202px">
     <div class="container">
         <div>
             <alert></alert>
+            
             <router-outlet></router-outlet>
         </div>
     </div>

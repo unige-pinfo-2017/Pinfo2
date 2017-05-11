@@ -1,17 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core' ;
+import { Component } from '@angular/core' ;
+import { ActivatedRoute } from '@angular/router' ;
 import { Light } from '../_models/light';
+import { LightService } from "../_services/light.service";
 
 @Component({
     selector: 'light',
     templateUrl: 'light.component.html',
-    styleUrls: ['devices.component.css']
+    styleUrls: ['devices.component.css'],
 })
 
-export class LightComponent implements OnInit{
-    @Input() selectedLight: Light;
+export class LightComponent {
+    private myLight: Light;
+    private lightId: number;
 
-    ngOnInit() {
-    }
+    constructor(private route: ActivatedRoute) {
+        this.route.params.subscribe(
+        params => this.lightId = params['id']
+    );
+    console.log(this.lightId);
+  }
 
-    constructor() { }
 }

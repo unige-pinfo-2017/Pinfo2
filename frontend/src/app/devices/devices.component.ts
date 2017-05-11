@@ -5,6 +5,8 @@ import { Hub } from '../_models/hub' ;
 import { Socket } from '../_models/socket' ;
 import { DeviceService } from '../_services' ;
 import { HubComponent } from './hub.component' ;
+import { LightComponent } from './light.component';
+import {Routes, Router} from '@angular/router';
 
 @Component({
     selector: 'devices',
@@ -18,7 +20,9 @@ export class DevicesComponent implements OnInit {
     hubs = new Array<Hub>();
     sockets = new Array<Socket>();
     lights =  new Array<Light>();
-    device: DevicesComponent;
+    selectedLight: Light;
+    selectedHub: Hub;
+    selectedSocket: Socket;
     setDevices(): void {
       this.deviceService.getValues().subscribe(devices => { this.devices = devices;
       devices.forEach(element => {
@@ -37,19 +41,7 @@ export class DevicesComponent implements OnInit {
     ngOnInit(): void {
         this.setDevices();
     }
-    constructor(private deviceService: DeviceService) {
-    }
-
-    dispatchDevices() {
-        this.devices.forEach(element => {
-            if (element.name === 'hub') {
-                this.hubs.push(element);
-            } else if (element.name === 'light') {
-                this.lights.push(element);
-            } else if (element.name === 'socket') {
-                this.sockets.push(element);
-            }
-        });
+    constructor(private deviceService: DeviceService, private _router: Router) {
     }
 
     show(elem: string) {
@@ -90,5 +82,20 @@ export class DevicesComponent implements OnInit {
         } else {
             x3.className = x3.className.replace(" w3-hide", '');
         }
+    }
+
+    selectLight(light: Light) {
+        this.selectedLight = light;
+        this._router.navigate(["/light", light.id]);
+    }
+
+    selectHub(hub: Hub) {
+        this.selectedHub = hub;
+        this._router.navigate(["/hub", hub.id]);
+    }
+
+    selectSocket(socket: Socket) {
+        this.selectedSocket = socket;
+        this._router.navigate(["/socket", socket.id]);
     }
 }
