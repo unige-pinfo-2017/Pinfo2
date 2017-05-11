@@ -12,17 +12,11 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-<<<<<<< HEAD
     { path: 'devices', component: DevicesComponent },
     { path: 'testPlot', component: PlotComponent },
     { path: 'hub', component: HubComponent},
     { path: 'light/:id', component: LightComponent},
-
-=======
-
     {path: 'testPlot', component: PlotComponent},
-    
->>>>>>> ecran_accueil
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
