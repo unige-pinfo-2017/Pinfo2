@@ -17,12 +17,12 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService, DataForPlotService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, DataForPlotService, DeviceService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
-
+import { DevicesComponent, HubComponent, LightComponent } from './devices/index' ;
 
 
 
@@ -34,6 +34,9 @@ import { PlotComponent } from './Plot/plot.component';
       LoginComponent,
       RegisterComponent,
       PlotComponent,
+      DevicesComponent,
+      HubComponent,
+      LightComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { PlotComponent } from './Plot/plot.component';
     AlertService,
     AuthenticationService,
     UserService,
+    DeviceService,
     //DataForPlotService,
 
     // providers used to create fake backend

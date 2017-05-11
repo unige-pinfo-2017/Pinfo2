@@ -1,6 +1,6 @@
 FROM jboss/wildfly
 
-ADD db-setup.sh install-db-driver.sh wildfly-setup.sh /opt/jboss/wildfly/
+ADD enable-CORS.sed db-setup.sh install-db-driver.sh wildfly-setup.sh /opt/jboss/wildfly/
 
 USER root
 RUN mkdir -p /opt/jboss/wildfly/standalone/deployments

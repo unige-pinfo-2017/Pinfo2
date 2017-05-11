@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
-import { ValueForPlot } from '../_models/value-for-plot';
+import { Http, Headers, Response } from '@angular/http';
+import { Device } from '../_models/device';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class DataForPlotService {
+export class DeviceService {
+    private devicesUrl = '/assets/devices.json';
 
-    // private plotUrl = 'http://localhost:8080/labCon/testPlot';
-    private plotUrl = '/assets/values.json';
-    constructor(private http: Http){
+    constructor(private http: Http) {
     }
-    getValues(): Observable<ValueForPlot[]>{
-        return this.http.get(this.plotUrl).map(this.extractValues).catch(this.handleError);
+    getValues(): Observable<Device[]> {
+        return this.http.get(this.devicesUrl).map(this.extractValues).catch(this.handleError);
     }
 
     private extractValues(res: Response) {
         let body = res.json();
         console.log(body);
-        return body.Values /*|| { }*/;
+        return body.Device;
     }
 
     private handleError(error: Response | any) {

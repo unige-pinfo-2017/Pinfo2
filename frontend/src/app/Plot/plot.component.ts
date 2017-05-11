@@ -12,9 +12,8 @@ import { ValueForPlot } from '../_models/value-for-plot';
 })
 
 export class PlotComponent implements OnInit {
-    errorMessage : any;
-  values :ValueForPlot[];
-  
+    errorMessage: any;
+  values: ValueForPlot[];
   view: any[] = [700, 400];
 
   // options
@@ -33,40 +32,23 @@ export class PlotComponent implements OnInit {
 
   // line, area
   autoScale = true;
-  
-  plot : PlotComponent;
+  plot: PlotComponent;
 
   setValuesForPlot(): void{
       this.dataForPlotService.getValues().subscribe(values => {
                                                         this.values=values;
                                                         console.log("Depuis plot.component.ts setValuesForPlot");
                                                         console.log(this.values[0].value);
-                                                        
                                                         },
                                                     error => this.errorMessage = <any> error);
-
-
-
   }
 
   ngOnInit(): void {
       this.setValuesForPlot();
-       /*this.values = [
-          {
-              name:"60",
-              value:35
-          },
-          {
-              name:"20",
-              value:50
-          }
-      ]*/
-      
+      console.log(this.values.length)
   }
 
   constructor(private dataForPlotService: DataForPlotService) {
-     
   }
-
 
 }
