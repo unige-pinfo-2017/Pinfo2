@@ -12,14 +12,13 @@ export class DataForPlotService {
     private plotUrl = '/assets/values.json';
     constructor(private http: Http){
     }
-    getValues(): Observable<ValueForPlot[]>{
+    getValues(): Observable<any>{
         return this.http.get(this.plotUrl).map(this.extractValues).catch(this.handleError);
     }
 
     private extractValues(res: Response) {
         let body = res.json();
-        console.log(body);
-        return body.Values /*|| { }*/;
+        return body.Values || { };
     }
 
     private handleError(error: Response | any) {
