@@ -1,5 +1,5 @@
-import { Device } from './device';
-import { DeviceType } from './deviceType';
+import { Device, DeviceType } from './index';
+
 export class Light extends Device {
     typeMachine = DeviceType.Ampoule;
     name = 'Light';

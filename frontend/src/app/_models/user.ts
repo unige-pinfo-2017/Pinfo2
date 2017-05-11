@@ -1,4 +1,4 @@
-﻿import { Device } from './device/device';
+﻿import { Device } from './index';
 export class User {
     id: number;
     username: string;

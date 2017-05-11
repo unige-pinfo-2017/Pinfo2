@@ -1,5 +1,4 @@
-import { Workstation } from './workstation';
-import { DeviceType } from './deviceType';
+import { Workstation, DeviceType } from './index';
 export abstract class Device {
     id: number;
     name: string;

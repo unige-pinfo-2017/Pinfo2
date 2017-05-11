@@ -1,5 +1,5 @@
-import { Device } from './device';
-import { DeviceType } from './deviceType';
+import { Device, DeviceType } from './index';
+
 export class Socket extends Device {
     typeMachine = DeviceType.Socket;
     name = 'Socket';

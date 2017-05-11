@@ -1,5 +1,4 @@
-import { Device } from './device';
-import { DeviceType } from './deviceType';
+import { Device, DeviceType } from './index';
 export class Hub extends Device {
     typeMachine = DeviceType.Hub;
     name = 'Hub';
