@@ -84,7 +84,7 @@ input:checked + .slider:before {
 <div id ="ids" class="w3-dropdown-click">
      <button (click)="show('so')" class="w3-button w3-bar-item w3-gray">Sockets</button>
         <div id="so" class="w3-dropdown-content">
-            <ul>
+            <ul class="w3-ul w3-content">
                 <li *ngFor="let socket of sockets">
                     <a (click)="selectSocket(socket)" href="/socket/{{socket?.id}}"> <p>{{socket?.id}}</p> </a>
                 </li>
