@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule} from '@swimlane/ngx-charts';
+import { ChartsModule} from 'ng2-charts';
 
 import 'hammerjs';
 
@@ -33,7 +34,7 @@ import { PlotComponent } from './Plot/plot.component';
       HomeComponent,
       LoginComponent,
       RegisterComponent,
-      PlotComponent,
+      PlotComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +43,8 @@ import { PlotComponent } from './Plot/plot.component';
     routing,
     MaterialModule.forRoot(),
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    ChartsModule
   ],
   providers: [
     AuthGuard,

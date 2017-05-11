@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { DataForPlotService } from '../_services';
-import { ValueForPlot } from '../_models/value-for-plot';
+
 
 @Component({
     selector: 'plot',
@@ -13,60 +13,66 @@ import { ValueForPlot } from '../_models/value-for-plot';
 
 export class PlotComponent implements OnInit {
     errorMessage : any;
-  values :ValueForPlot[];
-  
-  view: any[] = [700, 400];
+    
+    // lineChart
+    lineChartData:Array<any> /*= [
+        {
+            data: [65, 59, 80, 81, 56, 55, 40],
+            label: 'Series A'
+        },    
+    ]*/
+    lineChartLabels:Array<any> /*= [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July'
+        ];*/
+    lineChartOptions:any = {
+        responsive: true
+    };
+    lineChartColors:Array<any> = [
+        { // dark grey
+            backgroundColor: 'rgba(77,83,96,0.2)',
+            borderColor: 'rgba(77,83,96,1)',
+            pointBackgroundColor: 'rgba(77,83,96,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(77,83,96,1)'
+        }
+    ];
+    lineChartLegend:boolean = true;
+    lineChartType:string = 'line';
 
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'x';
-  showYAxisLabel = true;
-  yAxisLabel = 'y';
+    constructor(private dataForPlotService: DataForPlotService) {
+    }
 
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
+    ngOnInit(): void {
+        this.setValuesForPlot();
+    }
 
-  // line, area
-  autoScale = true;
-  
-  plot : PlotComponent;
-
-  setValuesForPlot(): void{
-      this.dataForPlotService.getValues().subscribe(values => {
-                                                        this.values=values;
-                                                        console.log("Depuis plot.component.ts setValuesForPlot");
-                                                        console.log(this.values[0].value);
-                                                        
+    setValuesForPlot(): void{
+        this.dataForPlotService.getValues().subscribe(Values => {
+                                                            this.lineChartData=Values.lineChartData;
+                                                            this.lineChartLabels=Values.lineChartLabels;
                                                         },
-                                                    error => this.errorMessage = <any> error);
-
-
-
-  }
-
-  ngOnInit(): void {
-      this.setValuesForPlot();
-       /*this.values = [
-          {
-              name:"60",
-              value:35
-          },
-          {
-              name:"20",
-              value:50
-          }
-      ]*/
-      
-  }
-
-  constructor(private dataForPlotService: DataForPlotService) {
-     
-  }
-
-
+                                                        error => this.errorMessage = <any> error);
+    }
+    
+    public randomize():void {
+        let _lineChartData:Array<any> = new Array(this.lineChartData.length);
+        for (let i = 0; i < this.lineChartData.length; i++) {
+            _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
+            for (let j = 0; j < this.lineChartData[i].data.length; j++) {
+            _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
+            }
+        }
+        this.lineChartData = _lineChartData;
+    }
+    
+    // events
+    public chartClicked(e:any):void {
+        console.log(e);
+    }
+    
+    public chartHovered(e:any):void {
+        console.log(e);
+    }
+    
 }

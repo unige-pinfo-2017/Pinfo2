@@ -12,7 +12,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
 
     {path: 'testPlot', component: PlotComponent},
-
+    
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
