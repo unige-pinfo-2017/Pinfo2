@@ -1,5 +1,4 @@
-﻿export * from './user';
-export * from './value-for-plot';
+﻿export * from './device-type';
 export * from './device';
 export * from './light';
 export * from './hub';

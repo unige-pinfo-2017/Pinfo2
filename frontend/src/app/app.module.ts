@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxChartsModule} from '@swimlane/ngx-charts';
 import { ChartsModule} from 'ng2-charts';
 
 import 'hammerjs';
@@ -46,7 +45,6 @@ import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from 
     routing,
     MaterialModule.forRoot(),
     BrowserAnimationsModule,
-    NgxChartsModule,
     ChartsModule
   ],
   providers: [

@@ -3,7 +3,7 @@
         "lineChartData":[
             {
                 "data":[13, 56, 78],
-                "label":"Consommation"
+                "label":"Consumption"
             }
         ],
         "lineChartLabels":["13h", "14h", "15h"]
