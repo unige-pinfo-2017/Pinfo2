@@ -71,6 +71,15 @@ public interface UserService {
 	 */
 	List<RegularUser> getUserByFirstName(String firstName);
 	
+	/**
+	 * find a User by the firstName
+	 * 
+	 * @param first name of the user
+	 *
+	 *@return the user corresponding to the first name
+	 */
+	RegularUser getUserByUsername(String username);
+	
 	
 	
 

@@ -1,9 +1,7 @@
 package ch.unige.pinfo2.service;
 
+import javax.inject.Inject;
 import javax.json.JsonObject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -16,9 +14,10 @@ import ch.unige.pinfo2.dom.RegularUser;
 @Path("/rest")
 public class UserServiceRs {
 	
-	//@Inject
-	//private UserService service;
+	@Inject
+	private UserService service;
 	
+	@SuppressWarnings("unused")
 	@POST 
 	@Consumes("application/json")
 	@Produces("application/json")
@@ -26,11 +25,11 @@ public class UserServiceRs {
 	public Response verifiyLogin(JsonObject input){
 		String username = input.getString("username");
 		String password = input.getString("password");
-		
-		
-		
-		
-		return Response.ok().build();
+		Long response = service.loginUser(username, password);
+		if (response==null)
+			return Response.status(Response.Status.BAD_REQUEST).entity("Username or password is incorrect").build();
+		else
+			return Response.ok().entity(service.getUserByToken(response)).build();
 	}
 	
 	@PUT
@@ -43,9 +42,18 @@ public class UserServiceRs {
 		String lastName = input.getString("last_name");
 		String tokenString = input.getString("token");
 		Long token = Long.valueOf(tokenString).longValue();
-		
-		
-		return Response.ok().build();
+		if (service.getUserByUsername(username)==null){
+			RegularUser user = new RegularUser();
+			user.setUserName(username);
+			user.setPassword(password);
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setToken(token);
+			service.addUser(user);
+			return Response.ok().build();
+		}
+		else
+			return Response.status(Response.Status.BAD_REQUEST).entity("Username already taken").build();	
 	}
 
 }

@@ -104,6 +104,16 @@ public class UserServiceImpl implements UserService{
 		}
 		return query.getResultList();*/
 	}
+	
+	public RegularUser getUserByUsername(String username){
+		String sql="SELECT u FROM RegularUser u WHERE u.username = :arg1";
+		Query query=em.createQuery(sql);
+		query.setParameter("arg1", username);
+		if(query.getResultList().isEmpty()){
+			return null;
+		}
+		return (RegularUser) query.getResultList().get(0);
+	}
 
 	
 	
