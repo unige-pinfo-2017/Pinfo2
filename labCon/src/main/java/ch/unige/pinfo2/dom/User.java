@@ -36,6 +36,8 @@ public class User implements Serializable {
 	
 	@Column(name = "TOKEN")
 	private Long token;
+	
+	private Assignment assignment;
 
 	public User() {
 	}
