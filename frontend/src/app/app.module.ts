@@ -24,7 +24,6 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
 import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from './devices/index' ;
-import { LightService } from './_services/light.service' ;
 
 
 @NgModule({
@@ -56,7 +55,6 @@ import { LightService } from './_services/light.service' ;
     AuthenticationService,
     UserService,
     DeviceService,
-    LightService,
     //DataForPlotService,
 
     // providers used to create fake backend
