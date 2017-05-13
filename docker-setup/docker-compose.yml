@@ -1,16 +1,31 @@
 # Contient les instructions pour lancer la configuration docker pour la webapp.
 
 version: "3"
+
 services:
+    proxy:
+        build: "nginx-pinfo2"
+        image: "nginx-pinfo2"
+        environment:
+            - NGINX_HOST=localhost
+            - NGINX_PORT=80
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - "../frontend/srvdist/:/usr/share/nginx/srvdist/"
+        depends_on:
+            - "appserver"
+        restart: always
     appserver:
         build: "wildfly-pinfo2"
         image: "wildfly-pinfo2"
         volumes:
             - "/tmp/docker-deploy/deployments:/opt/jboss/wildfly/standalone/deployments/"
+        expose:
+            - "8080"
         ports:
-            - "8080:8080"
             - "9990:9990"
-            - "8787:8787"
         depends_on:
             - "database"
         restart: always
@@ -20,8 +35,8 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: "admin"
             MYSQL_DATABASE: "meskyne"
-        ports:
-            - "3306:3306"
+        expose:
+            - "3306"
         volumes:
             - "/tmp/docker-deploy/database:/var/lib/mysql"
         restart: always
