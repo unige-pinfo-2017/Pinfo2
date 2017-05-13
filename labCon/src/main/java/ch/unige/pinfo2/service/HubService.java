@@ -4,6 +4,16 @@ import java.util.List;
 
 public interface HubService {
 	
+	
+	/**
+	 * get the ids if all the sockets of the hub
+	 * 
+	 * @param token of the actual user
+	 * 
+	 * @return the ids of all the sockets of the hub
+	 */
+	List<Long> getSocketsIdByToken(Long token);
+	
 	/**
 	 * get the consumption of a hub over a period
 	 * 
@@ -33,7 +43,7 @@ public interface HubService {
 	 * @param to
 	 * @param device id
 	 * 
-	 * @return the current state of the hub
+	 * @return the current state of the sockets of the hub
 	 */
 	List<Long> getStateCurrentSensor(String from, String to, String deviceId);
 	
@@ -45,7 +55,7 @@ public interface HubService {
 	 * 
 	 * @return true if the process succeed
 	 */
-	boolean setState(String state, String deviceIf);
+	boolean setState(String state, String deviceId);
 	
 
 }

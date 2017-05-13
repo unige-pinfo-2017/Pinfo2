@@ -18,6 +18,15 @@ public class SocketServiceRS {
 	@GET
 	@Consumes("application/json")
 	@Produces("application/json")
+	@Path("/getSocketId")
+	public Response getSocketId(JsonObject input){
+		// TODO
+		return Response.ok().build();
+	}
+	
+	@GET
+	@Consumes("application/json")
+	@Produces("application/json")
 	@Path("/getStatePowerSensor")
 	public Response getStatePowerSensor(JsonObject input){
 		// TODO

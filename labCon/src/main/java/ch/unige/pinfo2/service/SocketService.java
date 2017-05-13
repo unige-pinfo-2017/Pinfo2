@@ -4,6 +4,16 @@ import java.util.List;
 
 public interface SocketService {
 	
+
+	/**
+	 * get the socket's id
+	 * 
+	 * @param token of the user
+	 * 
+	 * @return the socket's id
+	 */
+	Long getSocketIdByToken(Long token);
+
 	/**
 	 * get the consumption of a socket over a period
 	 * 
@@ -46,9 +56,5 @@ public interface SocketService {
 	 * @return true if the process succeed
 	 */
 	boolean setState(String state, String deviceIf);
-	
-	
-	
-	
-	
+		
 }
