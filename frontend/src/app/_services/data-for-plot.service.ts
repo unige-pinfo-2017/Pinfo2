@@ -7,8 +7,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataForPlotService {
 
-    private plotUrl = 'http://localhost:8080/labCon/testPlot';
-    //private plotUrl = '/assets/values.json';
+    private plotUrl = 'http://localhost/restapi/testPlot';
     constructor(private http: Http){
     }
     getValues(): Observable<any>{

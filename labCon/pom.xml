@@ -26,6 +26,7 @@
                         <configuration>
                             <username>admin</username>
                             <password>admin</password>
+                            <runtimeName>restapi.war</runtimeName>
                         </configuration>
                         <goals>
                             <goal>deploy</goal>
