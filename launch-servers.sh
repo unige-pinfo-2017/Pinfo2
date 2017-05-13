@@ -25,6 +25,7 @@ function wait_ready {
 
 cd $(dirname $0)
 mkdir frontend/srvdist 2>/dev/null
+mkdir docker-deploy 2>/dev/null
 cd docker-setup
 
 docker-compose down

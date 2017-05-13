@@ -15,7 +15,7 @@ set -o nounset
 function frontdeploy {
     echo ==== Deploiement du frontend ====
     cd frontend
-    if [[ node_modules -ot src ]] ; then # only update if modules older than source
+    if [[ node_modules -ot package.json ]] ; then # only update if modules older than source
         npm install
     fi
     npm run-script ng build ${1:-}

@@ -11,9 +11,7 @@ du *dashboard* du *smartlab*.
 Le meilleur moyen de démarrer l'environement de test docker est de lancer
 le script `launch-servers.sh`, d'attendre que les serveurs soient près et
 de lancer `hot-deploy.sh`. Je conceil de relancer les serveurs de développement
-seulement lorsqu'il y a eu un changement dans la configuration docker. Pour
-l'instant il est nécessaire de redémarrer le réseau docker si vous avez
-redémarré votre ordinateur.
+seulement lorsqu'il y a eu un changement dans la configuration docker.
 
 Si vous voulez redeployer du code sans redémarrer les images docker, utilisez
 `hot-deploy.sh`, vous pouvez deployer individuellement le backend ou le
