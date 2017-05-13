@@ -27,7 +27,7 @@ public class UserServiceRs {
 		String password = input.getString("password");
 		Long response = service.loginUser(username, password);
 		if (response==null)
-			return Response.status(Response.Status.BAD_REQUEST).entity("Username or password is incorrect").build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Username or password is incorrect").build();
 		else
 			return Response.ok().entity(service.getUserByToken(response)).build();
 	}
@@ -53,7 +53,7 @@ public class UserServiceRs {
 			return Response.ok().build();
 		}
 		else
-			return Response.status(Response.Status.BAD_REQUEST).entity("Username already taken").build();	
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Username already taken").build();	
 	}
 
 }
