@@ -11,14 +11,14 @@ import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.RegularUser;
 
-@Path("/rest")
+@Path("/")
 public class UserServiceRs {
-	
+
 	@Inject
 	private UserService service;
-	
+
 	@SuppressWarnings("unused")
-	@POST 
+	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
 	@Path("/login")
@@ -31,7 +31,7 @@ public class UserServiceRs {
 		else
 			return Response.ok().entity(service.getUserByToken(response)).build();
 	}
-	
+
 	@PUT
 	@Path("/add")
 	@Produces({ "application/json" })
@@ -53,7 +53,7 @@ public class UserServiceRs {
 			return Response.ok().build();
 		}
 		else
-			return Response.status(Response.Status.BAD_REQUEST).entity("Username already taken").build();	
+			return Response.status(Response.Status.BAD_REQUEST).entity("Username already taken").build();
 	}
 
 }

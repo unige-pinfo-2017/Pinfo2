@@ -1,9 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
-import { Device } from "./device/device";
-import { DEVICES } from "./device/mock-devices";
-import { Workstation } from "./workstation";
+import { Light } from '../_models/light';
+import { Workstation } from '../_models/workstation';
+import { DevicesComponent } from '../devices/devices.component';
+import { PlotComponent } from '../Plot/plot.component';
 
 @Component({
     moduleId: module.id,
@@ -13,18 +14,11 @@ import { Workstation } from "./workstation";
 export class HomeComponent implements OnInit{
     title = 'Home';
     currentUser: User;
-    selectedDevice: Device;
     selectedWs: Workstation;
-    devices: Device[];
-    workstats: Workstation[];
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
-    selectedTitle() : String {
-        return '';
-    }
 
     ngOnInit() {
-        this.devices = DEVICES
     }
 }

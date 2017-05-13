@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
@@ -11,7 +11,7 @@ export class AuthenticationService {
         let body = JSON.stringify({ username: username, password: password });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:8080/labCon/rest/login', body, options)
+        return this.http.post('http://localhost/restapi/login', body, options)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();

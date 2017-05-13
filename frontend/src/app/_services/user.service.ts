@@ -16,7 +16,7 @@ export class UserService {
     }
 
     create(user: User) {
-        return this.http.post('http://localhost:8080/labCon/rest/register', user, this.jwt()).map((response: Response) => response.json());
+		return this.http.post('http://localhost/restapi/register', user, this.jwt()).map((response: Response) => response.json());
     }
 
     update(user: User) {

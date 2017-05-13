@@ -38,11 +38,10 @@
 			<version>2.5.0</version>
 			<scope>compile</scope>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<finalName>labCon</finalName>
+
 		<plugins>
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
@@ -54,6 +53,7 @@
 						<configuration>
 							<username>admin</username>
 							<password>admin</password>
+							<runtimeName>restapi.war</runtimeName>
 						</configuration>
 						<goals>
 							<goal>deploy</goal>
@@ -69,5 +69,4 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
-
 </project>

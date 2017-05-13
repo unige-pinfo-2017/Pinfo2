@@ -90,14 +90,21 @@ public class Test extends Application {
 		hql = "SELECT x,y FROM VALUEFORPLOT";
 		query = em.createQuery(hql);
 		List<Object[]> listValueForPlot = query.getResultList();
-		JsonArrayBuilder JsonArrayValues = Json.createArrayBuilder();	
+		JsonArrayBuilder JsonData = Json.createArrayBuilder();
+		JsonArrayBuilder JsonLineChartLabels = Json.createArrayBuilder();
+		
+		//JsonArrayBuilder JsonArrayValues = Json.createArrayBuilder();	
 				
 		for (Object[] row : listValueForPlot) {
-			JsonArrayValues.add(Json.createObjectBuilder().add("name",  row[0].toString()).add("value", Double.parseDouble(row[1].toString())));
-		    
+			JsonData.add( Double.parseDouble(row[1].toString()));
+			JsonLineChartLabels.add(row[0].toString());
 		}
 		
-		JsonObjectBuilder JsonValues = Json.createObjectBuilder().add("Values", JsonArrayValues);
+		JsonObjectBuilder JsonValues= Json.createObjectBuilder().add("Values", Json.createObjectBuilder()
+																		.add("lineChartData", Json.createArrayBuilder().add(Json.createObjectBuilder()
+																				.add("data", JsonData)
+																				.add("label", "Consumption")))
+																		.add("lineChartLabels", JsonLineChartLabels));
 		
 		return JsonValues.build().toString();
 		
