@@ -1,9 +1,7 @@
 import { Device } from './device';
-import { DeviceType } from './deviceType';
-export class Light extends Device {
-    typeMachine = DeviceType.Ampoule;
-    name = 'Light';
 
+export class Light extends Device {
+    name = 'light';
     constructor(idd: number){
         super(idd);
     }

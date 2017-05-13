@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxChartsModule} from '@swimlane/ngx-charts';
+import { ChartsModule} from 'ng2-charts';
 
 import 'hammerjs';
 
@@ -22,8 +22,7 @@ import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
-import { DevicesComponent } from './devices/devices.component' ;
-
+import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from './devices/index' ;
 
 
 @NgModule({
@@ -34,7 +33,10 @@ import { DevicesComponent } from './devices/devices.component' ;
       LoginComponent,
       RegisterComponent,
       PlotComponent,
-      DevicesComponent
+      DevicesComponent,
+      HubComponent,
+      LightComponent,
+      SocketComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ import { DevicesComponent } from './devices/devices.component' ;
     routing,
     MaterialModule.forRoot(),
     BrowserAnimationsModule,
-    NgxChartsModule
+    ChartsModule
   ],
   providers: [
     AuthGuard,

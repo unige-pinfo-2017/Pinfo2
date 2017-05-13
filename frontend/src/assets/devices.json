@@ -1,22 +1,27 @@
 {"Device": [
     {
         "id": "100",
-        "state": true
+        "state": true,
+        "name": "light"
     },
     {
         "id": "101",
-        "state": false
+        "state": false,
+        "name": "light"
     },
     {
         "id": "110",
-        "state":true
+        "state":true,
+        "name": "hub"
     },
     {
         "id": "111",
-        "state":false
+        "state":false,
+        "name": "socket"
     },
     {
         "id": "112",
-        "state":true
+        "state":true,
+        "name": "socket"
     }
 ]}
