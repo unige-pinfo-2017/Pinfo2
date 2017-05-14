@@ -15,7 +15,7 @@ if [[ $1 == 'clean' ]] ; then
     fi
     exit
 fi
-source ./launch-servers.sh
+./launch-servers.sh
 echo "==== Deploying... ===="
-source ./hot-deploy.sh back
-source ./hot-deploy.sh front
+./hot-deploy.sh back
+./hot-deploy.sh front
