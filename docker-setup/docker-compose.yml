@@ -26,6 +26,8 @@ services:
             - "8080"
         ports:
             - "9990:9990"
+            - "8080:8080"
+            - "8787:8787"
         depends_on:
             - "database"
         restart: always
