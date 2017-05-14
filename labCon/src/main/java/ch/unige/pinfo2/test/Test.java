@@ -1,4 +1,4 @@
-package test;
+package ch.unige.pinfo2.test;
 
 import java.util.ArrayList;
 import java.util.List;
