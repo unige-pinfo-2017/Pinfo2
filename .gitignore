@@ -4,6 +4,8 @@
 docker-deploy
 frontend/dist
 frontend/srvdist
+derby.log
+labCon/target
 /tmp
 /out-tsc
 *.class
