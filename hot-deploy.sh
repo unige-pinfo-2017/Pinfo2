@@ -33,6 +33,7 @@ function frontdeploy {
 function backdeploy {
     echo ==== Deploiement du backend ====
     cd labCon
+    rm -rf target bin
     mvn install
     local currentlog=$(ls /tmp/docker-log-* | sort --reverse | head -1)
     if [[ $(tail -1 $currentlog) =~ 'Deployed "labCon.war"' ]] ; then
