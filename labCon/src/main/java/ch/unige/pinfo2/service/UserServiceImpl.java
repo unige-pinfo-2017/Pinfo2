@@ -18,21 +18,9 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public void addUser(RegularUser user) {
-		String sql = "SELECT ru FROM RegularUser ru";
-		Query query = em.createQuery(sql);
-		List<RegularUser> listUsers = query.getResultList();
-
-		int i = 0;
-		int userNotInDB = 1;
-		while (i < listUsers.size()) {
-			if (listUsers.get(i).getUserName() == user.getUserName()) {
-				userNotInDB = 0;
-				break;
-			}
-			i++;
-		}
-		if (userNotInDB == 1) {
+		if (!this.alreadyRegistered(user)) {
 			// em.getTransaction().begin();
+			user.setToken(createToken());
 			em.persist(user);
 			// em.getTransaction().commit();
 		}
@@ -48,29 +36,19 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 
-	public long loginUser(String username, String password) {
+	public Integer loginUser(String username, String password) {
 		String sql = "SELECT u.token FROM RegularUser u WHERE u.username = :arg1 AND u.password = :arg2";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", username);
 		query.setParameter("arg2", password);
-		List<RegularUser> users = query.getResultList();
-		if (query.getResultList().isEmpty()) {
-			return (Long) null;
-		}
-		return (long) query.getResultList().get(0);
-	}
-
-	public RegularUser getUserById(long id) {
-		String sql = "SELECT u FROM RegularUser u WHERE u.id = :arg1";
-		Query query = em.createQuery(sql);
-		query.setParameter("arg1", id);
 		if (query.getResultList().isEmpty()) {
 			return null;
 		}
-		return (RegularUser) query.getSingleResult();
+		Integer token = (Integer) query.getSingleResult();
+		return token;
 	}
 
-	public RegularUser getUserByToken(long token) {
+	public RegularUser getUserByToken(Integer token) {
 		String sql = "SELECT u FROM RegularUser u WHERE u.token = :arg1";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", token);

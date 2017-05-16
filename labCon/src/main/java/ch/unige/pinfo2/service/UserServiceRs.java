@@ -19,15 +19,16 @@ public class UserServiceRs {
 
 	@SuppressWarnings("unused")
 	@POST
-	@Consumes("application/json")
-	@Produces("application/json")
+	@Consumes({ "application/json" })
+	@Produces({ "application/json" })
 	@Path("/login")
-	public Response verifiyLogin(JsonObject input){
+	public Response verifiyLogin(JsonObject input) {
 		String username = input.getString("username");
 		String password = input.getString("password");
-		Long response = service.loginUser(username, password);
-		if (response==null)
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Username or password is incorrect").build();
+		Integer response = service.loginUser(username, password);
+		if (response == null)
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Username or password is incorrect")
+					.build();
 		else
 			return Response.ok().entity(service.getUserByToken(response)).build();
 	}
@@ -35,14 +36,14 @@ public class UserServiceRs {
 	@POST
 	@Path("/register")
 	@Produces({ "application/json" })
-	@Consumes({"application/json"})
-	public Response addUser(JsonObject input){
+	@Consumes({ "application/json" })
+	public Response addUser(JsonObject input) {
 		String username = input.getString("username");
 		String password = input.getString("password");
 		String firstName = input.getString("firstName");
 		String lastName = input.getString("lastName");
 
-		if (service.getUserByUsername(username)==null){
+		if (service.getUserByUsername(username) == null) {
 			RegularUser user = new RegularUser();
 			user.setUserName(username);
 			user.setPassword(password);
@@ -50,10 +51,9 @@ public class UserServiceRs {
 			user.setLastName(lastName);
 			service.addUser(user);
 			return Response.ok(user).build();
+		} else {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Username already taken").build();
 		}
-		else {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Username already taken").build();
-        }
 	}
 
 }

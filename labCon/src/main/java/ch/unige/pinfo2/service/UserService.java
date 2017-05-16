@@ -34,15 +34,7 @@ public interface UserService {
 	 * 
 	 * @return the user's token
 	 */
-	long loginUser(String username, String password);
-	
-	/**
-	 * find a User by the id
-	 * 
-	 * @param id of the user
-	 *
-	 */
-	RegularUser getUserById(long id);
+	Integer loginUser(String username, String password);
 	
 	/**
 	 * find a User by the token
@@ -51,7 +43,7 @@ public interface UserService {
 	 *
 	 *@return the user corresponding to the token
 	 */
-	RegularUser getUserByToken(long token);
+	RegularUser getUserByToken(Integer token);
 	
 	/**
 	 * find a User by the lastName
