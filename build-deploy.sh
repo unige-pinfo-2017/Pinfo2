@@ -15,7 +15,7 @@ if (( $# > 0 )) ; then
             sudo rm -rf docker-deploy
         fi
         exit
-    elif [[ $1 == down ]]
+    elif [[ $1 == down ]] ; then
         cd docker-setup
         docker-compose down
         cd ..
