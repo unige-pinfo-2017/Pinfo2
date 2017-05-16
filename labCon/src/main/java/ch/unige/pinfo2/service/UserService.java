@@ -80,6 +80,15 @@ public interface UserService {
 	 */
 	RegularUser getUserByUsername(String username);
 	
+	/**
+	 * generate a unique Token
+
+	 *@return the token
+	 */
+	Integer createToken();
+	
+	
+	
 	
 	
 

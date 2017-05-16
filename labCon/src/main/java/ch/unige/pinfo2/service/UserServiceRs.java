@@ -41,15 +41,13 @@ public class UserServiceRs {
 		String password = input.getString("password");
 		String firstName = input.getString("firstName");
 		String lastName = input.getString("lastName");
-		//String tokenString = input.getString("token");
-		//Long token = Long.valueOf(tokenString).longValue();
+
 		if (service.getUserByUsername(username)==null){
 			RegularUser user = new RegularUser();
 			user.setUserName(username);
 			user.setPassword(password);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
-			user.setToken((long)99);
 			service.addUser(user);
 			return Response.ok(user).build();
 		}
