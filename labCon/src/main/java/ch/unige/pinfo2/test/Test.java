@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -36,7 +36,17 @@ public class Test extends Application {
 
 	@Resource
 	private UserTransaction userTransaction;
-
+	
+	@Inject
+	TestService service;
+	
+	@GET
+	@Path("/mock")
+	@Produces({ "application/json" })
+	public String mock(){
+		return service.methode();
+	}
+	
 	@GET
 	@Path("/")
 	@Produces({ "application/json" })
