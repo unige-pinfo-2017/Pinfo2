@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public boolean alreadyRegistered(RegularUser user) {
-		String sql="SELECT u FROM RegularUser u WHERE u.id = :arg1 AND u.firstName = :arg2 AND u.lastName = :arg3 AND u.userName = :arg4";
+		String sql="SELECT u FROM RegularUser u WHERE u.id = :arg1 AND u.firstName = :arg2 AND u.lastName = :arg3 AND u.username = :arg4";
 		Query query=em.createQuery(sql);
 		query.setParameter("arg1", user.getId());
 		query.setParameter("arg2", user.getFirstName());
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public long loginUser(String username, String password) {
-		String sql="SELECT u.token FROM RegularUser u WHERE u.userName = :arg1 AND u.password = :arg2";
+		String sql="SELECT u.token FROM RegularUser u WHERE u.username = :arg1 AND u.password = :arg2";
 		Query query=em.createQuery(sql);
 		query.setParameter("arg1", username);
 		query.setParameter("arg2", password);
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService{
 		query.setParameter("arg1", firstName);
 		List<RegularUser> users=query.getResultList();
 		return users;
-		/*String sql="SELECT u FROM USER u WHERE u.FIRSTNAME = ?1";
+		/*String sql="SELECT u FROM USER u WHERE u.firstName = ?1";
 		Query query=em.createQuery(sql);
 		query.setParameter(1, firstName);
 		if(query.getResultList().isEmpty()){
