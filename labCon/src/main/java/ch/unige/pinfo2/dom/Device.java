@@ -1,8 +1,11 @@
 package ch.unige.pinfo2.dom;
 
-import java.util.Collection;
+import java.util.Date;
 
 public abstract class Device {
+	private Date mesureTime;
 	
-	private Collection<Workstation> owners;
+	public Device(Date mesureTime) {
+		this.mesureTime = mesureTime;
+	}
 }

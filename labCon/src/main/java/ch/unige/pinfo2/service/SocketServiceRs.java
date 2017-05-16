@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 @Path("/rest/socket")
-public class SocketServiceRS {
+public class SocketServiceRs {
 	
 	@Inject
 	private SocketService service;

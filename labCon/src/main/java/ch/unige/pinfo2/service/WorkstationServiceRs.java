@@ -1,5 +1,5 @@
 package ch.unige.pinfo2.service;
 
-public class LightServiceRS {
+public class WorkstationServiceRs {
 
 }

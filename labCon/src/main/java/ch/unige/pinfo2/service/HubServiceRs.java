@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 @Path("/rest/hub")
-public class HubServiceRS {
+public class HubServiceRs {
 	
 	@Inject
 	private HubService service;

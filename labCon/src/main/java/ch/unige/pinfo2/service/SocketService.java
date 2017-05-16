@@ -12,7 +12,7 @@ public interface SocketService {
 	 * 
 	 * @return the socket's id
 	 */
-	Long getSocketIdByToken(Long token);
+	public Long getSocketIdByToken(Long token);
 
 	/**
 	 * get the consumption of a socket over a period
@@ -23,7 +23,7 @@ public interface SocketService {
 	 * 
 	 * @return a list of the measures over this specified period
 	 */
-	List<Long> getStatePowerSensor(String from, String to, String deviceId);
+	public List<Long> getStatePowerSensor(String from, String to, String deviceId);
 	
 	/**
 	 * get the state (on/off) of a socket over a period
@@ -34,7 +34,7 @@ public interface SocketService {
 	 * 
 	 * @return a list of state of the socket over a period
 	 */
-	List<Integer> getStatus(String from, String to, String deviceId);
+	public List<Integer> getStatus(String from, String to, String deviceId);
 	
 	/**
 	 * get the state of a socket
@@ -45,7 +45,7 @@ public interface SocketService {
 	 * 
 	 * @return the current state of the socket
 	 */
-	List<Long> getStateCurrentSensor(String from, String to, String deviceId);
+	public List<Long> getStateCurrentSensor(String from, String to, String deviceId);
 	
 	/**
 	 * change the state of a socket
@@ -55,6 +55,6 @@ public interface SocketService {
 	 * 
 	 * @return true if the process succeed
 	 */
-	boolean setState(String state, String deviceIf);
+	public boolean setState(String state, String deviceIf);
 		
 }

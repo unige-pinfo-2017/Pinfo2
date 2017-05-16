@@ -23,7 +23,7 @@ public class SocketServiceImpl implements SocketService {
 	}
 
 	@Override
-	public Long getStateCurrentSensor(String from, String to, String deviceId) {
+	public List<Long> getStateCurrentSensor(String from, String to, String deviceId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
