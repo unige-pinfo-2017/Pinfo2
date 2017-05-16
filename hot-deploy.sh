@@ -22,11 +22,7 @@ function frontdeploy {
     if [[ -n "$(ls srvdist)" ]] ; then # Remove content of srvdist
         rm -rf srvdist/*
     fi
-<<<<<<< Updated upstream
     mv -f dist/* srvdist
-=======
-    mv dist/* srvdist
->>>>>>> Stashed changes
     docker exec dockersetup_proxy_1 sh \
         -c 'rm -rf /usr/share/nginx/html/*
             mv /usr/share/nginx/srvdist/* /usr/share/nginx/html
