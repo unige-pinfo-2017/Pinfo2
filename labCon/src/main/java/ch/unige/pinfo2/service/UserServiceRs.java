@@ -51,7 +51,7 @@ public class UserServiceRs {
 			user.setLastName(lastName);
 			user.setToken((long)99);
 			service.addUser(user);
-			return Response.ok().build();
+			return Response.ok(user).build();
 		}
 		else {
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Username already taken").build();

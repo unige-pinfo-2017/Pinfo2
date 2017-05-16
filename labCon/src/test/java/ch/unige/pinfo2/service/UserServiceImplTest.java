@@ -6,7 +6,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-
 import org.junit.Test;
 
 import ch.unige.pinfo2.dom.RegularUser;
@@ -70,7 +69,7 @@ public class UserServiceImplTest{
 		em.getTransaction().begin();	
 		em.persist(user1);
 		em.getTransaction().commit();
-		String sql="SELECT u FROM RegularUser u WHERE u.id = :arg1 AND u.firstName = :arg2 AND u.lastName = :arg3 AND u.userName = :arg4";
+		String sql="SELECT u FROM RegularUser u WHERE u.id = :arg1 AND u.firstName = :arg2 AND u.lastName = :arg3 AND u.username = :arg4";
 		Query query=em.createQuery(sql);
 		query.setParameter("arg1", user1.getId());
 		query.setParameter("arg2", user1.getFirstName());
@@ -107,7 +106,7 @@ public class UserServiceImplTest{
 		em.getTransaction().begin();	
 		em.persist(user1);
 		em.getTransaction().commit();
-		String sql="SELECT u.token FROM RegularUser u WHERE u.userName = :arg1 AND u.password = :arg2";
+		String sql="SELECT u.token FROM RegularUser u WHERE u.username = :arg1 AND u.password = :arg2";
 		Query query=em.createQuery(sql);
 		query.setParameter("arg1", user1.getUserName());
 		query.setParameter("arg2", user1.getPassword());

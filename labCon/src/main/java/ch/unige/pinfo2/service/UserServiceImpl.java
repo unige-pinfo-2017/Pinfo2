@@ -14,6 +14,7 @@ public class UserServiceImpl implements UserService{
 	@PersistenceContext(name ="ProjectPersistence")
 	private EntityManager em;
 
+	@Transactional
 	public void addUser(RegularUser user) {
 		
 		String sql="SELECT ru FROM RegularUser ru";
@@ -31,9 +32,9 @@ public class UserServiceImpl implements UserService{
 			i++;
 		}
 		if(userNotInDB==1){
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 			em.persist(user);
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 		}
 	}
 
