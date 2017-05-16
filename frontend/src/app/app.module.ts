@@ -24,6 +24,8 @@ import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
 import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from './devices/index' ;
 
+//import { dashconConfig } from '../dashcon-config';
+
 
 @NgModule({
   declarations: [

@@ -32,9 +32,10 @@ public class UserServiceRs {
 			return Response.ok().entity(service.getUserByToken(response)).build();
 	}
 
-	@PUT
-	@Path("/add")
+	@POST
+	@Path("/register")
 	@Produces({ "application/json" })
+	@Consumes({"application/json"})
 	public Response addUser(JsonObject input){
 		String username = input.getString("username");
 		String password = input.getString("password");
