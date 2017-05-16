@@ -20,8 +20,8 @@ public class SocketServiceRS {
 	@Produces("application/json")
 	@Path("/getSocketId")
 	public Response getSocketId(JsonObject input){
-		// TODO
-		return Response.ok().build();
+		Long token = Long.valueOf(input.getString("token"));
+		return Response.ok(service.getSocketIdByToken(token)).build();
 	}
 	
 	@GET
@@ -29,8 +29,10 @@ public class SocketServiceRS {
 	@Produces("application/json")
 	@Path("/getStatePowerSensor")
 	public Response getStatePowerSensor(JsonObject input){
-		// TODO
-		return Response.ok().build();
+		String id = input.getString("id");
+		String from = input.getString("from");
+		String to = input.getString("to");
+		return Response.ok(service.getStatePowerSensor(from, to, id)).build();
 	}
 	
 	@GET
@@ -38,8 +40,10 @@ public class SocketServiceRS {
 	@Produces("application/json")
 	@Path("/getStatus")
 	public Response getStatus(JsonObject input){
-		// TODO
-		return Response.ok().build();
+		String id = input.getString("id");
+		String from = input.getString("from");
+		String to = input.getString("to");
+		return Response.ok(service.getStatus(from, to, id)).build();
 	}
 	
 	@GET

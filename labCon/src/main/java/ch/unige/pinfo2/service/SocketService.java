@@ -45,7 +45,7 @@ public interface SocketService {
 	 * 
 	 * @return the current state of the socket
 	 */
-	Long getStateCurrentSensor(String from, String to, String deviceId);
+	List<Long> getStateCurrentSensor(String from, String to, String deviceId);
 	
 	/**
 	 * change the state of a socket
