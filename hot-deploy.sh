@@ -19,10 +19,13 @@ function frontdeploy {
 		npm install
 	fi
 	npm run-script ng build ${1:-}
-	if [[ -n "$(ls srvdist)" ]] ; then # Remove content of srvdist
+	if [[ -n "$(ls srvdist)" ]] ; then # Prevent conflicts when copying new files
 		rm -rf srvdist/*
 	fi
 	mv -f dist/* srvdist
+	# The file is moved to a special place in the file system where we take
+	# care to "sanitize" it for use on the image (this means: make sure the
+	# permissions and UIDs are set correctly)
 	docker exec dockersetup_proxy_1 sh \
 		-c 'rm -rf /usr/share/nginx/html/*
 	mv /usr/share/nginx/srvdist/* /usr/share/nginx/html
@@ -36,12 +39,10 @@ function backdeploy {
 	rm -rf target bin
 	mvn clean
 	mvn install
-	local currentlog=$(ls /tmp/docker-log-* | sort --reverse | head -1)
-	if [[ $(tail -1 $currentlog) =~ 'Deployed "labCon.war"' ]] ; then
-		echo "==== Wildfly log repports a successful deployement ===="
-	else
-		echo "==== Hmm... ===="
-	fi
+	mv target/restapi.war srvdeploy
+	docker exec dockersetup_appserver_1 sh \
+		-c 'mv /opt/newwarstash/* /opt/jboss/wildfly/standalone/deployments
+	chown -R jboss /opt/jboss/wildfly/standalone/deployments'
 	cd ..
 }
 

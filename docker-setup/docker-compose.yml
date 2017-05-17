@@ -22,6 +22,8 @@ services:
             - "8080"
         depends_on:
             - "database"
+        volumes:
+            - "../labCon/srvdeploy/:/opt/newwarstash/"
         restart: always
     database:
         build: "mariadb-pinfo2"

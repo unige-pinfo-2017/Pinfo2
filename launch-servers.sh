@@ -24,8 +24,13 @@ function wait_ready {
 }
 
 cd $(dirname $0)
+
+# Make sure we wrote the frontend/srvdist and labCon/srvdeploy files
+# So we can handily use them for deployement as a security airlock between
+# the host system and the docker image.
 mkdir frontend/srvdist 2>/dev/null
-mkdir docker-deploy 2>/dev/null
+mkdir labCon/srvdeploy 2>/dev/null
+
 cd docker-setup
 
 docker-compose down
