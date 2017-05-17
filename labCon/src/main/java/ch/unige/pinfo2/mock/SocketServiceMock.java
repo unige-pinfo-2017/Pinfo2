@@ -6,13 +6,11 @@ import java.util.Random;
 
 import javax.enterprise.inject.Alternative;
 
+import ch.unige.pinfo2.dom.Socket;
 import ch.unige.pinfo2.service.SocketService;
 
 @Alternative
 public class SocketServiceMock implements SocketService{
-	
-	private final long minId = 1;
-	private final long maxId = 1000;
 	
 	public Long randomLong(long from, long to){
 		Random r = new Random();
@@ -21,50 +19,24 @@ public class SocketServiceMock implements SocketService{
 	}
 
 	@Override
-	public Long getSocketIdByToken(Long token) {		
-		return this.randomLong(this.minId, this.maxId);
-	}
-
-	@Override
-	public List<Long> getStatePowerSensor(String from, String to, String deviceId) {
-		Long start = Long.valueOf(from);
-		Long stop = Long.valueOf(to);
-		List<Long> list = new ArrayList<Long>();
-		while (start<stop){
-			list.add(this.randomLong(minId, 5));
-			start+=20;
+	public List<Socket> getState(Long from, Long to, int deviceId) {
+		Long timestamp = from;
+		Random r = new Random(); 
+		Long power;
+		Long current;
+		Long isOn;
+		List<Socket> socketStates = new ArrayList<Socket>();
+	
+		while (timestamp < to){
+			power = randomLong(0,5);
+			current = randomLong(0,10);
+			isOn = (long) ((r.nextBoolean())?1:0);
+			socketStates.add(new Socket(timestamp, current, power, isOn ));
+			timestamp+=20;		
 		}
-		return list;
+		return socketStates;
 	}
 
-	@Override
-	public List<Integer> getStatus(String from, String to, String deviceId) {
-		Long start = Long.valueOf(from);
-		Long stop = Long.valueOf(to);
-		List<Integer> list = new ArrayList<Integer>();
-		Random r = new Random();
-		while (start<stop){
-			list.add(r.nextInt(2));
-			start+=20;
-		}
-		return list;
-	}
-
-	@Override
-	public List<Long> getStateCurrentSensor(String from, String to, String deviceId) {
-		Long start = Long.valueOf(from);
-		Long stop = Long.valueOf(to);
-		List<Long> list = new ArrayList<Long>();
-		while (start<stop){
-			list.add(this.randomLong(minId, 5));
-			start+=20;
-		}
-		return list;
-	}
-
-	@Override
-	public boolean setState(String state, String deviceId) {
-		return true;
-	}
+	
 
 }

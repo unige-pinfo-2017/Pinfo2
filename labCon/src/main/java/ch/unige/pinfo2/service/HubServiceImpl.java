@@ -2,36 +2,15 @@ package ch.unige.pinfo2.service;
 
 import java.util.List;
 
+import ch.unige.pinfo2.dom.Hub;
+
 public class HubServiceImpl implements HubService {
 
 	@Override
-	public List<Long> getSocketsIdByToken(Long token) {
+	public List<Hub> getState(Long from, Long to, Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public List<Long> getConsumption(String from, String to, String deviceId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Integer> getStatus(String from, String to, String deviceId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Long> getStateCurrentSensor(String from, String to, String deviceId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean setState(String state, String deviceIf) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

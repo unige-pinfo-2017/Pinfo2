@@ -3,9 +3,9 @@ package ch.unige.pinfo2.dom;
 import java.util.Date;
 
 public abstract class Device {
-	private Date mesureTime;
+	private Long timestamp;
 	
-	public Device(Date mesureTime) {
-		this.mesureTime = mesureTime;
+	public Device(Long timestamp) {
+		this.timestamp = timestamp;
 	}
 }

@@ -2,17 +2,9 @@ package ch.unige.pinfo2.service;
 
 import java.util.List;
 
-public interface SocketService {
-	
+import ch.unige.pinfo2.dom.Socket;
 
-	/**
-	 * get the socket's id
-	 * 
-	 * @param token of the user
-	 * 
-	 * @return the socket's id
-	 */
-	public Long getSocketIdByToken(Long token);
+public interface SocketService {
 
 	/**
 	 * get the consumption of a socket over a period
@@ -23,38 +15,8 @@ public interface SocketService {
 	 * 
 	 * @return a list of the measures over this specified period
 	 */
-	public List<Long> getStatePowerSensor(String from, String to, String deviceId);
+	public List<Socket> getState(Long from, Long to, int deviceId);
 	
-	/**
-	 * get the state (on/off) of a socket over a period
-	 * 
-	 * @param from
-	 * @param to
-	 * @param device id
-	 * 
-	 * @return a list of state of the socket over a period
-	 */
-	public List<Integer> getStatus(String from, String to, String deviceId);
-	
-	/**
-	 * get the state of a socket
-	 * 
-	 * @param from
-	 * @param to
-	 * @param device id
-	 * 
-	 * @return the current state of the socket
-	 */
-	public List<Long> getStateCurrentSensor(String from, String to, String deviceId);
-	
-	/**
-	 * change the state of a socket
-	 * 
-	 * @param ON or OFF
-	 * @param device id
-	 * 
-	 * @return true if the process succeed
-	 */
-	public boolean setState(String state, String deviceIf);
+
 		
 }
