@@ -19,9 +19,9 @@ public class HubServiceMock implements HubService{
 	@Inject
 	SocketService service;
 	
-	public Long randomLong(long from, long to){
+	public Double randomDouble(long from, long to){
 		Random r = new Random();
-		Long number = from+((long)(r.nextDouble()*(to-from)));
+		Double number = from+((double)(r.nextDouble()*(to-from)));
 		return number;
 	}
 
@@ -29,15 +29,15 @@ public class HubServiceMock implements HubService{
 	public List<Hub> getState(Long from, Long to, Integer id) {
 		Long timestamp = from;
 		Random r = new Random(); 
-		Long power;
-		Long current;
+		Double power;
+		Double current;
 		Long isOn;
 		List<Hub> hubStates = new ArrayList<Hub>();
 		Collection<Socket> sockets = new ArrayList<Socket>();
 		while (timestamp < to){
 			for (int i=0; i<7; i++){
-				power = randomLong(0,5);
-				current = randomLong(0,10);
+				power = randomDouble(0,5);
+				current = randomDouble(0,10);
 				isOn = (long) ((r.nextBoolean())?1:0);
 				sockets.add(new Socket(timestamp, current, power, isOn));
 			}

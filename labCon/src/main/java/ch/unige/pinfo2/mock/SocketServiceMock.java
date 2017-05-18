@@ -12,9 +12,9 @@ import ch.unige.pinfo2.service.SocketService;
 @Alternative
 public class SocketServiceMock implements SocketService{
 	
-	public Long randomLong(long from, long to){
+	public Double randomDouble(long from, long to){
 		Random r = new Random();
-		Long number = from+((long)(r.nextDouble()*(to-from)));
+		Double number = from+((double)(r.nextDouble()*(to-from)));
 		return number;
 	}
 
@@ -22,14 +22,14 @@ public class SocketServiceMock implements SocketService{
 	public List<Socket> getState(String deviceId, Long from, Long to) {
 		Long timestamp = from;
 		Random r = new Random(); 
-		Long power;
-		Long current;
+		Double power;
+		Double current;
 		Long isOn;
 		List<Socket> socketStates = new ArrayList<Socket>();
 	
 		while (timestamp < to){
-			power = randomLong(0,5);
-			current = randomLong(0,10);
+			power = randomDouble(0,5);
+			current = randomDouble(0,10);
 			isOn = (long) ((r.nextBoolean())?1:0);
 			socketStates.add(new Socket(timestamp, current, power, isOn ));
 			timestamp+=20;		

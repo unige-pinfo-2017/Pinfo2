@@ -1,15 +1,15 @@
 package ch.unige.pinfo2.dom;
 
 public class Socket extends Device {
-	private double current;
-	private double power;
-	private boolean isOn;
+	private Double current;
+	private Double power;
+	private Boolean isOn;
 
-	public Socket(Long timestamp, double current, double power, double isOnDouble) {
+	public Socket(Long timestamp, Double current, Double power, Long isOn2) {
 		super(timestamp);
 		this.current = current;
 		this.power = power;
-		if (isOnDouble == 0) {
+		if (isOn2 == 0) {
 			this.isOn = false;
 		} else {
 			this.isOn = true;
