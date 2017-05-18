@@ -12,10 +12,10 @@ import javax.ws.rs.core.Response;
 import ch.unige.pinfo2.dom.RegularUser;
 
 @Path("/")
-public class UserServiceRs {
+public class RegularUserServiceRs {
 
 	@Inject
-	private UserService service;
+	private RegularUserService service;
 
 	@SuppressWarnings("unused")
 	@POST

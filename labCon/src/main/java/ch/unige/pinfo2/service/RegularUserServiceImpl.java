@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import ch.unige.pinfo2.dom.RegularUser;
 
 @Stateless
-public class UserServiceImpl implements UserService {
+public class RegularUserServiceImpl implements RegularUserService {
 	@PersistenceContext(name = "ProjectPersistence")
 	private EntityManager em;
 

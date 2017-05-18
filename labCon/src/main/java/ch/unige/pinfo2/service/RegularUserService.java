@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import ch.unige.pinfo2.dom.RegularUser;
 
 @Local
-public interface UserService {
+public interface RegularUserService {
 	
 	/**
 	 * add a User to the DB
