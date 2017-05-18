@@ -1,18 +1,18 @@
 package ch.unige.pinfo2.dom;
 
 public class Light extends Device {
-	private double power;
-	private boolean isOn;
+	private Double power;
+	private Boolean isOn;
 	
-	public Light(Long mesureTime, double power) {
-		super(mesureTime);
+	public Light(Long timestamp, Double power) {
+		super(timestamp);
 		this.power = power;
 		if(power != 0) {
-			isOn = true;
+			isOn = new Boolean(true);
 		} 
 		else 
 		{
-			isOn = false;
+			isOn = new Boolean(false);
 		}
 	}
 }

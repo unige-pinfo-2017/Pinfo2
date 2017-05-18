@@ -16,11 +16,11 @@ public class LightServiceImplMock implements LightService {
 		
 		long startTime = Long.parseLong("1493290847263");
 		for(int i=0; i<10; i++) {
-			lightStates.add(new Light(new Long(startTime),0));
+			lightStates.add(new Light(new Long(startTime), new Double(0)));
 			startTime += 20;
 		}
 		for(int i=0; i<10; i++) {
-			lightStates.add(new Light(new Long(startTime),20.3));
+			lightStates.add(new Light(new Long(startTime), new Double(20.3)));
 			startTime += 20;
 		}
 		
