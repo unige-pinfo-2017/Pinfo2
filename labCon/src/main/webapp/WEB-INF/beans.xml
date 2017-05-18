@@ -6,6 +6,6 @@
        <alternatives>
        <class>ch.unige.pinfo2.mock.HubServiceMock</class>
        <class>ch.unige.pinfo2.mock.SocketServiceMock</class>
-       <class>ch.unige.pinfo2.mock.LightServiceMock</class>
+       <class>ch.unige.pinfo2.mock.LightServiceImplMock</class>
        </alternatives>
 </beans>
