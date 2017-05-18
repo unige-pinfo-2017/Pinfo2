@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-@Path("/restapi/devices/lights")
+@Path("/devices/lights")
 public class LightServiceRs {
 	
 	@Inject
