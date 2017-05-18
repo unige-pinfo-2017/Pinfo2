@@ -6,15 +6,14 @@ services:
     proxy:
         build: "nginx-pinfo2"
         image: "nginx-pinfo2"
-        ports:
-            - "80:80"
-            - "443:443"
+        expose:
+            - "80"
         volumes:
             - "../frontend/srvdist/:/usr/share/nginx/srvdist/"
-            - "/opt/production/seckeys/:/etc/nginx/security/keys/:ro"
         depends_on:
             - "appserver"
         restart: always
+
     appserver:
         build: "wildfly-pinfo2"
         image: "wildfly-pinfo2"
@@ -25,6 +24,7 @@ services:
         volumes:
             - "../labCon/srvdeploy/:/opt/newwarstash/"
         restart: always
+
     database:
         build: "mariadb-pinfo2"
         image: "mariadb-pinfo2"

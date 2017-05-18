@@ -46,14 +46,6 @@ function backdeploy {
 	cd ..
 }
 
-function proxydeploy {
-	echo ==== Deploiement des clées ssl ====
-	echo cp /etc/letsencrypt/live/pinfo2.unige.ch/fullchain.pem /opt/production/seckeys/
-	sudo cp /etc/letsencrypt/live/pinfo2.unige.ch/fullchain.pem /opt/production/seckeys/
-	echo cp /etc/letsencrypt/live/pinfo2.unige.ch/privkey.pem /opt/production/seckeys/
-	sudo cp /etc/letsencrypt/live/pinfo2.unige.ch/privkey.pem /opt/production/seckeys/
-}
-
 oldoldwd="$PWD"
 cd $(dirname $0)
 if (( $# >= 1 )) ; then
@@ -61,13 +53,10 @@ if (( $# >= 1 )) ; then
 		frontdeploy
 	elif [ $1 = back ] ; then
 		backdeploy
-	elif [ $1 = proxy ] ; then
-		proxydeploy
 	else
 		echo "Les arguments sont:"
 		echo "  front: deploie le front end"
 		echo "  back: deploie la backend"
-		echo "  proxy: deploie les clées et certificats ssl"
 		echo "  Aucun argument deploie les deux"
 		echo "  Ce programe n'accepte qu'un argument à la fois"
 	fi
