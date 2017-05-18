@@ -15,7 +15,7 @@ public interface SocketService {
 	 * 
 	 * @return a list of the measures over this specified period
 	 */
-	public List<Socket> getState(Long from, Long to, int deviceId);
+	public List<Socket> getState(String deviceId, Long from, Long to);
 	
 
 		

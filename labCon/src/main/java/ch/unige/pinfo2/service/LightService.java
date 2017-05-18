@@ -1,7 +1,6 @@
 package ch.unige.pinfo2.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import ch.unige.pinfo2.dom.Light;
 
@@ -16,5 +15,5 @@ public interface LightService {
 	 * 
 	 * @return an arraylist of lights in which each light represents the state of the light at a given time
 	 */
-	public ArrayList<Light>  getState(String deviceId, Date from, Date to);
+	public ArrayList<Light>  getState(String deviceId, Long from, Long to);
 }

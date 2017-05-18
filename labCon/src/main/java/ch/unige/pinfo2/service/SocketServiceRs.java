@@ -7,18 +7,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-@Path("/rest/socket")
+@Path("/restapi/devices/sockets")
 public class SocketServiceRs {
 	
 	@Inject
-	private SocketService service;
+	private SocketService socketService;
 	
 	@GET
 	@Produces("application/json")
 	@Path("/getState")
-	public Response getState(@QueryParam("id") Integer id,
+	public Response getState(@QueryParam("id") String id,
 			@QueryParam("fromDate") Long fromDate,
 			@QueryParam("toDate") Long toDate){
-		return Response.ok(service.getState(fromDate, toDate, id)).build();
+		return Response.ok(socketService.getState(id, fromDate, toDate)).build();
 	}
 }

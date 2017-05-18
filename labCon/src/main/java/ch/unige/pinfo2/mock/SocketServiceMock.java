@@ -19,7 +19,7 @@ public class SocketServiceMock implements SocketService{
 	}
 
 	@Override
-	public List<Socket> getState(Long from, Long to, int deviceId) {
+	public List<Socket> getState(String deviceId, Long from, Long to) {
 		Long timestamp = from;
 		Random r = new Random(); 
 		Long power;
