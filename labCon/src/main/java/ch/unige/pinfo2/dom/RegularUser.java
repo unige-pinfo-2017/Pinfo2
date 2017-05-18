@@ -19,9 +19,8 @@ public class RegularUser implements Serializable {
 	private static final long serialVersionUID = 4561966035983412307L;
 
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="username")
+	private String username;
 
 	@Column(name="firstName")
 	private String firstName;
@@ -29,16 +28,12 @@ public class RegularUser implements Serializable {
 	@Column(name="lastName")
 	private String lastName;
 	
-	@Column(name="username")
-	private String username;
-	
 	@Column(name="password")
 	private String password;
 	
 	@Column(name="token")
-	private Long token;
 	
-	private Assignment assignment;
+	private Integer token;
 
 	public RegularUser() {
 	}
@@ -59,14 +54,6 @@ public class RegularUser implements Serializable {
 		this.password = password;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -83,11 +70,11 @@ public class RegularUser implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Long getToken() {
+	public Integer getToken() {
 		return token;
 	}
 
-	public void setToken(Long token) {
+	public void setToken(Integer token) {
 		this.token = token;
 	}
 
