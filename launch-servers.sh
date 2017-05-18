@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 # Launches the docker images without deploying anything.
+# if launched with the argument "soft", it will only relaunch the necessary
+# images
 shopt -s failglob
 set -o nounset
 
@@ -27,6 +29,16 @@ cd $(dirname $0)
 mkdir frontend/srvdist 2>/dev/null
 mkdir docker-deploy 2>/dev/null
 cd docker-setup
+
+# If we want to only update the images without messing up the config, we do a
+# "soft launch"
+if [[ $# != 0 ]] && [[ $1 == soft ]] ; then
+    echo "Soft reloading the images..."
+    docker-compose build
+    docker-compose up -d
+    cd ..
+    exit 0
+fi
 
 docker-compose down
 docker-compose build
