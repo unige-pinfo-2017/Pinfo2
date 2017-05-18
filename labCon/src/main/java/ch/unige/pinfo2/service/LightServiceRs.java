@@ -5,7 +5,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
+
+import com.google.gson.Gson;
 
 @Path("/devices/lights")
 public class LightServiceRs {
@@ -16,9 +17,9 @@ public class LightServiceRs {
 	@GET
 	@Produces("application/json")
 	@Path("/getState")
-	public Response getState(@QueryParam("deviceId") String id,
-			@QueryParam("from") Long fromDate,
-			@QueryParam("to") Long toDate){
-		return Response.ok(lightService.getState(id, fromDate, toDate)).build();
+	public String getState(@QueryParam("deviceId") String deviceId,
+			@QueryParam("from") Long from,
+			@QueryParam("to") Long to){
+		return new Gson().toJson(lightService.getState(deviceId, from, to));
 	}
 }
