@@ -14,7 +14,7 @@ public interface HubService {
 	 * 
 	 * @return the ids of all the sockets of the hub
 	 */
-	List<Hub> getState(Long from, Long to, Integer id);
+	List<Hub> getState(String id, Long from, Long to);
 	
 
 }

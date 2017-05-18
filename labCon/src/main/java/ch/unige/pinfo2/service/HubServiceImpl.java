@@ -7,10 +7,9 @@ import ch.unige.pinfo2.dom.Hub;
 public class HubServiceImpl implements HubService {
 
 	@Override
-	public List<Hub> getState(Long from, Long to, Integer id) {
+	public List<Hub> getState(String id, Long from, Long to) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }
