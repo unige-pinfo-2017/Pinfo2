@@ -9,12 +9,10 @@
 		<jta-data-source>meskyne</jta-data-source>
 
 		<class>ch.unige.pinfo2.dom.RegularUser</class>
-		<class>ch.unige.pinfo2.test.Personne</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 		</properties>
-		<class>ch.unige.pinfo2.test.ValueForPlot</class>
 	</persistence-unit>
 </persistence>
