@@ -18,7 +18,7 @@ function frontdeploy {
 	if [[ node_modules -ot package.json ]] ; then # only update if modules older than source
 		npm install
 	fi
-	npm run-script ng build ${1:-}
+	npm run-script ng build -prod
 	if [[ -n "$(ls srvdist)" ]] ; then # Prevent conflicts when copying new files
 		rm -rf srvdist/*
 	fi
@@ -58,7 +58,7 @@ oldoldwd="$PWD"
 cd $(dirname $0)
 if (( $# >= 1 )) ; then
 	if [ $1 = front ] ; then
-		frontdeploy ${2:-}
+		frontdeploy
 	elif [ $1 = back ] ; then
 		backdeploy
 	elif [ $1 = proxy ] ; then
