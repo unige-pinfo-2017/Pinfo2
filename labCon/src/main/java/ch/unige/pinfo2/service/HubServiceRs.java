@@ -19,9 +19,9 @@ public class HubServiceRs {
 	@GET
 	@Produces("application/json")
 	@Path("/getState")
-	public Response getState(@QueryParam("id") Integer id,
-			@QueryParam("fromDate") Long fromDate,
-			@QueryParam("toDate") Long toDate){
+	public Response getState(@QueryParam("deviceId") Integer id,
+			@QueryParam("from") Long fromDate,
+			@QueryParam("to") Long toDate){
 		return Response.ok(service.getState(fromDate, toDate, id)).build();
 	}
 }

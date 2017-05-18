@@ -16,7 +16,7 @@ public class LightServiceRs {
 	@GET
 	@Produces("application/json")
 	@Path("/getState")
-	public Response getState(@QueryParam("id") String id,
+	public Response getState(@QueryParam("deviceId") String id,
 			@QueryParam("from") Long fromDate,
 			@QueryParam("to") Long toDate){
 		return Response.ok(lightService.getState(id, fromDate, toDate)).build();

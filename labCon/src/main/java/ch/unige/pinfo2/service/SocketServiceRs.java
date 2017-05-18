@@ -7,6 +7,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.Gson;
+
 @Path("/devices/sockets")
 public class SocketServiceRs {
 	
@@ -16,9 +18,9 @@ public class SocketServiceRs {
 	@GET
 	@Produces("application/json")
 	@Path("/getState")
-	public Response getState(@QueryParam("id") String id,
-			@QueryParam("fromDate") Long fromDate,
-			@QueryParam("toDate") Long toDate){
-		return Response.ok(socketService.getState(id, fromDate, toDate)).build();
+	public String getState(@QueryParam("deviceId") String id,
+			@QueryParam("from") Long fromDate,
+			@QueryParam("to") Long toDate){
+		return new Gson().toJson(socketService.getState(id, fromDate, toDate));
 	}
 }
