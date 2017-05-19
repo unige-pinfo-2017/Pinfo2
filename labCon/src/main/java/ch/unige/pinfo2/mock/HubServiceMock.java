@@ -31,7 +31,7 @@ public class HubServiceMock implements HubService{
 		List<Hub> hubStates = new ArrayList<Hub>();
 		while (timestamp < to){
 			List<Socket> sockets = new ArrayList<Socket>();
-			for (int i=0; i<7; i++){
+			for (int i=0; i<6; i++){
 				power = randomDouble(0,5);
 				current = randomDouble(0,10);
 				isOn = (long) ((r.nextBoolean())?1:0);
