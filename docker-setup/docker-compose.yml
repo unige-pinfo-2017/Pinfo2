@@ -13,6 +13,9 @@ services:
         depends_on:
             - "appserver"
         restart: always
+        networks:
+            - masterproxy
+            - default
 
     appserver:
         build: "wildfly-pinfo2"
@@ -24,6 +27,8 @@ services:
         volumes:
             - "../labCon/srvdeploy/:/opt/newwarstash/"
         restart: always
+        networks:
+            - default
 
     database:
         build: "mariadb-pinfo2"
@@ -36,3 +41,9 @@ services:
         volumes:
             - "/opt/production/database:/var/lib/mysql"
         restart: always
+        networks:
+            - default
+
+networks:
+    masterproxy:
+        external: true
