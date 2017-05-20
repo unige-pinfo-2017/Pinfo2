@@ -23,6 +23,7 @@ export class HubComponent {
       devices.forEach(element => {
             if (element.name === 'hub' && element.id === id) {
                 this.hub = element;
+                this.socketsId = element.link;
             }
       });
     });

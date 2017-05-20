@@ -17,7 +17,6 @@ import {Routes, Router} from '@angular/router';
 
 export class DevicesComponent implements OnInit {
     errorMessage: any;
-    devices: Device[];
     hubs = new Array<Hub>();
     sockets = new Array<Socket>();
     lights =  new Array<Light>();
@@ -25,7 +24,7 @@ export class DevicesComponent implements OnInit {
     selectedHub: Hub;
     selectedSocket: Socket;
     setDevices(): void {
-      this.deviceService.getValues().subscribe(devices => { this.devices = devices;
+      this.deviceService.getValues().subscribe(devices => {
       devices.forEach(element => {
             if (element.name === 'hub') {
                 this.hubs.push(element);
