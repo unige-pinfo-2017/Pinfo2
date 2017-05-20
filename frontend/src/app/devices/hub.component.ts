@@ -4,6 +4,7 @@ import { Device } from '../_models/device' ;
 import { PlotComponent } from '../Plot/plot.component';
 import { DeviceService } from "../_services/devices.service";
 import { ActivatedRoute } from '@angular/router' ;
+import { SidebarComponent } from "../sidebar.component";
 
 @Component({
     selector: 'hub',
@@ -15,6 +16,7 @@ import { ActivatedRoute } from '@angular/router' ;
 export class HubComponent {
     private hub: Hub;
     private hubId: number;
+    private socketsId: number[];
 
     setHub(id: number): void {
       this.deviceService.getValues().subscribe(devices => {

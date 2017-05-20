@@ -5,10 +5,11 @@ import { Light } from '../_models/light';
 import { Workstation } from '../_models/workstation';
 import { DevicesComponent } from '../devices/devices.component';
 import { PlotComponent } from '../Plot/plot.component';
+import { SidebarComponent } from "../sidebar.component";
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'home.component.html',
+    templateUrl: 'home.component.html'
 })
 
 export class HomeComponent implements OnInit{
