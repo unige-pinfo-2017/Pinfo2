@@ -5,6 +5,7 @@ import { PlotComponent } from '../Plot/plot.component';
 import { DeviceService } from "../_services/devices.service";
 import { ActivatedRoute } from '@angular/router' ;
 import { SidebarComponent } from "../sidebar.component";
+import { Socket } from "../_models/socket";
 
 @Component({
     selector: 'hub',
@@ -17,6 +18,7 @@ export class HubComponent {
     private hub: Hub;
     private hubId: number;
     private socketsId: number[];
+    sockets = new Array<Socket>();
 
     setHub(id: number): void {
       this.deviceService.getValues().subscribe(devices => {
@@ -26,7 +28,13 @@ export class HubComponent {
                 this.socketsId = element.link;
             }
       });
+      devices.forEach(element => {
+            if(element.name === "socket") {
+                this.sockets.push(element);
+            }
+      });
     });
+        
     }
 
     ngOnInit(): void {
