@@ -1,20 +1,21 @@
-
-
+<sidebar></sidebar>
+<div class="w3-card-2" style="margin-left:202px">
 <!-- Page Content -->
-<div>
-    <div class="page-header">
-        <h1>Home</h1>
-    </div>
-
     <div>
-        <p> You're logged in {{currentUser.firstName}} !</p>
-        <div> </div>
-        
+        <header class="w3-container w3-blue">
+            <h1>Home</h1>
+        </header>
+
         <div class="w3-container">
-            <plot> </plot>
+            <h3> You're logged in {{currentUser.firstName}} !</h3>        
+            <div>
+                <plot> </plot>
+            </div>
         </div>
 
-        <p> <a [routerLink]="['/login']">Logout</a> </p>
+        <div class="w3-container"> 
+            <a [routerLink]="['/login']">Logout</a>
+        </div>
+        
     </div>
 </div>
-

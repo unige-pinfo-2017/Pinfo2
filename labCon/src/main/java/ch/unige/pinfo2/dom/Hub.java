@@ -1,13 +1,18 @@
 package ch.unige.pinfo2.dom;
 
-import java.util.Collection;
+import java.util.List;
 
-public class Hub extends Device {
-
-	public Hub(Long timestamp, Collection<Socket> sockets) {
-		super(timestamp);
+public class Hub {
+	
+	public Hub(List<Socket> sockets) {
 		this.sockets = sockets;
 	}
 
-	private Collection<Socket> sockets;
+	List<Socket> sockets;
+
+	public List<Socket> getSockets() {
+		return sockets;
+	}
+	
+
 }

@@ -11,6 +11,7 @@ import {Routes, Router} from '@angular/router';
 @Component({
     selector: 'devices',
     templateUrl: 'devices.component.html',
+    styleUrls: ['devices.component.css'],
     providers: [DeviceService]
 })
 

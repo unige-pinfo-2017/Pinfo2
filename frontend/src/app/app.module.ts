@@ -23,6 +23,7 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
 import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from './devices/index' ;
+import { SidebarComponent } from "./sidebar.component";
 
 //import { dashconConfig } from '../dashcon-config';
 
@@ -38,7 +39,8 @@ import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from 
       DevicesComponent,
       HubComponent,
       LightComponent,
-      SocketComponent
+      SocketComponent,
+      SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -55,8 +57,6 @@ import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from 
     AuthenticationService,
     UserService,
     DeviceService,
-    //DataForPlotService,
-
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,
