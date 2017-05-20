@@ -22,7 +22,7 @@ function frontdeploy {
 	if [[ -n "$(ls srvdist)" ]] ; then # Prevent conflicts when copying new files
 		rm -rf srvdist/*
 	fi
-	mv -f dist/* srvdist
+	mv -f dist/* srvdist/
 	# The file is moved to a special place in the file system where we take
 	# care to "sanitize" it for use on the image (this means: make sure the
 	# permissions and UIDs are set correctly)
@@ -38,7 +38,7 @@ function backdeploy {
 	cd labCon
 	rm -rf target bin
 	mvn clean install
-	mv target/restapi.war srvdeploy
+	mv target/restapi.war srvdeploy/restapi.war
 	if (( $? != 0 )) ; then
 		echo  -e "\e[31m==== ERROR couldn't move the .war to the airlock ABORTING ====\e[0m"
 		exit 1
