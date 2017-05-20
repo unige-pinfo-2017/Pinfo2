@@ -3,15 +3,15 @@ pipeline {
 
 	stages {
 		stage('Build') {
+			customWorkspace './labCon'
 			steps {
-				cd 'labCon'
 				sh 'mvn install'
 				archiveArtifacts artifacts: 'target/restapi.war', fingerprint: true
 			}
 		}
 		stage('Test') {
+			customWorkspace './labCon'
 			steps {
-				cd 'labCon'
 				sh 'mvn test ||  true'
 			}
 		}

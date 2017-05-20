@@ -39,6 +39,14 @@ if ! docker network ls | grep masterproxy -q ; then
     docker network create --driver bridge masterproxy
 fi
 
+# HACK If we are on production, we stealthly modify the docker-compose file.
+if [ $HOSTNAME = pinfo2 ] ; then # if we are on the server, we
+	# Replace `ports:` binding with a simple expose command.
+	sed -i -e '/ports:/{$!{N;s/80:80/80/}};/ports:/s//expose:/' \
+		docker-setup/docker-compose.yml
+fi
+
+
 cd docker-setup
 
 # If we want to only update the images without messing up the config, we do a
@@ -59,25 +67,22 @@ les arguments sont:
 le comportement par défaut est de terminer les images et puis
 de les relancer"
 	fi
-	cd ..
-	exit 0
+else
+	echo ==== Lancement des images docker ====
+	docker-compose down
+	docker-compose build
+	dockerlogfile="/tmp/docker-log-$(date +%a-%H-%M)" # Create the log file
+
+	# Create a fifo for the loop
+	fifo=/tmp/build-deploy.fifo.$$
+	mkfifo $fifo
+	tail -F $dockerlogfile >$fifo & # Redirect tail output to the fifo
+	tailpid=$!
+
+	docker-compose up 2>&1 1>$dockerlogfile & # Start docker servers images
+	wait_ready < $fifo
+	kill $tailpid
+	rm $fifo
+	echo "==== All servers are ready... ===="
 fi
-echo ==== Lancement des images docker ====
-
-docker-compose down
-docker-compose build
-dockerlogfile="/tmp/docker-log-$(date +%a-%H-%M)" # Create the log file
-
-# Create a fifo for the loop
-fifo=/tmp/build-deploy.fifo.$$
-mkfifo $fifo
-tail -F $dockerlogfile >$fifo & # Redirect tail output to the fifo
-tailpid=$!
-
-docker-compose up 2>&1 1>$dockerlogfile & # Start docker servers images
-wait_ready < $fifo
-kill $tailpid
-rm $fifo
-echo "==== All servers are ready... ===="
-
 cd ..
