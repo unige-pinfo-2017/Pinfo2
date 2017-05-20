@@ -23,7 +23,7 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
 import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from './devices/index' ;
-
+import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 //import { dashconConfig } from '../dashcon-config';
 
 
@@ -47,7 +47,13 @@ import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from 
     routing,
     MaterialModule.forRoot(),
     BrowserAnimationsModule,
-    ChartsModule
+    ChartsModule,
+    MdButtonModule,
+    MdCheckboxModule
+  ],
+  exports: [
+    MdButtonModule,
+    MdCheckboxModule
   ],
   providers: [
     AuthGuard,
@@ -65,3 +71,7 @@ import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export class PizzaPartyAppModule { }
+
+export class MyOwnCustomMaterialModule { }
