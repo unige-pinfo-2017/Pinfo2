@@ -3,7 +3,7 @@
         <div id="li" class="w3-dropdown-content">
            <ul class="w3-ul w3-bar-block">
                 <li *ngFor="let light of lights">
-                  <a (click)="selectLight(light)" href="/light/{{light?.id}}">
+                  <a (click)="selectLight(light)" [routerLink]="[ '/light', {myParam: 'light?.id' } ]">
                     <p>{{light?.id}}</p>
                   </a>
                 </li>
@@ -16,7 +16,7 @@
         <div id="hu" class="w3-dropdown-content">
             <ul class="w3-ul w3-bar-block">
                 <li *ngFor="let hub of hubs">
-                    <a (click)="selectHub(hub)" href="/hub/{{hub?.id}}"> <p>{{hub?.id}}</p> </a>
+                    <a (click)="selectHub(hub)" [routerLink]="[ '/hub', {myParam: 'hub?.id' } ]"> <p>{{hub?.id}}</p> </a>
                 </li>
             </ul>
         </div>
@@ -27,7 +27,7 @@
         <div id="so" class="w3-dropdown-content">
             <ul class="w3-ul w3-bar-block">
                 <li *ngFor="let socket of sockets">
-                    <a (click)="selectSocket(socket)" href="/socket/{{socket?.id}}"> <p>{{socket?.id}}</p> </a>
+                    <a (click)="selectSocket(socket)" [routerLink]="[ '/socket', {myParam: 'socket?.id' } ]" > <p>{{socket?.id}}</p> </a>
                 </li>
             </ul>
         </div>

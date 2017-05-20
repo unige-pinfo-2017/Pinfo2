@@ -42,8 +42,12 @@ export class HubComponent {
     }
     constructor(private deviceService: DeviceService, private route: ActivatedRoute) {
         this.route.params.subscribe(
-        params => this.hubId = params['id']
-    );
+            params => {
+                this.hubId = params['id'];
+                        console.log(this.hubId);
+                        console.log(params['id']);
+            }
+        );
   }
 
   show_live() {
