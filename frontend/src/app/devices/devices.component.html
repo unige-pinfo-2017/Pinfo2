@@ -1,68 +1,9 @@
-<style>
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input {display:none;}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-</style>
-<link href="https://www.w3schools.com/w3css/4/w3.css">
-
 <div id="idl" class="w3-dropdown-click">
     <button (click)="show('li')" class="w3-button w3-border w3-gray">Lights</button>
         <div id="li" class="w3-dropdown-content w3-bar-block">
            <ul class="w3-ul w3-bar-block">
                 <li *ngFor="let light of lights">
-                  <a (click)="selectLight(light)" href="/light/{{light?.id}}">
+                  <a (click)="selectLight(light)" [routerLink]="[ '/light', {myParam: 'light?.id' } ]">
                     <p>{{light?.id}}</p>
                   </a>
                 </li>
@@ -75,7 +16,7 @@ input:checked + .slider:before {
         <div id="hu" class="w3-dropdown-content">
             <ul class="w3-ul w3-content">
                 <li *ngFor="let hub of hubs">
-                    <a (click)="selectHub(hub)" href="/hub/{{hub?.id}}"> <p>{{hub?.id}}</p> </a>
+                    <a (click)="selectHub(hub)" [routerLink]="[ '/hub', {myParam: 'hub?.id' } ]"> <p>{{hub?.id}}</p> </a>
                 </li>
             </ul>
         </div>
@@ -86,7 +27,7 @@ input:checked + .slider:before {
         <div id="so" class="w3-dropdown-content">
             <ul class="w3-ul w3-content">
                 <li *ngFor="let socket of sockets">
-                    <a (click)="selectSocket(socket)" href="/socket/{{socket?.id}}"> <p>{{socket?.id}}</p> </a>
+                    <a (click)="selectSocket(socket)" [routerLink]="[ '/socket', {myParam: 'socket?.id' } ]" > <p>{{socket?.id}}</p> </a>
                 </li>
             </ul>
         </div>

@@ -15,6 +15,11 @@
         "name": "hub"
     },
     {
+        "id": "120",
+        "state":true,
+        "name": "hub"
+    },
+    {
         "id": "111",
         "state":false,
         "name": "socket"
