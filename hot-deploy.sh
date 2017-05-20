@@ -13,12 +13,12 @@ shopt -s failglob
 set -o nounset
 
 function frontdeploy {
-	echo ==== Deploiement du frontend ====
+	echo -e "\e[32m==== Deploiement du frontend ====\e[0m"
 	cd frontend
 	if [[ node_modules -ot package.json ]] ; then # only update if modules older than source
 		npm install
 	fi
-	npm run-script ng build -prod
+	npm run-script ng build
 	if [[ -n "$(ls srvdist)" ]] ; then # Prevent conflicts when copying new files
 		rm -rf srvdist/*
 	fi
@@ -34,12 +34,15 @@ function frontdeploy {
 }
 
 function backdeploy {
-	echo ==== Deploiement du backend ====
+	echo -e "\e[32m==== Deploiement du backend ====\e[0m"
 	cd labCon
 	rm -rf target bin
-	mvn clean
-	mvn install
+	mvn clean install
 	mv target/restapi.war srvdeploy
+	if (( $? != 0 )) ; then
+		echo  -e "\e[31m==== ERROR couldn't move the .war to the airlock ABORTING ====\e[0m"
+		exit 1
+	fi
 	docker exec dockersetup_appserver_1 sh \
 		-c 'mv /opt/newwarstash/* /opt/jboss/wildfly/standalone/deployments
 	chown -R jboss /opt/jboss/wildfly/standalone/deployments'

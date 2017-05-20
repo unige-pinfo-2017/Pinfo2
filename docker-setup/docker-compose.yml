@@ -6,8 +6,8 @@ services:
     proxy:
         build: "nginx-pinfo2"
         image: "nginx-pinfo2"
-        expose:
-            - "80"
+        ports:
+            - "80:80"
         volumes:
             - "../frontend/srvdist/:/usr/share/nginx/srvdist/"
         depends_on:
@@ -38,8 +38,6 @@ services:
             MYSQL_DATABASE: "meskyne"
         expose:
             - "3306"
-        volumes:
-            - "/opt/production/database:/var/lib/mysql"
         restart: always
         networks:
             - default

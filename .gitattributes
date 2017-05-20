@@ -1,1 +1,2 @@
-docker-setup text eol=lf
+docker-setup/* text eol=lf
+docker-setup/*/* text eol=lf
