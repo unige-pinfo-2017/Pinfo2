@@ -22,7 +22,17 @@ public class HubServiceMock implements HubService{
 	}
 
 	@Override
-	public List<Hub> getState(String id, Long from, Long to) {
+	public List<Hub> getState(String id, Long from, Long to){
+		if((from==null)&&(to==null)){
+			from=2000L;
+			to=2020L;
+		}
+		else if((from!=null)&&(to==null)){
+			to=from+20L;
+		}
+		else if((from==null)&&(to!=null)){
+			from=to-20L;
+		}
 		Long timestamp = from;
 		Random r = new Random(); 
 		Double power;
