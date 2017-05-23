@@ -19,17 +19,21 @@ function frontdeploy {
 		npm install
 	fi
 	npm run-script ng build
-	if [[ -n "$(ls srvdist)" ]] ; then # Prevent conflicts when copying new files
-		rm -rf srvdist/*
+	docker cp dist dockersetup_proxy_1:/usr/share/nginx/srvdist
+	if (( $? != 0 )) ; then
+		echo  -e "\e[31m==== ERROR couldn't move the webapp package to the airlock ABORTING ====\e[0m"
+		exit 1
 	fi
-	mv -f dist/* srvdist/
-	# The file is moved to a special place in the file system where we take
-	# care to "sanitize" it for use on the image (this means: make sure the
-	# permissions and UIDs are set correctly)
 	docker exec dockersetup_proxy_1 sh \
 		-c 'rm -rf /usr/share/nginx/html/*
-	mv /usr/share/nginx/srvdist/* /usr/share/nginx/html
-	chown -R nginx /usr/share/nginx/html'
+			mv /usr/share/nginx/srvdist/* /usr/share/nginx/html
+			chown -R nginx /usr/share/nginx/html'
+	if (( $? != 0 )) ; then
+		echo  -e "\e[31m==== ERROR couldn't manipulate the dist files inside the docker image ====\e[0m"
+		exit 1
+	else
+		echo  -e "\e[32m==== SUCCESS deploying frontend (probably) ====\e[0m"
+	fi
 	cd ..
 }
 
@@ -38,14 +42,20 @@ function backdeploy {
 	cd labCon
 	rm -rf target bin
 	mvn clean install
-	mv target/restapi.war srvdeploy/restapi.war
+	docker cp target/restapi.war dockersetup_appserver_1:/opt/newwarstash/restapi.war
 	if (( $? != 0 )) ; then
 		echo  -e "\e[31m==== ERROR couldn't move the .war to the airlock ABORTING ====\e[0m"
 		exit 1
 	fi
 	docker exec dockersetup_appserver_1 sh \
 		-c 'mv /opt/newwarstash/* /opt/jboss/wildfly/standalone/deployments
-	chown -R jboss /opt/jboss/wildfly/standalone/deployments'
+			chown -R jboss /opt/jboss/wildfly/standalone/deployments'
+	if (( $? != 0 )) ; then
+		echo  -e "\e[31m==== ERROR couldn't manipulate the .war inside the docker image ====\e[0m"
+		exit 1
+	else
+		echo  -e "\e[32m==== SUCCESS deploying backend (probably) ====\e[0m"
+	fi
 	cd ..
 }
 

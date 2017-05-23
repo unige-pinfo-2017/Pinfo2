@@ -27,12 +27,6 @@ function wait_ready {
 
 cd $(dirname $0)
 
-# Make sure we wrote the frontend/srvdist and labCon/srvdeploy files
-# So we can handily use them for deployement as a security airlock between
-# the host system and the docker image.
-mkdir frontend/srvdist 2>/dev/null
-mkdir labCon/srvdeploy 2>/dev/null
-
 # Make sure the masterproxy network exists
 if ! docker network ls | grep masterproxy -q ; then
     echo ==== Création du réseau docker masterproxy pour compatibilité ====
@@ -45,7 +39,6 @@ if [ $HOSTNAME = pinfo2 ] ; then # if we are on the server, we
 	sed -i -e '/ports:/{$!{N;s/80:80/80/}};/ports:/s//expose:/' \
 		docker-setup/docker-compose.yml
 fi
-
 
 cd docker-setup
 
