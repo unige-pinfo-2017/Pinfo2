@@ -50,6 +50,7 @@ import { SidebarComponent } from "./sidebar.component";
     routing,
     MaterialModule.forRoot(),
     BrowserAnimationsModule,
+    MaterialModule,
     ChartsModule,
     MdButtonModule,
     MdCheckboxModule
