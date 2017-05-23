@@ -6,4 +6,8 @@ public abstract class Device {
 	public Device(Long timestamp) {
 		this.timestamp = timestamp;
 	}
+
+	public Long getTimestamp() {
+		return timestamp;
+	}
 }

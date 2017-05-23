@@ -3,8 +3,7 @@ import { DevicesComponent } from './devices/devices.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', '../assets/w3.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'Home';

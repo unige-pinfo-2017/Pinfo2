@@ -1,21 +1,30 @@
-<div class="container-fluid">
-    <div class="row">
+<sidebar></sidebar>
+<div class="w3-card-2" style="margin-left:202px">
+    <header class="w3-container w3-blue">
+        <h1>
+            Socket {{socket?.id}}
+        </h1>
+    </header>
+    <!-- Page Content -->
+
+    <div class="w3-container row">
         <div class="col-md-12">
-            <div class="row">
-				<div class="col-md-6">
-					 <p class="badge">Socket {{socket?.id}}</p>
-				</div>
-				<div class="col-md-6">
-					 <label class="switch">
-                        <input type="checkbox">
+            <div class="w3-container w3-center row">
+                <div class="w3-container col-md-6">
+                    <h3 class="w3-tag">State</h3>
+                </div>
+                <div class="w3-container col-md-6">
+                    <label class="switch">
+                        <input type="checkbox" [checked]="socket?.state" value="socket?.state">
                         <div class="slider round"></div>
                     </label>
-				</div>
-			</div>
+                </div>
+            </div>
 
             <plot></plot>
         </div>
     </div>
+
 </div>
 
 <md-tab-group>

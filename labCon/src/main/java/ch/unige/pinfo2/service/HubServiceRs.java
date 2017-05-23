@@ -1,5 +1,6 @@
 package ch.unige.pinfo2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -21,7 +22,7 @@ public class HubServiceRs {
 	private HubService hubService;
 
 	@GET
-	@Produces("text/plain")
+	@Produces("application/json")
 	@Path("/getState")
 	public String getState(@QueryParam("deviceId") String deviceId,
 			@QueryParam("from") Long from,
@@ -29,29 +30,43 @@ public class HubServiceRs {
 		List<Hub> hubStates= 
 				hubService.getState(deviceId, from, to);
 		ListIterator<Hub> it = hubStates.listIterator();
-		String hubStatesGson = "{ ";
+		String hubStatesGson = "{ \"states\": [ ";
 		while (it.hasNext()){
 			Hub state = (Hub) it.next();
 			ListIterator<Socket> it2 = state.getSockets().listIterator();
-			hubStatesGson = hubStatesGson.concat("{ ");
-			String tmp = new Gson().toJson(state.getSockets());
-			System.out.println("\n\n\n\n\n\n" + tmp+"\n\n\n\n\n\n");
-			hubStatesGson = hubStatesGson.concat(new Gson().toJson(state.getSockets()));
-			/*
+			
+			//doing the sum over the sockets
+			Double current=0d;
+			Double power=0d;
+			Long timestamp=0l;
 			while (it2.hasNext()){
 				Socket sock = (Socket) it2.next();
-				hubStatesGson = hubStatesGson.concat(new Gson().toJson(sock));
-				if (it2.hasNext()){
-					hubStatesGson = hubStatesGson.concat(", ");
-				}
+				current += sock.getCurrent();
+				power += sock.getPower();
+				timestamp = sock.getTimestamp();
 			}
-			*/
-			hubStatesGson = hubStatesGson.concat(" }");
+			//adding to the Json output
+			hubStatesGson = hubStatesGson.concat("{ \"current\": "+ current+", \"power\": "+power+", \"timestamp\": "+timestamp+"}");
 			if (it.hasNext()){
 				hubStatesGson = hubStatesGson.concat(", ");
 			}
 		}
-		hubStatesGson = hubStatesGson.concat(" }");
+		hubStatesGson = hubStatesGson.concat(" ] }");
 		return hubStatesGson;
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/getSocketsState")
+	public String getSocketState(@QueryParam("deviceId") String deviceId){
+		Hub state = hubService.getLastState(deviceId);
+		ListIterator<Socket> it2 = state.getSockets().listIterator();
+		List<Boolean> socketState = new ArrayList<Boolean>();
+		while(it2.hasNext()){
+			Boolean next = it2.next().getIsOn();
+			socketState.add(next);
+		}
+		
+		return new Gson().toJson(socketState);
 	}
 }
