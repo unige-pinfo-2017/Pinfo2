@@ -53,3 +53,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/*Tab bar Material Design*/
+.tab1 {
+  margin-left: 200px;
+}
