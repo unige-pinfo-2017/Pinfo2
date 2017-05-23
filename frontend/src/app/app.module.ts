@@ -48,7 +48,6 @@ import { SidebarComponent } from "./sidebar.component";
     FormsModule,
     HttpModule,
     routing,
-    MaterialModule.forRoot(),
     BrowserAnimationsModule,
     MaterialModule,
     ChartsModule,
