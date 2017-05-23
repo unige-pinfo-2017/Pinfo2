@@ -11,20 +11,21 @@ import {Routes, Router} from '@angular/router';
 @Component({
     selector: 'devices',
     templateUrl: 'devices.component.html',
+    styleUrls: ['devices.component.css'],
     providers: [DeviceService]
 })
 
 export class DevicesComponent implements OnInit {
     errorMessage: any;
-    devices: Device[];
     hubs = new Array<Hub>();
     sockets = new Array<Socket>();
     lights =  new Array<Light>();
     selectedLight: Light;
     selectedHub: Hub;
     selectedSocket: Socket;
+    
     setDevices(): void {
-      this.deviceService.getValues().subscribe(devices => { this.devices = devices;
+      this.deviceService.getValues().subscribe(devices => {
       devices.forEach(element => {
             if (element.name === 'hub') {
                 this.hubs.push(element);
@@ -36,6 +37,7 @@ export class DevicesComponent implements OnInit {
       });
     },
             error => this.errorMessage = <any> error);
+
     }
 
     ngOnInit(): void {

@@ -12,4 +12,10 @@ public class HubServiceImpl implements HubService {
 		return null;
 	}
 
+	@Override
+	public Hub getLastState(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

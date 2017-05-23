@@ -3,6 +3,7 @@ export abstract class Device {
     id: number;
     name: string;
     state: boolean;
+    link: number[];
     consommation: number;
 
     constructor(idd: number){

@@ -1,16 +1,16 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-header blue">
-                <h1>
-                    Hub {{hub?.id}}
-                </h1>
-            </div>
-            <div class="w3-bar w3-grey">
-                <div class="w3-bar-item">
-                    <button (click)="show_live()" class="w3-button">Live</button>
-                    <button (click)="show_history()" class="w3-button">History</button>
-                </div>
+<sidebar></sidebar>
+<div class="w3-card-4" style="margin-left:202px">
+    <header class="w3-container w3-blue">
+        <h1>
+            Hub {{hub?.id}}
+        </h1>
+    </header>
+    <!-- Page Content -->
+    <div>
+
+            <div class="w3-bar w3-blue">
+                <button (click)="show_live()" class="w3-button w3-hover-white w3-bar-item">Live</button>
+                <button (click)="show_history()" class="w3-button w3-hover-white w3-bar-item">History</button>
             </div>
 
             <div class="w3-container" id="panel-live">
@@ -18,23 +18,29 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <p>Socket 1</p>
+                        <a href="/socket/{{sockets[0]?.id}}">
+                            <p>Socket {{sockets[0]?.id}}</p>
+                        </a>
                         <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" [checked]="sockets[0]?.state" value="sockets[0]?.state">
                                 <div class="slider round"></div>
                                 </label>
                     </div>
                     <div class="col-md-4">
-                        <p>Socket 2</p>
+                        <a href="/socket/{{sockets[1]?.id}}">
+                            <p>Socket {{sockets[1]?.id}}</p>
+                        </a>
                         <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" [checked]="sockets[1]?.state" value="sockets[1]?.state">
                                 <div class="slider round"></div>
                                 </label>
                     </div>
                     <div class="col-md-4">
-                        <p>Socket 3</p>
+                        <a href="/socket/{{sockets[2]?.id}}">
+                            <p>Socket {{sockets[2]?.id}}</p>
+                        </a>
                         <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" [checked]="sockets[2]?.state" value="sockets[2]?.state">
                                 <div class="slider round"></div>
                                 </label>
                     </div>
@@ -42,23 +48,29 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <p>Socket 4</p>
+                        <a href="/socket/{{sockets[3]?.id}}">
+                            <p>Socket {{sockets[3]?.id}}</p>
+                        </a>
                         <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" [checked]="sockets[3]?.state" value="sockets[3]?.state">
                                 <div class="slider round"></div>
                                 </label>
                     </div>
                     <div class="col-md-4">
-                        <p>Socket 5</p>
+                        <a href="/socket/{{sockets[4]?.id}}">
+                            <p>Socket {{sockets[4]?.id}}</p>
+                        </a>
                         <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" [checked]="sockets[4]?.state" value="sockets[4]?.state">
                                 <div class="slider round"></div>
                                 </label>
                     </div>
                     <div class="col-md-4">
-                        <p>Socket 6</p>
+                        <a href="/socket/{{sockets[5]?.id}}">
+                            <p>Socket {{sockets[5]?.id}}</p>
+                        </a>
                         <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" [checked]="sockets[5]?.state" value="sockets[5]?.state">
                                 <div class="slider round"></div>
                                 </label>
                     </div>
@@ -66,10 +78,8 @@
             </div>
 
             <div class="w3-container w3-hide" id="panel-history">
-                <label> Début : </label> <input type="date" id = "dateDebut">
-                <label> Fin : </label> <input type="date" id = "dateFin">
+                <label> Début : </label> <input type="date" id="dateDebut">
+                <label> Fin : </label> <input type="date" id="dateFin">
             </div>
-        </div>
     </div>
 </div>
- 

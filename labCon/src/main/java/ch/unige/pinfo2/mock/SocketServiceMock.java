@@ -19,7 +19,17 @@ public class SocketServiceMock implements SocketService{
 	}
 
 	@Override
-	public List<Socket> getState(String deviceId, Long from, Long to) {
+	public List<Socket> getState(String deviceId, Long from, Long to){
+		if((from==null)&&(to==null)){
+			from=2000L;
+			to=2020L;
+		}
+		else if((from!=null)&&(to==null)){
+			to=from+20L;
+		}
+		else if((from==null)&&(to!=null)){
+			from=to-20L;
+		}
 		Long timestamp = from;
 		Random r = new Random(); 
 		Double power;

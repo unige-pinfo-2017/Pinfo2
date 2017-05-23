@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router' ;
 import { Light } from '../_models/light';
 import { Device } from '../_models/device';
 import { DeviceService } from "../_services/devices.service";
+import { SidebarComponent } from "../sidebar.component";
 
 @Component({
     selector: 'light',

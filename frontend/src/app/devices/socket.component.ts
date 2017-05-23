@@ -2,6 +2,7 @@ import { Component } from '@angular/core' ;
 import { ActivatedRoute } from '@angular/router' ;
 import { Socket } from "../_models/socket";
 import { DeviceService } from "../_services/devices.service";
+import { SidebarComponent } from "../sidebar.component";
 
 @Component({
     selector: 'socket',

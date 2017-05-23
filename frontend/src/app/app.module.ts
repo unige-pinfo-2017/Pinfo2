@@ -24,6 +24,8 @@ import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
 import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from './devices/index' ;
 import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import { SidebarComponent } from "./sidebar.component";
+
 //import { dashconConfig } from '../dashcon-config';
 
 
@@ -38,15 +40,16 @@ import {MdButtonModule, MdCheckboxModule} from '@angular/material';
       DevicesComponent,
       HubComponent,
       LightComponent,
-      SocketComponent
+      SocketComponent,
+      SidebarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    MaterialModule.forRoot(),
     BrowserAnimationsModule,
+    MaterialModule,
     ChartsModule,
     MdButtonModule,
     MdCheckboxModule
@@ -61,8 +64,6 @@ import {MdButtonModule, MdCheckboxModule} from '@angular/material';
     AuthenticationService,
     UserService,
     DeviceService,
-    //DataForPlotService,
-
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,
