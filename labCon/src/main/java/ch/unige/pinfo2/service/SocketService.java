@@ -17,6 +17,14 @@ public interface SocketService {
 	 */
 	public List<Socket> getState(String deviceId, Long from, Long to);
 	
-
+	/**
+	 * set the socket on or off
+	 * 
+	 * @param String of the device id
+	 * @param String onOrOff
+	 * 
+	 * @return true if the process did'nt failed
+	 */
+	public Boolean setOnOrOff(String deviceId, String onOrOff);
 		
 }

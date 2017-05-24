@@ -12,6 +12,11 @@ public class LightServiceImplMock implements LightService {
 	public Light getState(String deviceId) {
 		return new Light(new Long(Long.parseLong("1493290847263")), new Double(20.3));
 	}
+
+	@Override
+	public Boolean setOnOrOff(String deviceId, String onOrOff) {
+		return true;
+	}
 	
 	
 }

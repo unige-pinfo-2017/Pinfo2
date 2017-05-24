@@ -11,5 +11,11 @@ public class SocketServiceImpl implements SocketService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public Boolean setOnOrOff(String deviceId, String onOrOff) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
