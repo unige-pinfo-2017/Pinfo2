@@ -49,6 +49,7 @@ import { SidebarComponent } from "./sidebar.component";
     HttpModule,
     routing,
     BrowserAnimationsModule,
+    MaterialModule,
     ChartsModule,
     MdButtonModule,
     MdCheckboxModule
