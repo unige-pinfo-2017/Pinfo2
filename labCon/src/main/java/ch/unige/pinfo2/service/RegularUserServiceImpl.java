@@ -21,10 +21,8 @@ public class RegularUserServiceImpl implements RegularUserService {
 	@Transactional
 	public void addUser(RegularUser user) {
 		if (!this.alreadyRegistered(user)) {
-			em.getTransaction().begin();
 			user.setToken(createToken());
 			em.persist(user);
-			em.getTransaction().commit();
 		}
 	}
 
