@@ -18,7 +18,6 @@ function frontdeploy {
 	if [[ node_modules -ot package.json ]] ; then # only update if modules older than source
 		npm install
 	fi
-<<<<<<< HEAD
 	npm run-script ng build
 	docker cp dist dockersetup_proxy_1:/usr/share/nginx/srvdist
 	if (( $? != 0 )) ; then
@@ -35,22 +34,10 @@ function frontdeploy {
 	else
 		echo  -e "\e[32m==== SUCCESS deploying frontend (probably) ====\e[0m"
 	fi
-=======
-	npm run-script ng build ${1:-}
-	if [[ -n "$(ls srvdist)" ]] ; then # Remove content of srvdist
-		rm -rf srvdist/*
-	fi
-	mv -f dist/* srvdist
-	docker exec dockersetup_proxy_1 sh \
-		-c 'rm -rf /usr/share/nginx/html/*
-	mv /usr/share/nginx/srvdist/* /usr/share/nginx/html
-	chown -R nginx /usr/share/nginx/html'
->>>>>>> 509825e1083d7c9e6259c836729561fc72aa00ed
 	cd ..
 }
 
 function backdeploy {
-<<<<<<< HEAD
 	echo -e "\e[32m==== Deploiement du backend ====\e[0m"
 	cd labCon
 	rm -rf target bin
@@ -68,18 +55,6 @@ function backdeploy {
 		exit 1
 	else
 		echo  -e "\e[32m==== SUCCESS deploying backend (probably) ====\e[0m"
-=======
-	echo ==== Deploiement du backend ====
-	cd labCon
-	rm -rf target bin
-	mvn clean
-	mvn install
-	local currentlog=$(ls /tmp/docker-log-* | sort --reverse | head -1)
-	if [[ $(tail -1 $currentlog) =~ 'Deployed "labCon.war"' ]] ; then
-		echo "==== Wildfly log repports a successful deployement ===="
-	else
-		echo "==== Hmm... ===="
->>>>>>> 509825e1083d7c9e6259c836729561fc72aa00ed
 	fi
 	cd ..
 }
@@ -88,11 +63,7 @@ oldoldwd="$PWD"
 cd $(dirname $0)
 if (( $# >= 1 )) ; then
 	if [ $1 = front ] ; then
-<<<<<<< HEAD
 		frontdeploy
-=======
-		frontdeploy ${2:-}
->>>>>>> 509825e1083d7c9e6259c836729561fc72aa00ed
 	elif [ $1 = back ] ; then
 		backdeploy
 	else

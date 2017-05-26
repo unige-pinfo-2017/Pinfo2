@@ -12,25 +12,25 @@ public class LightServiceImplTest {
 	@Test
 	public void testTimeStampTrue(){
 		ls=new LightServiceImplMock();
-		Assert.assertEquals(1493290847263L ,ls.getState("1").getTimestamp().longValue());
+		Assert.assertEquals(1493290847263L ,ls.getLastState("1").getTimestamp().longValue());
 	}
 	
 	@Test
 	public void testTimeStampFalse(){
 		ls=new LightServiceImplMock();
-		Assert.assertNotSame(1L ,ls.getState("1").getTimestamp().longValue());
+		Assert.assertNotSame(1L ,ls.getLastState("1").getTimestamp().longValue());
 	}
 	
 	@Test
 	public void testPowerTrue(){
 		ls=new LightServiceImplMock();
-		Assert.assertEquals(20.3 ,ls.getState("1").getPower());
+		Assert.assertEquals(20.3 ,ls.getLastState("1").getPower());
 	}
 	
 	@Test
 	public void testPowerFalse(){
 		ls=new LightServiceImplMock();
-		Assert.assertNotSame(20.1 ,ls.getState("1").getPower());
+		Assert.assertNotSame(20.1 ,ls.getLastState("1").getPower());
 	}
 	
 }

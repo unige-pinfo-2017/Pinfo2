@@ -21,9 +21,9 @@ public class LightServiceRs {
 	
 	@GET
 	@Produces("application/json")
-	@Path("/getState")
-	public JsonObject getState(@QueryParam("deviceId") String deviceId) {
-		Light light = lightService.getState(deviceId);
+	@Path("/getLastState")
+	public JsonObject getLastState(@QueryParam("deviceId") String deviceId) {
+		Light light = lightService.getLastState(deviceId);
 		
 		JsonBuilderFactory factory = Json.createBuilderFactory(null);
 		
@@ -38,7 +38,7 @@ public class LightServiceRs {
 	
 	@POST
 	@Produces("application/json")
-	@Path("/setState")
+	@Path("/setOnOrOff")
 	public Response setOnOrOff(@QueryParam("deviceId") String deviceId, @QueryParam("onOrOff") String onOrOff) {
 		Boolean resp = lightService.setOnOrOff(deviceId, onOrOff);
 		if (resp) {
