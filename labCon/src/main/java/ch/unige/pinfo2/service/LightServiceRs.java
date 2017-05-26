@@ -5,9 +5,11 @@ import javax.json.Json;
 import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.Light;
 
@@ -32,5 +34,17 @@ public class LightServiceRs {
 				.build();
 		
 		return jsonLight;
+	}
+	
+	@POST
+	@Produces("application/json")
+	@Path("/setState")
+	public Response setOnOrOff(@QueryParam("deviceId") String deviceId, @QueryParam("onOrOff") String onOrOff) {
+		Boolean resp = lightService.setOnOrOff(deviceId, onOrOff);
+		if (resp) {
+			return Response.ok().build();
+		} else {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Can't turn on or off").build();
+		}
 	}
 }

@@ -14,4 +14,16 @@ public interface LightService {
 	 * @return an arraylist of lights in which each light represents the state of the light at a given time
 	 */
 	public Light  getState(String deviceId);
+	
+	/**
+	 * turn on or off a light
+	 * 
+	 * @param deviceId a string identifying the light
+	 * @param onOrOff a string
+	 * 
+	 * @return true or false
+	 */
+	public Boolean setOnOrOff(String deviceId, String onOrOff);
+	
+	
 }

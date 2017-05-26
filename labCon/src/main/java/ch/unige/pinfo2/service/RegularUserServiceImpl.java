@@ -8,25 +8,28 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-
 import ch.unige.pinfo2.dom.RegularUser;
+
 
 @Stateless
 public class RegularUserServiceImpl implements RegularUserService {
-	@PersistenceContext(name = "ProjectPersistence")
-	private EntityManager em;
+		
+	@PersistenceContext(unitName="ProjectPersistence")
+    private EntityManager em;   
 
+    
 	@Transactional
 	public void addUser(RegularUser user) {
 		if (!this.alreadyRegistered(user)) {
-			// em.getTransaction().begin();
+			em.getTransaction().begin();
 			user.setToken(createToken());
 			em.persist(user);
-			// em.getTransaction().commit();
+			em.getTransaction().commit();
 		}
 	}
 
 	public boolean alreadyRegistered(RegularUser user) {
+
 		String sql = "SELECT u FROM RegularUser u WHERE u.username = :arg1";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", user.getUserName());
@@ -37,6 +40,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 	}
 
 	public Integer loginUser(String username, String password) {
+
 		String sql = "SELECT u.token FROM RegularUser u WHERE u.username = :arg1 AND u.password = :arg2";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", username);
@@ -44,11 +48,11 @@ public class RegularUserServiceImpl implements RegularUserService {
 		if (query.getResultList().isEmpty()) {
 			return null;
 		}
-		Integer token = (Integer) query.getSingleResult();
-		return token;
+		return (Integer) query.getSingleResult();
 	}
 
 	public RegularUser getUserByToken(Integer token) {
+
 		String sql = "SELECT u FROM RegularUser u WHERE u.token = :arg1";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", token);
@@ -59,28 +63,23 @@ public class RegularUserServiceImpl implements RegularUserService {
 	}
 
 	public List<RegularUser> getUserByLastName(String lastName) {
+
 		String sql = "SELECT u FROM RegularUser u WHERE u.lastName = :arg1";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", lastName);
-		List<RegularUser> users = query.getResultList();
-		return users;
+		return query.getResultList();
 	}
 
 	public List<RegularUser> getUserByFirstName(String firstName) {
+
 		String sql = "SELECT u FROM RegularUser u WHERE u.firstName = :arg1";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", firstName);
-		List<RegularUser> users = query.getResultList();
-		return users;
-		/*
-		 * String sql="SELECT u FROM USER u WHERE u.firstName = ?1"; Query
-		 * query=em.createQuery(sql); query.setParameter(1, firstName);
-		 * if(query.getResultList().isEmpty()){ return null; } return
-		 * query.getResultList();
-		 */
+		return query.getResultList();
 	}
 
 	public RegularUser getUserByUsername(String username) {
+
 		String sql = "SELECT u FROM RegularUser u WHERE u.username = :arg1";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", username);
@@ -101,5 +100,8 @@ public class RegularUserServiceImpl implements RegularUserService {
 			}
 		}
 	}
+
+
+	
 
 }

@@ -16,4 +16,28 @@ public class Socket extends Device {
 		}
 	}
 
+	public Double getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(Double current) {
+		this.current = current;
+	}
+
+	public Double getPower() {
+		return power;
+	}
+
+	public void setPower(Double power) {
+		this.power = power;
+	}
+
+	public Boolean getIsOn() {
+		return isOn;
+	}
+
+	public void setIsOn(Boolean isOn) {
+		this.isOn = isOn;
+	}
+
 }

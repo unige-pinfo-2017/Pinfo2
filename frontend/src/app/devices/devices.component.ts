@@ -23,6 +23,7 @@ export class DevicesComponent implements OnInit {
     selectedLight: Light;
     selectedHub: Hub;
     selectedSocket: Socket;
+    
     setDevices(): void {
       this.deviceService.getValues().subscribe(devices => {
       devices.forEach(element => {
@@ -36,6 +37,7 @@ export class DevicesComponent implements OnInit {
       });
     },
             error => this.errorMessage = <any> error);
+
     }
 
     ngOnInit(): void {
