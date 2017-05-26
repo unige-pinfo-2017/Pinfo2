@@ -26,34 +26,56 @@ function wait_ready {
 }
 
 cd $(dirname $0)
-mkdir frontend/srvdist 2>/dev/null
-mkdir docker-deploy 2>/dev/null
+
+# Make sure the masterproxy network exists
+if ! docker network ls | grep masterproxy -q ; then
+    echo ==== Création du réseau docker masterproxy pour compatibilité ====
+    docker network create --driver bridge masterproxy
+fi
+
+# HACK If we are on production, we stealthly modify the docker-compose file.
+if [ $HOSTNAME = pinfo2 ] ; then # if we are on the server, we
+	# Replace `ports:` binding with a simple expose command.
+	sed -i -e '/ports:/{$!{N;s/80:80/80/}};/ports:/s//expose:/' \
+		docker-setup/docker-compose.yml
+fi
+
 cd docker-setup
 
 # If we want to only update the images without messing up the config, we do a
 # "soft launch"
-if [[ $# != 0 ]] && [[ $1 == soft ]] ; then
-    echo "Soft reloading the images..."
-    docker-compose build
-    docker-compose up -d
-    cd ..
-    exit 0
+if [[ $# != 0 ]] ; then
+	if [[ $1 == soft ]] ; then
+		echo "Rechargement des images..."
+		docker-compose build
+		docker-compose up -d
+	elif [[ $1 == down ]] ; then
+		echo "Extinction des images docker..."
+		docker-compose down
+	else
+		echo "Erreure, $1 n'est pas un argument pour ce script
+les arguments sont:
+  soft: relance seulement les images modifiée
+  down: termine toutes les images sans les relancer
+le comportement par défaut est de terminer les images et puis
+de les relancer"
+	fi
+else
+	echo ==== Lancement des images docker ====
+	docker-compose down
+	docker-compose build
+	dockerlogfile="/tmp/docker-log-$(date +%a-%H-%M)" # Create the log file
+
+	# Create a fifo for the loop
+	fifo=/tmp/build-deploy.fifo.$$
+	mkfifo $fifo
+	tail -F $dockerlogfile >$fifo & # Redirect tail output to the fifo
+	tailpid=$!
+
+	docker-compose up 2>&1 1>$dockerlogfile & # Start docker servers images
+	wait_ready < $fifo
+	kill $tailpid
+	rm $fifo
+	echo "==== All servers are ready... ===="
 fi
-
-docker-compose down
-docker-compose build
-dockerlogfile="/tmp/docker-log-$(date +%a-%H-%M)" # Create the log file
-
-# Create a fifo for the loop
-fifo=/tmp/build-deploy.fifo.$$
-mkfifo $fifo
-tail -F $dockerlogfile >$fifo & # Redirect tail output to the fifo
-tailpid=$!
-
-docker-compose up 2>&1 1>$dockerlogfile & # Start docker servers images
-wait_ready < $fifo
-kill $tailpid
-rm $fifo
-echo "==== All servers are ready... ===="
-
 cd ..

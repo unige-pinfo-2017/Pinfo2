@@ -4,6 +4,7 @@ ADD db-setup.sh install-db-driver.sh wildfly-setup.sh /opt/jboss/wildfly/
 
 USER root
 RUN mkdir -p /opt/jboss/wildfly/standalone/deployments
+RUN mkdir -p /opt/newwarstash
 
 RUN ["/opt/jboss/wildfly/wildfly-setup.sh"]
 RUN /opt/jboss/wildfly/bin/add-user.sh admin admin

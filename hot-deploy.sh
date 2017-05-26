@@ -13,34 +13,48 @@ shopt -s failglob
 set -o nounset
 
 function frontdeploy {
-	echo ==== Deploiement du frontend ====
+	echo -e "\e[32m==== Deploiement du frontend ====\e[0m"
 	cd frontend
 	if [[ node_modules -ot package.json ]] ; then # only update if modules older than source
 		npm install
 	fi
-	npm run-script ng build ${1:-}
-	if [[ -n "$(ls srvdist)" ]] ; then # Remove content of srvdist
-		rm -rf srvdist/*
+	npm run-script ng build
+	docker cp dist dockersetup_proxy_1:/usr/share/nginx/srvdist
+	if (( $? != 0 )) ; then
+		echo  -e "\e[31m==== ERROR couldn't move the webapp package to the airlock ABORTING ====\e[0m"
+		exit 1
 	fi
-	mv -f dist/* srvdist
 	docker exec dockersetup_proxy_1 sh \
 		-c 'rm -rf /usr/share/nginx/html/*
-	mv /usr/share/nginx/srvdist/* /usr/share/nginx/html
-	chown -R nginx /usr/share/nginx/html'
+			mv /usr/share/nginx/srvdist/* /usr/share/nginx/html
+			chown -R nginx /usr/share/nginx/html'
+	if (( $? != 0 )) ; then
+		echo  -e "\e[31m==== ERROR couldn't manipulate the dist files inside the docker image ====\e[0m"
+		exit 1
+	else
+		echo  -e "\e[32m==== SUCCESS deploying frontend (probably) ====\e[0m"
+	fi
 	cd ..
 }
 
 function backdeploy {
-	echo ==== Deploiement du backend ====
+	echo -e "\e[32m==== Deploiement du backend ====\e[0m"
 	cd labCon
 	rm -rf target bin
-	mvn clean
-	mvn install
-	local currentlog=$(ls /tmp/docker-log-* | sort --reverse | head -1)
-	if [[ $(tail -1 $currentlog) =~ 'Deployed "labCon.war"' ]] ; then
-		echo "==== Wildfly log repports a successful deployement ===="
+	mvn clean install
+	docker cp target/restapi.war dockersetup_appserver_1:/opt/newwarstash/restapi.war
+	if (( $? != 0 )) ; then
+		echo  -e "\e[31m==== ERROR couldn't move the .war to the airlock ABORTING ====\e[0m"
+		exit 1
+	fi
+	docker exec dockersetup_appserver_1 sh \
+		-c 'mv /opt/newwarstash/* /opt/jboss/wildfly/standalone/deployments
+			chown -R jboss /opt/jboss/wildfly/standalone/deployments'
+	if (( $? != 0 )) ; then
+		echo  -e "\e[31m==== ERROR couldn't manipulate the .war inside the docker image ====\e[0m"
+		exit 1
 	else
-		echo "==== Hmm... ===="
+		echo  -e "\e[32m==== SUCCESS deploying backend (probably) ====\e[0m"
 	fi
 	cd ..
 }
@@ -49,7 +63,7 @@ oldoldwd="$PWD"
 cd $(dirname $0)
 if (( $# >= 1 )) ; then
 	if [ $1 = front ] ; then
-		frontdeploy ${2:-}
+		frontdeploy
 	elif [ $1 = back ] ; then
 		backdeploy
 	else

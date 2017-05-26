@@ -54,28 +54,7 @@
 	
 	</dependencies>
 	<build>
-		<finalName>labCon</finalName>
-
-		<plugins>
-			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>1.2.0.Alpha4</version>
-				<executions>
-					<execution>
-						<phase>install</phase>
-						<configuration>
-							<username>admin</username>
-							<password>admin</password>
-							<runtimeName>restapi.war</runtimeName>
-						</configuration>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+		<finalName>restapi</finalName>
 	</build>
 
 	<properties>

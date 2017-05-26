@@ -6,39 +6,49 @@ services:
     proxy:
         build: "nginx-pinfo2"
         image: "nginx-pinfo2"
-        environment:
-            - NGINX_HOST=localhost
-            - NGINX_PORT=80
+        volumes:
+            - "webapp-data:/usr/share/nginx/html/"
         ports:
             - "80:80"
-            - "443:443"
-        volumes:
-            - "../frontend/srvdist/:/usr/share/nginx/srvdist/"
         depends_on:
             - "appserver"
         restart: always
+        networks:
+            - masterproxy
+            - default
+
     appserver:
         build: "wildfly-pinfo2"
         image: "wildfly-pinfo2"
         volumes:
-            - "../docker-deploy/deployments:/opt/jboss/wildfly/standalone/deployments/"
+            - "wildfly-data:/opt/jboss/wildfly/standalone/deployments"
         expose:
             - "8080"
-        ports:
-            - "9990:9990"
-            - "8080:8080"
-            - "8787:8787"
         depends_on:
             - "database"
         restart: always
+        networks:
+            - default
+
     database:
         build: "mariadb-pinfo2"
         image: "mariadb-pinfo2"
+        volumes:
+            - "mysql-data:/var/lib/mysql"
         environment:
             MYSQL_ROOT_PASSWORD: "admin"
             MYSQL_DATABASE: "meskyne"
         expose:
             - "3306"
-        volumes:
-            - "../docker-deploy/database:/var/lib/mysql"
         restart: always
+        networks:
+            - default
+
+volumes:
+    mysql-data:
+    webapp-data:
+    wildfly-data:
+
+networks:
+    masterproxy:
+        external: true
