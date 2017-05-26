@@ -19,7 +19,7 @@ public class LightServiceImplMock implements LightService {
 	}
 	
 	@Override
-	public List<Light> getState(String deviceId, Long from, Long to) {
+	public List<Light> getStates(String deviceId, Long from, Long to) {
 		Random valueGenerator = new Random();
 		
 		List<Light> lights = new ArrayList<Light>();

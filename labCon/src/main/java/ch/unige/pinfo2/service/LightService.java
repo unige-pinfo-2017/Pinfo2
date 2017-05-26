@@ -26,7 +26,7 @@ public interface LightService {
 	 * 
 	 * @return a List of Light in which every Light corresponds to a state
 	 */
-	public List<Light> getState(String deviceId, Long from, Long to);
+	public List<Light> getStates(String deviceId, Long from, Long to);
 	
 	/**
 	 * turn on or off a light

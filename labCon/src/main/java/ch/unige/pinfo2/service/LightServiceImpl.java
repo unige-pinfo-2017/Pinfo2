@@ -13,7 +13,7 @@ public class LightServiceImpl implements LightService {
 	}
 	
 	@Override
-	public List<Light> getState(String deviceId, Long from, Long to) {
+	public List<Light> getStates(String deviceId, Long from, Long to) {
 		// TODO Auto-generated method stub
 		return null;
 	}
