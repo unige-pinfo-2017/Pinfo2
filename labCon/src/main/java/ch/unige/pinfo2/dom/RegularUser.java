@@ -4,10 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="RegularUser")
@@ -19,34 +18,31 @@ public class RegularUser implements Serializable {
 	private static final long serialVersionUID = 4561966035983412307L;
 
 	@Id
-	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="username")
+	private String username;
 
-	@Column(name="FIRSTNAME")
+	@Column(name="firstName")
 	private String firstName;
 
-	@Column(name="LASTNAME")
+	@Column(name="lastName")
 	private String lastName;
 	
-	@Column(name="USERNAME")
-	private String userName;
-	
-	@Column(name="PASSWORD")
+	@Column(name="password")
 	private String password;
 	
-	@Column(name="TOKEN")
-	private Long token;
+	@Column(name="token")
+	
+	private Integer token;
 
 	public RegularUser() {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public String getPassword() {
@@ -55,14 +51,6 @@ public class RegularUser implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -81,11 +69,11 @@ public class RegularUser implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Long getToken() {
+	public Integer getToken() {
 		return token;
 	}
 
-	public void setToken(Long token) {
+	public void setToken(Integer token) {
 		this.token = token;
 	}
 

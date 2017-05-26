@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import ch.unige.pinfo2.dom.RegularUser;
 
 @Local
-public interface UserService {
+public interface RegularUserService {
 	
 	/**
 	 * add a User to the DB
@@ -34,15 +34,7 @@ public interface UserService {
 	 * 
 	 * @return the user's token
 	 */
-	long loginUser(String username, String password);
-	
-	/**
-	 * find a User by the id
-	 * 
-	 * @param id of the user
-	 *
-	 */
-	RegularUser getUserById(long id);
+	Integer loginUser(String username, String password);
 	
 	/**
 	 * find a User by the token
@@ -51,7 +43,7 @@ public interface UserService {
 	 *
 	 *@return the user corresponding to the token
 	 */
-	RegularUser getUserByToken(long token);
+	RegularUser getUserByToken(Integer token);
 	
 	/**
 	 * find a User by the lastName
@@ -79,6 +71,15 @@ public interface UserService {
 	 *@return the user corresponding to the first name
 	 */
 	RegularUser getUserByUsername(String username);
+	
+	/**
+	 * generate a unique Token
+
+	 *@return the token
+	 */
+	Integer createToken();
+	
+	
 	
 	
 	

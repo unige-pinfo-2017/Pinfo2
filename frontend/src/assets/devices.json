@@ -10,18 +10,54 @@
         "name": "light"
     },
     {
+        "id":"102",
+        "state": true,
+        "name": "light"
+    },
+    {
+        "id":"103",
+        "state": true,
+        "name": "light"
+    },
+    {
         "id": "110",
+        "state":true,
+        "name": "hub",
+        "link": ["200", "201", "202", "203", "204", "205"]
+    },
+    {
+        "id": "120",
         "state":true,
         "name": "hub"
     },
     {
-        "id": "111",
+        "id": "200",
         "state":false,
         "name": "socket"
     },
     {
-        "id": "112",
+        "id": "201",
         "state":true,
+        "name": "socket"
+    },
+    {
+        "id": "202",
+        "state":true,
+        "name": "socket"
+    },
+    {
+        "id": "203",
+        "state":true,
+        "name": "socket"
+    },
+    {
+        "id": "204",
+        "state":false,
+        "name": "socket"
+    },
+    {
+        "id": "205",
+        "state":false,
         "name": "socket"
     }
 ]}
