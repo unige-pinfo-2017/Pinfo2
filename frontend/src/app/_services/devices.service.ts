@@ -22,9 +22,7 @@ export class DeviceService {
     }
 
     getDevice(id: number): Promise<Device> {
-        let x = this.getValues().toPromise().then(Device => Device.find(element => element.id === id)); 
-        x.then(y => console.log(y.id));
-        return x;       
+        return this.getValues().toPromise().then(Device => Device.find(element => element.id === id))      
     }
 
     private handleError(error: Response | any) {

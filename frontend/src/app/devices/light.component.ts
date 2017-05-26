@@ -19,10 +19,12 @@ export class LightComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.route.params.switchMap((params: Params) => this.deviceService.
-            getDevice(+params['id'])).subscribe(light => {this.myLight = light; 
-            console.log(this.myLight.id)});
-        this.route.params.switchMap((params: Params) => this.setLight(+params['id'])) ;
+        this.route.params.switchMap(
+            (params: Params) => this.deviceService.getDevice(+params['id']))
+            .subscribe(light => {
+                this.myLight = light; 
+                console.log(this.myLight.id)
+            });
     }
     constructor(private deviceService: DeviceService, private route: ActivatedRoute) { };
 
