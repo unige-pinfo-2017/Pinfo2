@@ -22,8 +22,8 @@ import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
-import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from './devices/index' ;
-import { SidebarComponent } from "./sidebar.component";
+import { HubComponent, LightComponent, SocketComponent } from './devices/index' ;
+import { SidenavComponent } from "./sidenav/sidenav.component";
 
 //import { dashconConfig } from '../dashcon-config';
 
@@ -36,11 +36,10 @@ import { SidebarComponent } from "./sidebar.component";
       LoginComponent,
       RegisterComponent,
       PlotComponent,
-      DevicesComponent,
       HubComponent,
       LightComponent,
       SocketComponent,
-      SidebarComponent
+      SidenavComponent
   ],
   imports: [
     BrowserModule,

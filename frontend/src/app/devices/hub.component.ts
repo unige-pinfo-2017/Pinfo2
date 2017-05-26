@@ -1,16 +1,16 @@
 import { Component } from '@angular/core' ;
+import { Location } from "@angular/common";
 import { Hub } from '../_models/hub' ;
 import { Device } from '../_models/device' ;
 import { PlotComponent } from '../Plot/plot.component';
 import { DeviceService } from "../_services/devices.service";
-import { ActivatedRoute } from '@angular/router' ;
-import { SidebarComponent } from "../sidebar.component";
+import { ActivatedRoute, Params } from '@angular/router' ;
 import { Socket } from "../_models/socket";
 
 @Component({
     selector: 'hub',
     templateUrl: 'hub.component.html',
-    styleUrls: ['devices.component.css'],
+    styleUrls: ['../sidenav/sidenav.component.css'],
     providers: [DeviceService]
 })
 
@@ -38,17 +38,14 @@ export class HubComponent {
     }
 
     ngOnInit(): void {
-        this.setHub(this.hubId);
+        //this.setHub(this.hubId);
+        this.route.params
+      .switchMap((params: Params) => this.deviceService.getDevice(+params['id']))
+      .subscribe(hub => {this.hub = hub});
     }
-    constructor(private deviceService: DeviceService, private route: ActivatedRoute) {
-        this.route.params.subscribe(
-            params => {
-                this.hubId = params['id'];
-                        console.log(this.hubId);
-                        console.log(params['id']);
-            }
-        );
-  }
+    constructor(private deviceService: DeviceService, private route: ActivatedRoute, private loc: Location) { }
+        
+  
 
   show_live() {
         let x = document.getElementById("panel-live");

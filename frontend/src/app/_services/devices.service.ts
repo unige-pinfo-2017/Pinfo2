@@ -4,11 +4,12 @@ import { Device } from '../_models/device';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class DeviceService {
     private devicesUrl = '/assets/devices.json';
-
+    private dev: Device;
     constructor(private http: Http) {
     }
     getValues(): Observable<Device[]> {
@@ -18,6 +19,12 @@ export class DeviceService {
     private extractValues(res: Response) {
         let body = res.json();
         return body.Device;
+    }
+
+    getDevice(id: number): Promise<Device> {
+        let x = this.getValues().toPromise().then(Device => Device.find(element => element.id === id)); 
+        x.then(y => console.log(y.id));
+        return x;       
     }
 
     private handleError(error: Response | any) {
