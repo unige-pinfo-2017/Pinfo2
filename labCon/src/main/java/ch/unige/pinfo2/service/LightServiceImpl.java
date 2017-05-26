@@ -1,11 +1,19 @@
 package ch.unige.pinfo2.service;
 
+import java.util.List;
+
 import ch.unige.pinfo2.dom.Light;
 
 public class LightServiceImpl implements LightService {
 
 	@Override
-	public Light getState(String deviceId) {
+	public Light getLastState(String deviceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<Light> getStates(String deviceId, Long from, Long to) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -15,5 +23,4 @@ public class LightServiceImpl implements LightService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

@@ -2,10 +2,12 @@
 
 # compiled output
 docker-deploy
+docker-setup/images
 frontend/dist
 frontend/srvdist
 derby.log
 labCon/target
+labCon/srvdeploy
 /tmp
 /out-tsc
 *.class

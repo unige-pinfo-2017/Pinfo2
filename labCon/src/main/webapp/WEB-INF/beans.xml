@@ -3,9 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="all">
-       <alternatives>
-       <class>ch.unige.pinfo2.mock.HubServiceMock</class>
-       <class>ch.unige.pinfo2.mock.SocketServiceMock</class>
-       <class>ch.unige.pinfo2.mock.LightServiceImplMock</class>
-       </alternatives>
+      <alternatives>
+      <class>ch.unige.pinfo2.mock.HubServiceMock</class>
+      <class>ch.unige.pinfo2.mock.LightServiceImplMock</class>
+      <class>ch.unige.pinfo2.mock.SocketServiceMock</class>
+      </alternatives>
 </beans>

@@ -1,19 +1,32 @@
 package ch.unige.pinfo2.service;
 
+import java.util.List;
+
 import ch.unige.pinfo2.dom.Light;
 
 public interface LightService {
 
 	/**
-	 * get a light's state over a period
+	 * get a light's latest state
 	 * 
 	 * @param deviceId a string identifying the light
 	 * @param from the start time for the period
 	 * @param to the end time for the period
 	 * 
-	 * @return an arraylist of lights in which each light represents the state of the light at a given time
+	 * @return a Light containing the last state
 	 */
-	public Light  getState(String deviceId);
+	public Light getLastState(String deviceId);
+	
+	/**
+	 * get a light's states over a period of time
+	 * 
+	 * @param deviceId
+	 * @param from
+	 * @param to
+	 * 
+	 * @return a List of Light in which every Light corresponds to a state
+	 */
+	public List<Light> getStates(String deviceId, Long from, Long to);
 	
 	/**
 	 * turn on or off a light
