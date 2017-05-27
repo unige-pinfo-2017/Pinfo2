@@ -4,18 +4,18 @@ import { Light } from '../_models/light' ;
 import { Hub } from '../_models/hub' ;
 import { Socket } from '../_models/socket' ;
 import { DeviceService } from '../_services' ;
-import { HubComponent } from './hub.component' ;
-import { LightComponent } from './light.component';
+import { HubComponent } from '../devices/hub.component' ;
+import { LightComponent } from '../devices/light.component';
 import {Routes, Router} from '@angular/router';
 
 @Component({
-    selector: 'devices',
-    templateUrl: 'devices.component.html',
-    styleUrls: ['devices.component.css'],
+    selector: 'sidenav',
+    templateUrl: 'sidenav.component.html',
+    styleUrls: ['sidenav.component.css'],
     providers: [DeviceService]
 })
 
-export class DevicesComponent implements OnInit {
+export class SidenavComponent {
     errorMessage: any;
     hubs = new Array<Hub>();
     sockets = new Array<Socket>();
@@ -43,8 +43,7 @@ export class DevicesComponent implements OnInit {
     ngOnInit(): void {
         this.setDevices();
     }
-    constructor(private deviceService: DeviceService, private _router: Router) {
-    }
+    constructor(private deviceService: DeviceService, private _router: Router) { }
 
     show(elem: string) {
         let x = document.getElementById(elem);

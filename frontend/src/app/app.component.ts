@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DevicesComponent } from './devices/devices.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,14 @@ import { DevicesComponent } from './devices/devices.component';
 })
 export class AppComponent {
   title = 'Home';
+
+  isLogged(): boolean{
+    if (localStorage.getItem("currentUser")){
+      return true;
+    } 
+    else{
+        return false;
+    }
+  }
+
 }

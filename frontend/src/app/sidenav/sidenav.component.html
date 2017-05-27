@@ -1,0 +1,49 @@
+<!-- Sidebar -->
+<div class="w3-sidebar w3-blue w3-bar-block w3-card-2" style="width:200px">
+    <h3 class="w3-bar-item">Menu</h3>
+    <div class="w3-dropdown-hover">
+        <a [routerLink]="['']">
+            <button class="w3-button w3-hover-white w3-blue">Home</button>
+        </a>
+    </div>
+
+    <div id="idl" class="w3-dropdown-click">
+        <button (click)="show('li')" class="w3-button w3-hover-white w3-blue">Lights</button>
+        <div id="li" class="w3-dropdown-content">
+            <ul class="w3-ul w3-bar-block">
+                <li *ngFor="let light of lights">
+                    <a [routerLink]="['/light', light?.id]">
+                        <p>{{light?.id}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="idh" class="w3-dropdown-click">
+        <button (click)="show('hu')" class="w3-button w3-hover-white w3-blue">Hubs</button>
+        <div id="hu" class="w3-dropdown-content">
+            <ul class="w3-ul w3-bar-block">
+                <li *ngFor="let hub of hubs">
+                    <a [routerLink]="[ '/hub', {myParam: 'hub?.id' } ]">
+                        <p>{{hub?.id}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="ids" class="w3-dropdown-click">
+        <button (click)="show('so')" class="w3-button w3-hover-white w3-blue">Sockets</button>
+        <div id="so" class="w3-dropdown-content">
+            <ul class="w3-ul w3-bar-block">
+                <li *ngFor="let socket of sockets">
+                    <a [routerLink]="[ '/socket', {myParam: 'socket?.id' } ]">
+                        <p>{{socket?.id}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

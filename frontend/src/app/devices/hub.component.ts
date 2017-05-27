@@ -1,16 +1,16 @@
 import { Component } from '@angular/core' ;
+import { Location } from "@angular/common";
 import { Hub } from '../_models/hub' ;
 import { Device } from '../_models/device' ;
 import { PlotComponent } from '../Plot/plot.component';
 import { DeviceService } from "../_services/devices.service";
-import { ActivatedRoute } from '@angular/router' ;
-import { SidebarComponent } from "../sidebar.component";
+import { ActivatedRoute, Params } from '@angular/router' ;
 import { Socket } from "../_models/socket";
 
 @Component({
     selector: 'hub',
     templateUrl: 'hub.component.html',
-    styleUrls: ['devices.component.css'],
+    styleUrls: ['../sidenav/sidenav.component.css'],
     providers: [DeviceService]
 })
 
@@ -19,6 +19,14 @@ export class HubComponent {
     private hubId: number;
     private socketsId: number[];
     sockets = new Array<Socket>();
+
+    constructor(private deviceService: DeviceService, private route: ActivatedRoute, private loc: Location) { }
+
+    ngOnInit(): void {
+        this.route.params
+      .switchMap((params: Params) => this.deviceService.getDevice(+params['id'], "hub"))
+      .subscribe(hub => {this.hub = hub});
+    }
 
     setHub(id: number): void {
       this.deviceService.getValues().subscribe(devices => {
@@ -33,22 +41,8 @@ export class HubComponent {
                 this.sockets.push(element);
             }
       });
-    });
-        
+    });  
     }
-
-    ngOnInit(): void {
-        this.setHub(this.hubId);
-    }
-    constructor(private deviceService: DeviceService, private route: ActivatedRoute) {
-        this.route.params.subscribe(
-            params => {
-                this.hubId = params['id'];
-                        console.log(this.hubId);
-                        console.log(params['id']);
-            }
-        );
-  }
 
   show_live() {
         let x = document.getElementById("panel-live");

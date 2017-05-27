@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core' ;
-import { ActivatedRoute } from '@angular/router' ;
+import { ActivatedRoute, Params } from '@angular/router' ;
 import { Light } from '../_models/light';
 import { Device } from '../_models/device';
 import { DeviceService } from "../_services/devices.service";
-import { SidebarComponent } from "../sidebar.component";
+import { SidenavComponent } from "../sidenav/sidenav.component";
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'light',
     templateUrl: 'light.component.html',
-    styleUrls: ['devices.component.css'],
+    styleUrls: ['../sidenav/sidenav.component.css'],
     providers: [DeviceService]
 })
 
@@ -16,7 +17,15 @@ export class LightComponent implements OnInit {
     private myLight: Light;
     private lightId: number;
 
-    setLight(id: number): void {
+    constructor(private deviceService: DeviceService, private route: ActivatedRoute) { };
+
+    ngOnInit(): void {
+        this.route.params.switchMap(
+            (params: Params) => this.deviceService.getDevice(+params['id'], "light"))
+            .subscribe(light => this.myLight = light);
+    }
+
+    /*setLight(id: number): void {
       this.deviceService.getValues().subscribe(devices => {
       devices.forEach(element => {
             if (element.name === 'light' && element.id === id) {
@@ -24,14 +33,6 @@ export class LightComponent implements OnInit {
             }
       });
     });
-    }
+    }*/
 
-    ngOnInit(): void {
-        this.setLight(this.lightId);
-    }
-    constructor(private deviceService: DeviceService, private route: ActivatedRoute) {
-        this.route.params.subscribe(
-        params => this.lightId = params['id']
-    );
-  }
 }
