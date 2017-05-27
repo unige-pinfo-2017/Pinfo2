@@ -77,8 +77,18 @@
             </div>
 
             <div class="w3-container w3-hide" id="panel-history">
-                <label> Début : </label> <input type="date" id="dateDebut">
-                <label> Fin : </label> <input type="date" id="dateFin">
+                <md-input-container>
+                    <input mdInput [mdDatepicker]="datePickerStart" placeholder="Choose a start date">
+                    <button mdSuffix [mdDatepickerToggle]="datePickerStart"></button>
+                </md-input-container>
+                <md-datepicker #datePickerStart></md-datepicker>
+                <md-input-container>
+                    <input mdInput [mdDatepicker]="datePickerEnd" placeholder="Choose an end date">
+                    <button mdSuffix [mdDatepickerToggle]="datePickerEnd"></button>
+                </md-input-container>
+                <md-datepicker #datePickerEnd></md-datepicker>
+                <!--<label> Début : </label> <input type="date" id="dateDebut">
+                <label> Fin : </label> <input type="date" id="dateFin">-->
             </div>
     </div>
 </div>

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule} from 'ng2-charts';
 
@@ -46,7 +46,9 @@ import { SidenavComponent } from "./sidenav/sidenav.component";
     FormsModule,
     HttpModule,
     routing,
-    MaterialModule.forRoot(),
+    MaterialModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     BrowserAnimationsModule,
     ChartsModule
   ],

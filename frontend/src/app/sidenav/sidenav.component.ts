@@ -25,7 +25,7 @@ export class SidenavComponent {
     selectedSocket: Socket;
     
     setDevices(): void {
-      this.deviceService.getValues().subscribe(devices => {
+      this.deviceService.getAllDevices().subscribe(devices => {
       devices.forEach(element => {
             if (element.name === 'hub') {
                 this.hubs.push(element);

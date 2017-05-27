@@ -28,7 +28,7 @@ export class HubComponent {
       .subscribe(hub => {this.hub = hub});
     }
 
-    setHub(id: number): void {
+    /*setHub(id: number): void {
       this.deviceService.getValues().subscribe(devices => {
       devices.forEach(element => {
             if (element.name === 'hub' && element.id === id) {
@@ -42,7 +42,7 @@ export class HubComponent {
             }
       });
     });  
-    }
+    }*/
 
   show_live() {
         let x = document.getElementById("panel-live");

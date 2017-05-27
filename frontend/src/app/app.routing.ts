@@ -16,7 +16,6 @@ const appRoutes: Routes = [
     { path: 'light/:id', component: LightComponent},
     { path: 'hub/:id', component: HubComponent},
     { path: 'socket/:id', component: SocketComponent},
-    {path: 'testPlot', component: PlotComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

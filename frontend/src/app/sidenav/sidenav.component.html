@@ -1,6 +1,12 @@
 <!-- Sidebar -->
 <div class="w3-sidebar w3-blue w3-bar-block w3-card-2" style="width:200px">
     <h3 class="w3-bar-item">Menu</h3>
+        <span mdTooltip="Home">
+            <a md-mini-fab [routerLink]="['']"> <md-icon>home</md-icon></a>
+        </span>
+        <span mdTooltip="Logout">
+            <a md-mini-fab [routerLink]="['/login']"> <md-icon>exit_to_app</md-icon></a>
+        </span>
     <div class="w3-dropdown-hover">
         <a [routerLink]="['']">
             <button class="w3-button w3-hover-white w3-blue">Home</button>
@@ -25,7 +31,7 @@
         <div id="hu" class="w3-dropdown-content">
             <ul class="w3-ul w3-bar-block">
                 <li *ngFor="let hub of hubs">
-                    <a [routerLink]="[ '/hub', {myParam: 'hub?.id' } ]">
+                    <a [routerLink]="[ '/hub', hub?.id]">
                         <p>{{hub?.id}}</p>
                     </a>
                 </li>
@@ -38,7 +44,7 @@
         <div id="so" class="w3-dropdown-content">
             <ul class="w3-ul w3-bar-block">
                 <li *ngFor="let socket of sockets">
-                    <a [routerLink]="[ '/socket', {myParam: 'socket?.id' } ]">
+                    <a [routerLink]="[ '/socket', socket?.id]">
                         <p>{{socket?.id}}</p>
                     </a>
                 </li>

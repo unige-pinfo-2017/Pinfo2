@@ -16,13 +16,16 @@ import 'rxjs/add/operator/switchMap';
 export class LightComponent implements OnInit {
     private myLight: Light;
     private lightId: number;
+    private isOn: boolean;
 
     constructor(private deviceService: DeviceService, private route: ActivatedRoute) { };
 
     ngOnInit(): void {
         this.route.params.switchMap(
-            (params: Params) => this.deviceService.getDevice(+params['id'], "light"))
+                (params: Params) => this.deviceService.getDevice(+params['id'], "light"))
             .subscribe(light => this.myLight = light);
+        /*this.deviceService.getLightLastState(this.myLight.id).subscribe(light => {this.myLight.state = light.onOffStatus;
+                                                                                    this.myLight.consommation = light.power;});*/                                                               
     }
 
     /*setLight(id: number): void {

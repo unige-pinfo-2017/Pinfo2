@@ -15,15 +15,15 @@ export class PlotComponent implements OnInit {
     errorMessage : any;
     
     // lineChart
-    lineChartData:Array<any> /*= [
+    lineChartData:Array<any> = [
         {
             data: [65, 59, 80, 81, 56, 55, 40],
-            label: 'Series A'
+            label: 'Consumption'
         },    
-    ]*/
-    lineChartLabels:Array<any> /*= [
-            'January', 'February', 'March', 'April', 'May', 'June', 'July'
-        ];*/
+    ]
+    lineChartLabels:Array<any> = [
+            '14:00', '14:10', '14:20', '14:30', '14:40', '14:50', '15:00'
+        ];
     lineChartOptions:any = {
         responsive: true
     };
@@ -44,7 +44,7 @@ export class PlotComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.setValuesForPlot();
+        //this.setValuesForPlot();
     }
 
     setValuesForPlot(): void{
