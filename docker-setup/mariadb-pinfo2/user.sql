@@ -13,10 +13,4 @@ CREATE TABLE IF NOT EXISTS RegularUser
 );
 
 
-INSERT IGNORE INTO RegularUser VALUES 
-(1,'Thomas','Martin','ThomasMartin', SHA2('PasswordTM', 256), 1,'regularUser'),
-(2,'Vincent','Cabrini','VincentCabrini',SHA2('PasswordVC', 256), 1,'regularUser'),
-(3,'Nicola','Papale','NicolaPapale',SHA2('PasswordNP', 256),1,'regularUser')
-;
-
-SELECT * FROM RegularUser
+INSERT INTO RegularUser VALUES(1,'Vincent','Cabrini','VincentCabrini',SHA2('PasswordVC', 256), 1,'regularUser');

@@ -23,7 +23,7 @@ public class RegularUserServiceRs {
 	@POST
 	@Consumes({ "application/json" })
 	@Produces({ "application/json" })
-	@Path("/login")
+	@Path("/login2")
 	public Response verifiyLogin(JsonObject input) {
 		String username = input.getString("username");
 		String password = input.getString("password");
@@ -33,6 +33,7 @@ public class RegularUserServiceRs {
 		else
 			return Response.ok().entity(service.getUserByToken(response)).build();
 	}
+
 
 	@POST
 	@Path("/register")

@@ -6,7 +6,7 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<jta-data-source>meskyne</jta-data-source>
+		<jta-data-source>projetinfodb</jta-data-source>
 
 		<class>ch.unige.pinfo2.dom.RegularUser</class>
 		<properties>
