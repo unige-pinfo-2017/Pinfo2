@@ -32,9 +32,9 @@ data-source add \
     "module-options"=>{ \
       "dsJndiName" => "java:/${DB_TABLE_NAME}", \
       "principalsQuery" => \
-        "select passwd from ${DB_TABLE_NAME}.USERS username where username=?", \
+        "select password from ${DB_TABLE_NAME}.RegularUser where username=?", \
       "rolesQuery" => \
-        "select role, 'Roles' from ${DB_TABLE_NAME}.USER_ROLES where username=?", \
+        "select role, 'Roles' from ${DB_TABLE_NAME}.RegularUser where username=?", \
       "hashAlgorithm" => "SHA-256", \
       "hashEncoding" => "base64" \
     } \

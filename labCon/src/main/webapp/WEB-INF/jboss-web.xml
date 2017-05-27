@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+    <security-domain>pinfo2-realm</security-domain>
+</jboss-web>

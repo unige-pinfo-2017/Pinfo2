@@ -2,9 +2,11 @@ package ch.unige.pinfo2.service;
 
 import javax.inject.Inject;
 import javax.json.JsonObject;
+import javax.servlet.ServletException;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
@@ -27,8 +29,7 @@ public class RegularUserServiceRs {
 		String password = input.getString("password");
 		Integer response = service.loginUser(username, password);
 		if (response == null)
-			return Response.status(Response.Status.UNAUTHORIZED).entity("Username or password is incorrect")
-					.build();
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Username or password is incorrect").build();
 		else
 			return Response.ok().entity(service.getUserByToken(response)).build();
 	}
