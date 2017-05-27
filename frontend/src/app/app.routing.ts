@@ -11,11 +11,10 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'testPlot', component: PlotComponent },
-    { path: 'hub', component: HubComponent},
-    { path: 'light/:id', component: LightComponent},
-    { path: 'hub/:id', component: HubComponent},
-    { path: 'socket/:id', component: SocketComponent},
+    { path: 'hub', component: HubComponent, canActivate: [AuthGuard]},
+    { path: 'light/:id', component: LightComponent, canActivate: [AuthGuard]},
+    { path: 'hub/:id', component: HubComponent, canActivate: [AuthGuard]},
+    { path: 'socket/:id', component: SocketComponent, canActivate: [AuthGuard]},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
