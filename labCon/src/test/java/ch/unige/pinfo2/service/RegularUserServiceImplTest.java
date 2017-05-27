@@ -1,4 +1,4 @@
-package ch.unige.pinfo2.service;
+/*package ch.unige.pinfo2.service;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class RegularUserServiceImplTest {
 	public static JavaArchive create() {
 		return ShrinkWrap.create(JavaArchive.class, "regularUserTest.jar").addPackages(true, "ch.unige.pinfo2")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-				.addAsManifestResource("test-persistence.xml", "persistence.xml");
+				.addAsManifestResource("META-INF/test-persistence.xml", "persistence.xml");
 	}
 
 	@Inject
@@ -162,4 +162,6 @@ public class RegularUserServiceImplTest {
 	 * Assert.assertNull(getUserByUsername(null)); }
 	 */
 
+/*
 }
+ */
