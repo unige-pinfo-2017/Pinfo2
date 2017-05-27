@@ -15,11 +15,12 @@ export class SocketComponent {
     private socket: Socket;
     private socketId: number;
 
+    constructor(private deviceService: DeviceService, private route: ActivatedRoute) { }
+
     ngOnInit(): void {
         this.route.params
-      .switchMap((params: Params) => this.deviceService.getDevice(+params['id']))
+      .switchMap((params: Params) => this.deviceService.getDevice(+params['id'], "socket"))
       .subscribe(device => this.socket = device);
     }
 
-    constructor(private deviceService: DeviceService, private route: ActivatedRoute) { }
 }

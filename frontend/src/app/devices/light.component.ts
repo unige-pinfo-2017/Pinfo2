@@ -17,18 +17,15 @@ export class LightComponent implements OnInit {
     private myLight: Light;
     private lightId: number;
 
+    constructor(private deviceService: DeviceService, private route: ActivatedRoute) { };
 
     ngOnInit(): void {
         this.route.params.switchMap(
-            (params: Params) => this.deviceService.getDevice(+params['id']))
-            .subscribe(light => {
-                this.myLight = light; 
-                console.log(this.myLight.id)
-            });
+            (params: Params) => this.deviceService.getDevice(+params['id'], "light"))
+            .subscribe(light => this.myLight = light);
     }
-    constructor(private deviceService: DeviceService, private route: ActivatedRoute) { };
 
-    setLight(id: number): void {
+    /*setLight(id: number): void {
       this.deviceService.getValues().subscribe(devices => {
       devices.forEach(element => {
             if (element.name === 'light' && element.id === id) {
@@ -36,6 +33,6 @@ export class LightComponent implements OnInit {
             }
       });
     });
-    }
+    }*/
 
 }

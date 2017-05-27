@@ -20,6 +20,14 @@ export class HubComponent {
     private socketsId: number[];
     sockets = new Array<Socket>();
 
+    constructor(private deviceService: DeviceService, private route: ActivatedRoute, private loc: Location) { }
+
+    ngOnInit(): void {
+        this.route.params
+      .switchMap((params: Params) => this.deviceService.getDevice(+params['id'], "hub"))
+      .subscribe(hub => {this.hub = hub});
+    }
+
     setHub(id: number): void {
       this.deviceService.getValues().subscribe(devices => {
       devices.forEach(element => {
@@ -33,19 +41,8 @@ export class HubComponent {
                 this.sockets.push(element);
             }
       });
-    });
-        
+    });  
     }
-
-    ngOnInit(): void {
-        //this.setHub(this.hubId);
-        this.route.params
-      .switchMap((params: Params) => this.deviceService.getDevice(+params['id']))
-      .subscribe(hub => {this.hub = hub});
-    }
-    constructor(private deviceService: DeviceService, private route: ActivatedRoute, private loc: Location) { }
-        
-  
 
   show_live() {
         let x = document.getElementById("panel-live");

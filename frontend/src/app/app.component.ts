@@ -7,4 +7,14 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 })
 export class AppComponent {
   title = 'Home';
+
+  isLogged(): boolean{
+    if (localStorage.getItem("currentUser")){
+      return true;
+    } 
+    else{
+        return false;
+    }
+  }
+
 }

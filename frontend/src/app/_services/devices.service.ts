@@ -21,8 +21,8 @@ export class DeviceService {
         return body.Device;
     }
 
-    getDevice(id: number): Promise<Device> {
-        return this.getValues().toPromise().then(Device => Device.find(element => element.id === id))      
+    getDevice(id: number, typeName: String): Promise<Device> {
+        return this.getValues().toPromise().then(Device => Device.find(element => element.id === id && element.name===typeName))      
     }
 
     private handleError(error: Response | any) {
