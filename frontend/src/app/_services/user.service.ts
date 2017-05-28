@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../_models/index';
 
-import {dashconConfig} from 'dashcon-config';
+import {labConConfig} from 'labCon-config';
 
 @Injectable()
 export class UserService {
@@ -11,28 +11,28 @@ export class UserService {
 
     getAll() {
         let headers = this.jwtHeader();
-        return this.http.get(dashconConfig.mockApiUrlUsers, this.jwtResponse(headers)).map((response: Response) => response.json());
+        return this.http.get(labConConfig.mockApiUrlUsers, this.jwtResponse(headers)).map((response: Response) => response.json());
     }
 
     getById(id: number) {
         let headers = this.jwtHeader();
-        return this.http.get(dashconConfig.mockApiUrlUsers +'/' + id, this.jwtResponse(headers)).map((response: Response) => response.json());
+        return this.http.get(labConConfig.mockApiUrlUsers +'/' + id, this.jwtResponse(headers)).map((response: Response) => response.json());
     }
 
     create(user: User) {
         let headers = this.jwtHeader();
         headers.append('Content-Type', 'application/json');
-		return this.http.post(dashconConfig.restServerApiUrl + 'register', user, this.jwtResponse(headers)).map((response: Response) => response.json());
+		return this.http.post(labConConfig.restServerApiUrl + 'register', user, this.jwtResponse(headers)).map((response: Response) => response.json());
     }
 
     update(user: User) {
         let headers = this.jwtHeader();
-        return this.http.put(dashconConfig.mockApiUrlUsers + '/' + user.id, user, this.jwtResponse(headers)).map((response: Response) => response.json());
+        return this.http.put(labConConfig.mockApiUrlUsers + '/' + user.id, user, this.jwtResponse(headers)).map((response: Response) => response.json());
     }
 
     delete(id: number) {
         let headers = this.jwtHeader();
-        return this.http.delete(dashconConfig.mockApiUrlUsers + '/' + id, this.jwtResponse(headers)).map((response: Response) => response.json());
+        return this.http.delete(labConConfig.mockApiUrlUsers + '/' + id, this.jwtResponse(headers)).map((response: Response) => response.json());
     }
 
     // private helper methods

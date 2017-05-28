@@ -56,8 +56,8 @@ import { SidenavComponent } from "./sidenav/sidenav.component";
     AuthGuard,
     AlertService,
     AuthenticationService,
-    UserService,
-    DeviceService,
+    UserService
+    //DeviceService,
     // providers used to create fake backend
     /*fakeBackendProvider,
     MockBackend,

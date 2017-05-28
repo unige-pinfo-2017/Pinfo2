@@ -1,4 +1,4 @@
-export var dashconConfig = {
+export var labConConfig = {
     restServerApiUrl : "http://localhost/restapi/",
     //restServerApiUrl : "localhost/restapi/",
     mockApiUrlAuthenticate : "/api/authenticate",

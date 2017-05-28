@@ -5,11 +5,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import {labConConfig} from 'labCon-config';
 
 @Injectable()
 export class DeviceService {
     private devicesUrl = '/assets/devices.json';
-    private restApiServerUrl = window.location.host +'restapi/devices/';
+    private restServerApiUrl = labConConfig.restServerApiUrl + '/devices/';
     private dev: Device;
     constructor(private http: Http) {
     }
@@ -38,20 +39,6 @@ export class DeviceService {
 
     getDevice(id: number, typeName: String): Promise<Device> {
         return this.getAllDevices().toPromise().then(Device => Device.find(element => element.id === id && element.name===typeName))      
-    }
-
-    getLightLastState(id: number): Observable<any>{
-        
-        let params: URLSearchParams = new URLSearchParams();
-        params.set('deviceId', id.toString());
-        console.log(this.restApiServerUrl+'lights');
-        console.log(params);
-        return this.http.get(this.restApiServerUrl+'lights', {search:params}).map(this.extractLightLastState).catch(this.handleError);
-    }
-
-    private extractLightLastState(res: Response){
-        let body = res.json();
-        return body.light || { };
     }
 
 }

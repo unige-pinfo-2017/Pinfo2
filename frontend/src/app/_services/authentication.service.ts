@@ -2,7 +2,7 @@
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { dashconConfig } from 'dashcon-config';
+import { labConConfig } from 'labCon-config';
 
 @Injectable()
 export class AuthenticationService {
@@ -12,11 +12,10 @@ export class AuthenticationService {
         let body = JSON.stringify({ username: username, password: password });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(dashconConfig.restServerApiUrl + 'login', body, options)
+        return this.http.post(labConConfig.restServerApiUrl + 'login', body, options)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
-                console.log(user);
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
