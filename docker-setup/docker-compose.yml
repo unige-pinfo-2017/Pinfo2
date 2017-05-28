@@ -9,12 +9,11 @@ services:
         volumes:
             - "webapp-data:/usr/share/nginx/html/"
         ports:
-            - "873:80"
+            - "80:80"
         depends_on:
             - "appserver"
         restart: always
         networks:
-            - masterproxy
             - default
 
     appserver:
@@ -23,14 +22,13 @@ services:
         image: "wildfly-pinfo2"
         volumes:
             - "wildfly-data:/opt/jboss/wildfly/standalone/deployments"
-        ports:
-            - "8080:8080"
+        expose:
+            - "8080"
         depends_on:
             - "database"
         restart: always
         networks:
             - default
-            - masterproxy
 
     database:
         build: "mariadb-pinfo2"
@@ -39,7 +37,7 @@ services:
             - "mysql-data:/var/lib/mysql"
         environment:
             MYSQL_ROOT_PASSWORD: "admin"
-            MYSQL_DATABASE: "meskyne"
+            MYSQL_DATABASE: "projetinfodb"
         expose:
             - "3306"
         restart: always
