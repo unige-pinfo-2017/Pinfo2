@@ -9,32 +9,4 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 		<auth-method>BASIC</auth-method>
 		<realm-name>pinfo2-realm</realm-name>
 	</login-config>
-
-	<security-role>
-		<role-name>regularUser</role-name>
-	</security-role>
-
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>login-required</web-resource-name>
-			<url-pattern>/login</url-pattern>
-			<http-method>POST</http-method>
-		</web-resource-collection>
-	</security-constraint>
-
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>logout-required</web-resource-name>
-			<url-pattern>/logout</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-		</web-resource-collection>
-	</security-constraint>
-
-	<session-config>
-		<cookie-config>
-			<http-only>false</http-only>
-		</cookie-config>
-		<tracking-mode>COOKIE</tracking-mode>
-	</session-config>
 </web-app>
