@@ -57,5 +57,12 @@ public class RegularUserServiceRs {
 			return Response.status(Response.Status.UNAUTHORIZED).entity("Username already taken").build();
 		}
 	}
+	
+	@GET
+	@Path("/ouioui")
+	@Produces("text/plain")
+	public String ouioui() {
+		return "ouiouiouioui";
+	}
 
 }
