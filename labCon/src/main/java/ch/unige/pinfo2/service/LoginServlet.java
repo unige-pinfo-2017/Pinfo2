@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet {
 		// The parameters for the authentication are retrieved.
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
+		System.out.print("\n\n\n\n\n\n\n\n\n\n\n"+username+"\n"+password+"\n\n\n\n\n\n\n");
 		// We try to perform authentication on the server with the input parameters.
 		try{
 			req.login(username, password);
