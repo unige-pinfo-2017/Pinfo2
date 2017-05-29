@@ -51,7 +51,7 @@ public class RegularUserServiceRs {
 			user.setPassword(password);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
-			user.setRole("regularUser");
+			user.setRole("RegularUser");
 			service.addUser(user);
 			return Response.ok(user).build();
 		} else {
