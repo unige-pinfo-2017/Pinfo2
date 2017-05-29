@@ -35,7 +35,7 @@ data-source add \
         "select password from ${DB_TABLE_NAME}.RegularUser where username=?", \
       "rolesQuery" => \
         "select role, 'Roles' from ${DB_TABLE_NAME}.RegularUser where username=?", \
-      "hashAlgorithm" => "SHA-256", \
+      "hashAlgorithm" => "SHA-512", \
       "hashEncoding" => "hex" \
     } \
   }] \
