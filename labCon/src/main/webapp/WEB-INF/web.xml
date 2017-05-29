@@ -9,4 +9,11 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 		<auth-method>BASIC</auth-method>
 		<realm-name>pinfo2-realm</realm-name>
 	</login-config>
+	
+	<session-config>
+		<cookie-config>
+			<http-only>false</http-only>
+		</cookie-config>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
 </web-app>

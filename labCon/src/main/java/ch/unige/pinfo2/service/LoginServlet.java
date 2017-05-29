@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 			RegularUser usr = userService.getUserByUsername(username);
 			resp.getWriter().print(usr);
 		} catch(ServletException e){
-			resp.setStatus(401);
+			resp.setStatus(666);
 		}
 	}
 }
