@@ -30,9 +30,11 @@ public class RegularUser implements Serializable {
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="token")
+	@Column(name="role")	
+	private String role;
 	
-	private Integer token;
+	@Column(name="token")	
+	private String token;
 
 	public RegularUser() {
 	}
@@ -69,16 +71,32 @@ public class RegularUser implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Integer getToken() {
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getToken() {
 		return token;
 	}
 
-	public void setToken(Integer token) {
+	public void setToken(String token) {
 		this.token = token;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

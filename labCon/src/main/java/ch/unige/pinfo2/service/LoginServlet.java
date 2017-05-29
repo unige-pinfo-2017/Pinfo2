@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
+import ch.unige.pinfo2.dom.RegularUser;
+
+
 
 /**
  * Provides methods for authentication on the server.
@@ -36,9 +41,10 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// The parameters for the authentication are retrieved.
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
+		String body = req.getReader().readLine();
+		JSONObject jObject  = new JSONObject(body); // json
+		String username = jObject.getString("username"); // get data object
+		String password = jObject.getString("password"); // get the name from data.
 		System.out.print("\n\n\n\n\n\n\n\n\n\n\n"+username+"\n"+password+"\n\n\n\n\n\n\n");
 		// We try to perform authentication on the server with the input parameters.
 		try{
@@ -46,7 +52,8 @@ public class LoginServlet extends HttpServlet {
 			//Long id = userService.getByEmail(username).getUserId();
 			resp.setStatus(200);
 			// The id of the user who authenticated is returned in the body of the response.
-			resp.getWriter().print("id=");//+Long.toString(id));
+			RegularUser usr = userService.getUserByUsername(username);
+			resp.getWriter().print(usr);
 		} catch(ServletException e){
 			resp.setStatus(401);
 		}

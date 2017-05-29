@@ -36,7 +36,7 @@ data-source add \
       "rolesQuery" => \
         "select role, 'Roles' from ${DB_TABLE_NAME}.RegularUser where username=?", \
       "hashAlgorithm" => "SHA-256", \
-      "hashEncoding" => "base64" \
+      "hashEncoding" => "hex" \
     } \
   }] \
 )

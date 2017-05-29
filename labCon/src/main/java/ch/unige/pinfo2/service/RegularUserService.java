@@ -32,9 +32,9 @@ public interface RegularUserService {
 	 * @param username
 	 * @param password
 	 * 
-	 * @return the user's token
+	 * @return the user's username
 	 */
-	Integer loginUser(String username, String password);
+	String loginUser(String username, String password);
 	
 	/**
 	 * find a User by the token
@@ -77,7 +77,7 @@ public interface RegularUserService {
 
 	 *@return the token
 	 */
-	Integer createToken();
+	String createToken();
 	
 	
 	

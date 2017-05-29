@@ -27,11 +27,11 @@ public class RegularUserServiceRs {
 	public Response verifiyLogin(JsonObject input) {
 		String username = input.getString("username");
 		String password = input.getString("password");
-		Integer response = service.loginUser(username, password);
+		String response = service.loginUser(username, password);
 		if (response == null)
 			return Response.status(Response.Status.UNAUTHORIZED).entity("Username or password is incorrect").build();
 		else
-			return Response.ok().entity(service.getUserByToken(response)).build();
+			return Response.ok().entity(response).build();
 	}
 
 
@@ -51,6 +51,7 @@ public class RegularUserServiceRs {
 			user.setPassword(password);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
+			user.setRole("regularUser");
 			service.addUser(user);
 			return Response.ok(user).build();
 		} else {
