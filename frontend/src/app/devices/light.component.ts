@@ -8,8 +8,6 @@ import {Observable } from 'rxjs/Rx';
 import { AnonymousSubscription} from 'rxjs/Subscription';
 
 
-
-
 @Component({
     selector: 'light',
     templateUrl: 'light.component.html',
