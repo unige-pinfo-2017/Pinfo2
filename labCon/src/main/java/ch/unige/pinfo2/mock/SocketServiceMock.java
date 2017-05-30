@@ -32,15 +32,13 @@ public class SocketServiceMock implements SocketService {
 		Random r = new Random();
 		Double power;
 		Double current;
-		Long isOn;
 		List<Socket> socketStates = new ArrayList<Socket>();
 
 		while (timestamp < to) {
 			power = randomDouble(0, 5);
 			current = randomDouble(0, 10);
-			isOn = (long) ((r.nextBoolean()) ? 1 : 0);
-			socketStates.add(new Socket(timestamp, current, power, isOn));
-			timestamp += 20;
+			socketStates.add(new Socket(deviceId, timestamp, current, power));
+			timestamp += 600000;
 		}
 		return socketStates;
 	}

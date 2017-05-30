@@ -37,19 +37,13 @@ public class HubServiceMock implements HubService{
 		Random r = new Random(); 
 		Double power;
 		Double current;
-		Long isOn;
 		List<Hub> hubStates = new ArrayList<Hub>();
 		while (timestamp < to){
 			List<Socket> sockets = new ArrayList<Socket>();
 			for (int i=0; i<6; i++){
 				power = randomDouble(0,5);
 				current = randomDouble(0,10);
-				isOn = (long) ((r.nextBoolean())?1:0);
-				if (isOn==0){
-					power = 0d;
-					current = 0d;
-				}
-				sockets.add(new Socket(timestamp, current, power, isOn));
+				sockets.add(new Socket(id, timestamp, current, power));
 			}
 			hubStates.add(new Hub(sockets));
 			timestamp+=20;		
@@ -63,14 +57,12 @@ public class HubServiceMock implements HubService{
 		List<Socket> sockets = new ArrayList<Socket>();
 		Double power;
 		Double current;
-		Long isOn;
 		Long timestamp = new Timestamp(System.currentTimeMillis()).getTime();
 		
 		for (int i=0; i<6; i++){
 			power = randomDouble(0,5);
 			current = randomDouble(0,10);
-			isOn = (long) ((r.nextBoolean())?1:0);
-			sockets.add(new Socket(timestamp, current, power, isOn));
+			sockets.add(new Socket(id, timestamp, current, power));
 		}
 		
 		return (new Hub(sockets));
