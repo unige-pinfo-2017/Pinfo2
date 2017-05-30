@@ -23,13 +23,19 @@ export class HubComponent {
     private dend = new Array<String>(); 
     private tstart = new Array<String>();
     private tend = new Array<String>();
+    private isLiveData: boolean;
 
     constructor(private deviceService: DeviceService, private route: ActivatedRoute, private loc: Location) { }
 
     ngOnInit(): void {
         this.route.params
       .switchMap((params: Params) => this.deviceService.getDevice(+params['id'], "hub"))
-      .subscribe(hub => {this.hub = hub});
+      .subscribe(hub => { this.hub = hub; this.socketsId = hub.link });
+
+      for (let x of this.socketsId) {
+          this.deviceService.getDevice(x, "socket").then(sock => {this.sockets.push(sock);
+              console.log(sock.id);});
+      }
     }
 
   show_live() {

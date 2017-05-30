@@ -5,7 +5,20 @@
         </h1>
     </header>
     <!-- Page Content -->
+    <div>
 
+        <div class="w3-bar w3-blue">
+            <button (click)="show_live()" class="w3-button w3-hover-white w3-bar-item">Live</button>
+            <button (click)="show_history()" class="w3-button w3-hover-white w3-bar-item">History</button>
+        </div>
+
+        <div class="w3-container row" id="panel-live">
+            <div class="col-md-12">
+                <div class="w3-container w3-center row">
+                    <div class="w3-container col-md-6">
+                    </div>
+                    <div class="w3-container col-md-6">
+                        <label class="switch">
     <div class="w3-container row">
         <div class="col-md-12">
             <div class="w3-container w3-center w3-border row">
@@ -17,11 +30,40 @@
                         <input type="checkbox" [checked]="mySocket.state" value="mySocket.state">
                         <div class="slider round"></div>
                     </label>
+                    </div>
                 </div>
-            </div>
 
-            <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
+                <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
+            </div>
+        </div>
+
+        <div class="w3-container w3-hide" id="panel-history">
+            <md-input-container>
+                <input mdInput [mdDatepicker]="datePickerStart" placeholder="Choose a start date" 
+                [ngModel]="dateStart | date:'shortDate'" (ngModelChange)="dateStart=updateDate(1, $event)">
+                <button mdSuffix [mdDatepickerToggle]="datePickerStart"></button>
+            </md-input-container>
+            <md-datepicker #datePickerStart></md-datepicker>
+
+            <md-input-container>
+                <input mdInput [mdDatepicker]="datePickerEnd" placeholder="Choose an end date"
+                [ngModel]="dateEnd | date:'shortDate'" (ngModelChange)="dateEnd=updateDate(2, $event)">
+                <button mdSuffix [mdDatepickerToggle]="datePickerEnd"></button>
+            </md-input-container>
+            <md-datepicker #datePickerEnd></md-datepicker>
+
+            
+            <div class="w3-input">
+                <label> Time from : </label> <input [ngModel]="timeStart" 
+                (ngModelChange)="timeStart=updateDate(3, $event)" type="time" name="timeStart">
+
+                <label> To : </label> <input [ngModel]="timeEnd" 
+                (ngModelChange)="timeEnd=updateDate(4, $event)" type="time" name="timeEnd">
+            </div>
+            <p class="w3-margin-top">
+                <button (click)="getHistory()" class="w3-btn w3-blue w3-hover-white">Chercher</button>
+            </p>
         </div>
     </div>
 
-</div>
+    </div>

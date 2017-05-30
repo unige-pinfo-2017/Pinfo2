@@ -19,6 +19,11 @@ export class SocketComponent implements OnInit, OnDestroy{
     private valuesForPlot: any;
     private postsSubscription: AnonymousSubscription;
     private timerSubscription: AnonymousSubscription;
+    private dstart = new Array<String>();
+    private dend = new Array<String>(); 
+    private tstart = new Array<String>();
+    private tend = new Array<String>();
+    private isLiveData: boolean
 
     constructor(private socketService: SocketService, private route: ActivatedRoute) { }
 
@@ -89,6 +94,58 @@ export class SocketComponent implements OnInit, OnDestroy{
             console.log("dans if false")
             this.socketService.postSocketState(this.mySocket.id, false).subscribe(()=>console.log("après post false"));
             this.mySocket.setState(false);
+        }
+    }
+
+    show_live() {
+        let x = document.getElementById("panel-live");
+        let y = document.getElementById("panel-history");
+
+        if (x.className.indexOf("w3-hide") !== -1 && y.className.indexOf("w3-hide") === -1) {
+            x.className = x.className.replace(" w3-hide", "");
+            y.className += " w3-hide";
+        }
+    }
+
+    show_history() {
+        let x = document.getElementById("panel-live");
+        let y = document.getElementById("panel-history");
+
+        if (y.className.indexOf("w3-hide") !== -1 && x.className.indexOf("w3-hide") === -1) {
+            y.className = y.className.replace(" w3-hide", "");
+            x.className += " w3-hide";
+        }
+    }
+
+    getHistory(): number[] {
+        let xd = this.tstart.pop().valueOf();
+        this.tstart.push(xd);
+        let ad = this.dstart.pop();
+        this.dstart.push(ad);
+        let dtstart = Date.parse(ad.replace("00:00", xd).valueOf());
+
+        let xf = this.tend.pop().valueOf();
+        this.tend.push(xf);
+        let af = this.dend.pop();
+        this.dend.push(af);
+        let dtend = Date.parse(af.replace("00:00", xf).valueOf());
+
+        let retour = [dtstart, dtend];
+        console.log(retour[0] + " " + retour[1]);
+
+        return [dtstart, dtend];
+    } 
+ 
+    updateDate(n: number, newValue) { 
+        let x = new String(newValue);
+        if (n === 1) {
+            this.dstart.push(x.valueOf());
+        } else if (n === 2) { 
+            this.dend.push(x.valueOf()); 
+        } else if (n === 3) {
+            this.tstart.push(x.valueOf());
+        } else {
+            this.tend.push(x.valueOf());
         }
     }
 

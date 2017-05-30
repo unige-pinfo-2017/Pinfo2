@@ -48,40 +48,9 @@ export class SidenavComponent {
     show(elem: string) {
         let x = document.getElementById(elem);
         if (x.className.indexOf("w3-show") === -1) {
-            x.className += ' w3-show';
-            if (elem === "li") {
-                this.hide_hs();
-            } else if (elem === "hu") {
-                this.hide_s();
-            }
+            x.className += " w3-show";
         } else {
-            x.className = x.className.replace(" w3-show", '');
-            if (elem === "li") {
-                this.hide_hs();
-            } else if (elem === "hu") {
-                this.hide_s();
-            }
-        }
-    }
-
-    hide_hs() {
-        let x2 = document.getElementById('idh');
-        let x3 = document.getElementById('ids');
-        if (x2.className.indexOf("w3-hide") === -1) {
-            x2.className += ' w3-hide';
-            x3.className += ' w3-hide';
-        } else {
-            x2.className = x2.className.replace(" w3-hide", '');
-            x3.className = x3.className.replace(" w3-hide", '');
-        }
-    }
-
-    hide_s() {
-        let x3 = document.getElementById('ids');
-        if (x3.className.indexOf("w3-hide") === -1) {
-            x3.className += ' w3-hide';
-        } else {
-            x3.className = x3.className.replace(" w3-hide", '');
+            x.className = x.className.replace(" w3-show", "");
         }
     }
 
