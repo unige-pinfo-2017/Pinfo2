@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.enterprise.inject.Alternative;
+
 import ch.unige.pinfo2.dom.Device;
 import ch.unige.pinfo2.dom.Light;
 import ch.unige.pinfo2.dom.Socket;
 import ch.unige.pinfo2.service.DeviceService;
 
+@Alternative
 public class DeviceServiceImplMock implements DeviceService {
 
 	@Override

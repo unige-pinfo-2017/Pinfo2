@@ -3,7 +3,7 @@ package ch.unige.pinfo2.service;
 import org.junit.Test;
 
 import ch.unige.pinfo2.dom.Hub;
-import ch.unige.pinfo2.mock.HubServiceMock;
+import ch.unige.pinfo2.mock.HubServiceImplMock;
 import junit.framework.Assert;
 
 @SuppressWarnings("deprecation")
@@ -13,7 +13,7 @@ public class HubServiceImplTest{
 	
 	@Test
 	public void testGetLastStateSizeListHubs(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Hub hub = hs.getLastState("1");
 		Assert.assertEquals(6, hub.getSockets().size());
 	}
@@ -23,19 +23,19 @@ public class HubServiceImplTest{
 	
 	@Test
 	public void testHubGetStateNotEmpty(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Assert.assertEquals(1, hs.getState("1", 2000L, 2010L).size());
 	}
 	
 	@Test
 	public void testHubGetStateEmpty(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Assert.assertEquals(0, hs.getState("1", 2010L, 2010L).size());
 	}
 	
 	@Test
 	public void testHubGetStateLength(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Long fromValue=1980L;
 		Long toValue=3000L;
 		Assert.assertEquals((toValue-fromValue)/20, hs.getState("1", fromValue, toValue).size());	
@@ -43,31 +43,31 @@ public class HubServiceImplTest{
 	
 	@Test
 	public void testHubGetStateDeviceIDNull(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Assert.assertEquals(0, hs.getState(null, 2020L, 2010L).size());
 	}
 	
 	@Test
 	public void testHubGetStateFromValueNull(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Assert.assertEquals(1, hs.getState("1", null, 2010L).size());
 	}
 	
 	@Test
 	public void testHubGetStateToValueNull(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Assert.assertEquals(1, hs.getState("1", 2000L, null).size());
 	}
 	
 	@Test
 	public void testHubGetStateFromToValuesNull(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Assert.assertEquals(1, hs.getState("1", null, null).size());
 	}
 	
 	@Test
 	public void testHubGetStateSameValues(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Long fromValue=2000L;
 		Long toValue=2000L;
 		Assert.assertEquals((toValue-fromValue)/20, hs.getState("1", fromValue, toValue).size());	
@@ -75,7 +75,7 @@ public class HubServiceImplTest{
 	
 	@Test
 	public void testHubGetStateTwoLists(){
-		hs=new HubServiceMock();
+		hs=new HubServiceImplMock();
 		Assert.assertNotSame(hs.getState("1", 1980L, 2020L).size(), hs.getState("2", 2000L, 2010L).size());	
 	}
 

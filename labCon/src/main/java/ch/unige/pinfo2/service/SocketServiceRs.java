@@ -1,6 +1,12 @@
 package ch.unige.pinfo2.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonBuilderFactory;
+import javax.json.JsonObject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -8,7 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
+import ch.unige.pinfo2.dom.Socket;
 
 @Path("/devices/sockets")
 public class SocketServiceRs {
@@ -19,9 +25,26 @@ public class SocketServiceRs {
 	@GET
 	@Produces("application/json")
 	@Path("/getStates")
-	public String getState(@QueryParam("deviceId") String id, @QueryParam("from") Long fromDate,
+	public JsonObject getStates(@QueryParam("deviceId") String deviceId, @QueryParam("from") Long fromDate,
 			@QueryParam("to") Long toDate) {
-		return new Gson().toJson(socketService.getState(id, fromDate, toDate));
+		List<Socket> socketStates = socketService.getStates(deviceId, fromDate, toDate);
+		
+		JsonBuilderFactory factory = Json.createBuilderFactory(null);
+		
+		JsonArrayBuilder jsonSocketStatesContentBuilder = factory.createArrayBuilder();
+		
+		for(Socket s : socketStates) {
+			jsonSocketStatesContentBuilder.add(factory.createObjectBuilder()
+					.add("timestamp", s.getTimestamp().longValue())
+					.add("power",s.getPower().doubleValue()));
+					
+		}
+		
+		JsonObject jsonSocketStates = factory.createObjectBuilder()
+				.add("socketStates", jsonSocketStatesContentBuilder.build())
+				.build();
+		
+		return jsonSocketStates;
 	}
 
 	@POST

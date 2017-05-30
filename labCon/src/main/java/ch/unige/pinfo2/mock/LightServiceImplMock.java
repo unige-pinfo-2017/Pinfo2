@@ -28,7 +28,7 @@ public class LightServiceImplMock implements LightService {
 				
 		while(timestamp.longValue() < to.longValue()) {
 			lights.add(new Light(deviceId, timestamp, new Double(valueGenerator.nextDouble()*15)));
-			timestamp += Math.abs(valueGenerator.nextLong());
+			timestamp += Math.abs((int)(valueGenerator.nextDouble()*600000));
 		}
 		
 		return lights;

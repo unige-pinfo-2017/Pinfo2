@@ -12,7 +12,7 @@ import ch.unige.pinfo2.dom.Socket;
 import ch.unige.pinfo2.service.HubService;
 
 @Alternative
-public class HubServiceMock implements HubService{
+public class HubServiceImplMock implements HubService{
 	
 	
 	public Double randomDouble(long from, long to){
