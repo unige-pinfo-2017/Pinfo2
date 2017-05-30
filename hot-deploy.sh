@@ -19,14 +19,15 @@ function frontdeploy {
 		npm install
 	fi
 	npm run-script ng build
-	docker cp dist dockersetup_proxy_1:/usr/share/nginx/srvdist
+	docker cp dist/ dockersetup_proxy_1:/usr/share/nginx/dist/
 	if (( $? != 0 )) ; then
 		echo  -e "\e[31m==== ERROR couldn't move the webapp package to the airlock ABORTING ====\e[0m"
 		exit 1
 	fi
 	docker exec dockersetup_proxy_1 sh \
 		-c 'rm -rf /usr/share/nginx/html/*
-			mv /usr/share/nginx/srvdist/* /usr/share/nginx/html
+			mv /usr/share/nginx/dist/* /usr/share/nginx/html/
+			rm -rf /usr/share/nginx/dist
 			chown -R nginx /usr/share/nginx/html'
 	if (( $? != 0 )) ; then
 		echo  -e "\e[31m==== ERROR couldn't manipulate the dist files inside the docker image ====\e[0m"
