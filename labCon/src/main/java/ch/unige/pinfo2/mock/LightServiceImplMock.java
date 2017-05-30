@@ -15,7 +15,7 @@ public class LightServiceImplMock implements LightService {
 	@Override
 	public Light getLastState(String deviceId) {
 		Random valueGenerator = new Random();
-		return new Light(new Long(valueGenerator.nextLong()), new Double(valueGenerator.nextDouble()));
+		return new Light(new Long(Math.abs(valueGenerator.nextLong())), new Double(valueGenerator.nextDouble()*15));
 	}
 	
 	@Override
@@ -24,11 +24,11 @@ public class LightServiceImplMock implements LightService {
 		
 		List<Light> lights = new ArrayList<Light>();
 		
-		Long timestamp = new Long(from.longValue());
+		Long timestamp = new Long(Math.abs(from.longValue()));
 				
 		while(timestamp.longValue() < to.longValue()) {
-			lights.add(new Light(timestamp, new Double(valueGenerator.nextDouble())));
-			timestamp += valueGenerator.nextLong();
+			lights.add(new Light(timestamp, new Double(valueGenerator.nextDouble()*15)));
+			timestamp += Math.abs(valueGenerator.nextLong());
 		}
 		
 		return lights;
