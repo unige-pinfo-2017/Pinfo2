@@ -33,7 +33,7 @@ export class SocketService{
         let body = JSON.stringify({  });
         /*let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });*/
-        return this.http.post(this.restServerApiUrl+'setOnOrOff?deviceId='+id.toString()+'&onOrOff='+state, body).map(() =>1).catch(this.handleError);
+        return this.http.post(this.restServerApiUrl+'setState?deviceId='+id.toString()+'&onOrOff='+state, body).map(() =>1).catch(this.handleError);
     }
 
     private handleError(error: Response | any) {

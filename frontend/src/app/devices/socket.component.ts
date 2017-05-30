@@ -16,7 +16,7 @@ import { AnonymousSubscription} from 'rxjs/Subscription';
 
 export class SocketComponent implements OnInit, OnDestroy{
     private mySocket: Socket;
-    private socketId: number;
+    private valuesForPlot: any;
     private postsSubscription: AnonymousSubscription;
     private timerSubscription: AnonymousSubscription;
 
@@ -41,14 +41,17 @@ export class SocketComponent implements OnInit, OnDestroy{
     }
 
     private subscribeToData( ): void{
-        this.timerSubscription = Observable.timer(3000).first().subscribe(()=> {this.mySocket.valuesForPlot= this.parseStatesArray(); console.log(this.mySocket.valuesForPlot);
+        this.timerSubscription = Observable.timer(3000).first().subscribe(()=> {
+                                                                                this.mySocket.toTimestamp = this.getTimestamp();
+                                                                                this.mySocket.fromTimestamp = this.mySocket.toTimestamp-1000*3600;
                                                                                 this.refreshData()});
     }
 
     private refreshData(): void{
         this.postsSubscription = this.socketService.getSocketStates(this.mySocket.id, this.mySocket.fromTimestamp, this.mySocket.toTimestamp)
             .subscribe(states => {this.mySocket.statesArray = states;
-                                    this.subscribeToData();
+                                this.valuesForPlot= this.parseStatesArray();
+                                this.subscribeToData();
             });   
     }
 
@@ -59,21 +62,18 @@ export class SocketComponent implements OnInit, OnDestroy{
     parseStatesArray(): any{
         let data : number[] = [];
         let label : String = 'Consumption during the last hour'
-        let lineChartLabel : any[] = [];
+        let lineChartLabels : any[] = [];
 
         for (let state of this.mySocket.statesArray){
             data.push(state.power);
-            lineChartLabel.push(state.timestamp.toString())
+            lineChartLabels.push(state.timestamp.toString())
         }
-        console.log(lineChartLabel);
-        let lineChartData: any[]  = [{data: data,label:label}]
-        console.log(lineChartData);
+        let lineChartData: any[]  = [{data: data,label:label}];
 
         let value :any = {
             lineChartData:lineChartData,
-            lineChartLabel:lineChartLabel
+            lineChartLabels:lineChartLabels
         }
-        console.log(value);
         return value
     }
 

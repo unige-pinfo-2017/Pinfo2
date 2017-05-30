@@ -1,7 +1,7 @@
-<div class="w3-card-2" style="margin-left:202px">
+<div *ngIf="mySocket" class="w3-card-2" style="margin-left:202px">
     <header class="w3-container w3-blue">
         <h1>
-            Socket {{socket?.id}}
+            Socket {{mySocket.id}}
         </h1>
     </header>
     <!-- Page Content -->
@@ -14,13 +14,13 @@
                 </div>
                 <div class="w3-container col-md-6">
                     <label class="switch">
-                        <input type="checkbox" [checked]="mySocket?.state" value="mySocket?.state">
+                        <input type="checkbox" [checked]="mySocket.state" value="mySocket.state">
                         <div class="slider round"></div>
                     </label>
                 </div>
             </div>
 
-            <plot [lineChartData]="this.mySocket.valuesForplot.lineChartData" [lineChartLabels]="this.mySocket.valuesForplot.lineChartLabels"></plot>
+            <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
         </div>
     </div>
 
