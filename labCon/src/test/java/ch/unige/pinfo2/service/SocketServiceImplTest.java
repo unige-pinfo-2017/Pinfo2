@@ -1,4 +1,4 @@
-package ch.unige.pinfo2.service;
+/*package ch.unige.pinfo2.service;
 
 import org.junit.Test;
 
@@ -70,4 +70,4 @@ public class SocketServiceImplTest {
 	}
 	
 	
-}
+}*/

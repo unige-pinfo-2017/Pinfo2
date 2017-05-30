@@ -5,6 +5,8 @@ export abstract class Device {
     state: boolean;
     link: number[];
     consommation: number;
+    statesArray: any[];
+    valuesForPlot: any;
 
     constructor(idd: number){
         this.id = idd;
@@ -25,4 +27,6 @@ export abstract class Device {
             this.setState(true);
         }
     }
+    fromTimestamp : number;
+    toTimestamp: number
 }

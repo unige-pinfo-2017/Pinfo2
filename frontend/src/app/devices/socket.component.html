@@ -14,13 +14,13 @@
                 </div>
                 <div class="w3-container col-md-6">
                     <label class="switch">
-                        <input type="checkbox" [checked]="socket?.state" value="socket?.state">
+                        <input type="checkbox" [checked]="mySocket?.state" value="mySocket?.state">
                         <div class="slider round"></div>
                     </label>
                 </div>
             </div>
 
-            <plot></plot>
+            <plot [lineChartData]="this.mySocket.valuesForplot.lineChartData" [lineChartLabels]="this.mySocket.valuesForplot.lineChartLabels"></plot>
         </div>
     </div>
 

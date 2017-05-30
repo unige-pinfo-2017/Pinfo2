@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataForPlotService } from '../_services';
 
 
@@ -6,7 +6,7 @@ import { DataForPlotService } from '../_services';
     selector: 'plot',
     templateUrl: 'plot.component.html',
     providers: [
-        DataForPlotService
+        
     ]
 })
 
@@ -15,15 +15,19 @@ export class PlotComponent implements OnInit {
     errorMessage : any;
     
     // lineChart
-    lineChartData:Array<any> = [
+    @Input()
+    lineChartData:Array<any>; /*= [
         {
             data: [65, 59, 80, 81, 56, 55, 40],
             label: 'Consumption'
         },    
-    ]
-    lineChartLabels:Array<any> = [
+    ]*/
+
+    @Input()
+    lineChartLabels:Array<any>; /*= [
             '14:00', '14:10', '14:20', '14:30', '14:40', '14:50', '15:00'
-        ];
+        ];*/
+
     lineChartOptions:any = {
         responsive: true
     };
@@ -40,20 +44,20 @@ export class PlotComponent implements OnInit {
     lineChartLegend:boolean = true;
     lineChartType:string = 'line';
     
-    constructor(private dataForPlotService: DataForPlotService) {
+    constructor(/*private dataForPlotService: DataForPlotService*/) {
     }
 
     ngOnInit(): void {
         //this.setValuesForPlot();
     }
 
-    setValuesForPlot(): void{
+    /*setValuesForPlot(): void{
         this.dataForPlotService.getValues().subscribe(Values => {
                                                             this.lineChartData=Values.lineChartData;
                                                             this.lineChartLabels=Values.lineChartLabels;
                                                         },
                                                         error => this.errorMessage = <any> error);
-    }
+    }*/
     
     public randomize():void {
         let _lineChartData:Array<any> = new Array(this.lineChartData.length);
