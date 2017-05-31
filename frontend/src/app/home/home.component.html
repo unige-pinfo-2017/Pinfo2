@@ -1,15 +1,156 @@
-<div class="w3-card-2" style="margin-left:202px">
-<!-- Page Content -->
-    <div>
-        <header class="w3-container w3-blue">
-            <h1>Home</h1>
-        </header>
+<div *ngIf="whichRole()=='SysAdmin'">
 
-        <div class="w3-container">
-            <h3> You're logged in {{currentUser.firstName}} !</h3>        
-            <div>
-                <plot> </plot>
+    <div class="w3-card-2" style="margin-left:202px">
+    <!-- Page Content -->
+        <div>
+            <header class="w3-container w3-blue">
+                <h1>Home</h1>
+            </header>
+
+            <div class="w3-container">
+                <h3> You're logged in {{currentUser.firstName}} !</h3>
+                <div>
+
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>
+                                  Users
+                                </th>
+                                <th>
+                                  Status
+                                </th>
+                                <th>
+                                  Workspace
+                                </th>
+                                <th>
+                                  Options
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr class = "active"*ngFor="let utilisateur of users">
+                                <td> {{utilisateur.name}}</td>
+                                <td> {{utilisateur.id}}</td>
+                                <td>{{utilisateur.workspace}}</td>
+                              </tr>
+
+
+
+                              <!--<tr>
+                                <td>
+                                  User_1
+                                </td>
+                                <td>
+                                  Connected
+                                </td>
+                                <td>
+                                  Workspace 1
+                                </td>
+                                <td>
+                                  Default
+                                </td>
+                              </tr>
+                              <tr class="active">
+                                <td>
+                                  User_2
+                                </td>
+                                <td>
+                                  Connected
+                                </td>
+                                <td>
+                                  Workspace 2
+                                </td>
+                                <td>
+                                  Default
+                                </td>
+                              </tr>
+                              <tr class="success">
+                                <td>
+                                  User_3
+                                </td>
+                                <td>
+                                  Disconnected
+                                </td>
+                                <td>
+                                  Workspace 3
+                                </td>
+                                <td>
+                                  Default
+                                </td>
+                              </tr>
+                              <tr class="warning">
+                                <td>
+                                  User_4
+                                </td>
+                                <td>
+                                  Disconnected
+                                </td>
+                                <td>
+                                  Workspace 4
+                                </td>
+                                <td>
+                                  Default
+                                </td>
+                              </tr>
+                              <tr class="danger">
+                                <td>
+                                  User_5
+                                </td>
+                                <td>
+                                  Connected
+                                </td>
+                                <td>
+                                  Workspace 5
+                                </td>
+                                <td>
+                                  Default
+                                </td>
+                              </tr>-->
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<div *ngIf="whichRole()=='User'">
+
+    <div class="w3-card-2" style="margin-left:202px">
+    <!-- Page Content -->
+        <div>
+            <header class="w3-container w3-blue">
+                <h1>Home</h1>
+            </header>
+
+            <div class="w3-container">
+                <h3> You're logged in {{currentUser.firstName}} !</h3>
+                <div>
+                    <plot> </plot>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div *ngIf="whichRole()=='Manager'">
+
+</div>
+
+
+
