@@ -1,5 +1,8 @@
 package ch.unige.pinfo2.dom;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Light extends Device {
 	/**
 	 * 
@@ -8,6 +11,8 @@ public class Light extends Device {
 	
 	private Double power;
 	private Boolean onOffStatus;
+	
+	public Light(){}
 	
 	public Light(String deviceId, Long timestamp, Double power) {
 		super(deviceId,DeviceType.LIGHT,timestamp);

@@ -1,18 +1,21 @@
 package ch.unige.pinfo2.dom;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Socket extends Device {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4077936754856570858L;
 	
-	private Double current;
+	private Double currentSocket;
 	private Double power;
 	private Boolean isOn;
-
+	
 	public Socket(String deviceId, Long timestamp, Double current, Double power) {
 		super(deviceId, DeviceType.SOCKET, timestamp);
-		this.current = current;
+		this.currentSocket = current;
 		this.power = power;
 		if (power.doubleValue() == 0) {
 			this.isOn = false;
@@ -21,12 +24,14 @@ public class Socket extends Device {
 		}
 	}
 
+	public Socket(){}
+	
 	public Double getCurrent() {
-		return current;
+		return currentSocket;
 	}
 
 	public void setCurrent(Double current) {
-		this.current = current;
+		this.currentSocket = current;
 	}
 
 	public Double getPower() {

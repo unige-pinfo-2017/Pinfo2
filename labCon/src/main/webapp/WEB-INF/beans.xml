@@ -7,6 +7,5 @@
       <class>ch.unige.pinfo2.mock.HubServiceImplMock</class>
       <class>ch.unige.pinfo2.mock.LightServiceImplMock</class>
       <class>ch.unige.pinfo2.mock.SocketServiceImplMock</class>
-      <class>ch.unige.pinfo2.mock.DeviceServiceImplMock</class>
       </alternatives>
 </beans>
