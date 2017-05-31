@@ -60,7 +60,7 @@ public class DeviceServiceImplMock implements DeviceService {
 	@Override
 	public void assignWorkstation(String deviceId, String workstation) {
 		if (this.isInDatabase(deviceId)){
-			String sql = "UPDATE Device SET workstation = :arg1 WHERE id = :arg2";
+			String sql = "UPDATE Device d SET d.workstation = :arg1 WHERE d.id = :arg2";
 			Query query = em.createQuery(sql);
 			query.setParameter("arg1", deviceId);
 			query.setParameter("arg2", workstation);
@@ -70,7 +70,7 @@ public class DeviceServiceImplMock implements DeviceService {
 	@Override
 	public void denyWorkstation(String deviceId) {
 		if (this.isInDatabase(deviceId)){
-			String sql = "UPDATE Device SET workstation = :arg1 WHERE id = :arg2";
+			String sql = "UPDATE Device d SET d.workstation = :arg1 WHERE d.id = :arg2";
 			Query query = em.createQuery(sql);
 			query.setParameter("arg1", deviceId);
 			query.setParameter("arg2", null);
@@ -80,16 +80,17 @@ public class DeviceServiceImplMock implements DeviceService {
 	@Override
 	public String getWorkstation(String deviceId) {
 		if (this.isInDatabase(deviceId)){
-			String sql = "SELECT workstation FROM Device WHERE id = :arg1";
+			String sql = "SELECT d FROM Device d WHERE d.id = :arg1";
 			Query query = em.createQuery(sql);
 			query.setParameter("arg1", deviceId);
-			return ((Device) query.getSingleResult()).getWorkstation();
+			List<Device> ld=query.getResultList();
+			return ld.get(0).getWorkstation();
 		}
 		return null;
 	}
 	
 	public List<String> getSocketIds(String workstation) {
-		String sql = "SELECT id FROM Device WHERE workstation = :arg1 and type= :arg2";
+		String sql = "SELECT d.id FROM Device d WHERE d.workstation = :arg1 and d.type= :arg2";
 		Query query = em.createQuery(sql);
 		query.setParameter("arg1", workstation);
 		query.setParameter("arg2", DeviceType.SOCKET);
