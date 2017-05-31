@@ -24,6 +24,8 @@ services:
             - "wildfly-data:/opt/jboss/wildfly/standalone/deployments"
         expose:
             - "8080"
+        ports:
+            - "9990:9990"
         depends_on:
             - "database"
         restart: always

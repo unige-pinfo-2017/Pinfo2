@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule} from 'ng2-charts';
+import { HomeComponentSysAdmin } from "./home/homeSystAdmin.component";
 
 import 'hammerjs';
 
@@ -39,7 +40,8 @@ import { SidenavComponent } from "./sidenav/sidenav.component";
       HubComponent,
       LightComponent,
       SocketComponent,
-      SidenavComponent
+      SidenavComponent,
+      HomeComponentSysAdmin
   ],
   imports: [
     BrowserModule,
