@@ -16,13 +16,13 @@ export class HomeComponent implements OnInit{
     currentUser: User;
     selectedWs: Workstation;
     UTILISATEURS: Hero[] = [
-      {id: 1, workspace: 10, name:'Fred',},
-      {id: 2, workspace: 3,  name:'Max'},
-      {id: 5, workspace: 27, name:'Thomas'},
-      {id: 3, workspace: 44, name:'Nico'},
-      {id: 4, workspace: 67, name:'Vinc'},
-      {id: 6, workspace: 99, name:'Beni'},
-      {id: 7, workspace: 66, name:'Rodé'},
+      {property: "Default" ,status: "Connected", workspace: 10, name:'Fred',},
+      {property: "Default" ,status: "Disconnected", workspace: 3,  name:'Max'},
+      {property: "Default" ,status: "Disconnected", workspace: 27, name:'Thomas'},
+      {property: "Default" ,status: "Connected", workspace: 44, name:'Nico'},
+      {property: "Default" ,status: "Connected", workspace: 67, name:'Vinc'},
+      {property: "Default" ,status: "Disconnected", workspace: 99, name:'Beni'},
+      {property: "Default" ,status: "Disconnected", workspace: 66, name:'Rodé'},
     ];
     users = this.UTILISATEURS;
     constructor(private userService: UserService) {
@@ -38,8 +38,9 @@ export class HomeComponent implements OnInit{
 }
 
 export class Hero  {
-  id : number;
+  status : string;
   name : string;
   workspace : number;
+  property : string;
 }
 

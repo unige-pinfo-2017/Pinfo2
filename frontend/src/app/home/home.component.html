@@ -33,10 +33,11 @@
                             </thead>
                             <tbody>
 
-                              <tr class = "active"*ngFor="let utilisateur of users">
+                              <tr class = "success" *ngFor="let utilisateur of users">
                                 <td> {{utilisateur.name}}</td>
-                                <td> {{utilisateur.id}}</td>
+                                <td> {{utilisateur.status}}</td>
                                 <td>{{utilisateur.workspace}}</td>
+                                <td>{{utilisateur.property}}</td>
                               </tr>
 
 
