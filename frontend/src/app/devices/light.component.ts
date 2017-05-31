@@ -75,15 +75,4 @@ export class LightComponent implements OnInit, OnDestroy {
                 (params: Params) => this.deviceService.getDevice(+params['id'], "light"))
             .subscribe(light => this.myLight = light);*/
 
-
-    /*setLight(id: number): void {
-      this.deviceService.getValues().subscribe(devices => {
-      devices.forEach(element => {
-            if (element.name === 'light' && element.id === id) {
-                this.myLight = element;
-            }
-      });
-    });
-    }*/
-
 }

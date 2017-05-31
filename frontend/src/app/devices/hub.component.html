@@ -18,86 +18,85 @@
             <div class="row">
                 <div class="col-md-4">
                     <a href="/socket/{{sockets[0]?.id}}">
-                        <p>Socket {{sockets[0]?.id}}</p>
+                        <p>Socket {{sockets[0]?.id}}
+                            <md-slide-toggle color="primary"
+                                [checked]="sockets[0]?.state" ngDefaultControl (change)="onChange(0, $event)">
+                            </md-slide-toggle>
+                        </p>
                     </a>
-                    <label class="switch">
-                                <input type="checkbox" [checked]="sockets[0]?.state" value="sockets[0]?.state">
-                                <div class="slider round"></div>
-                                </label>
                 </div>
                 <div class="col-md-4">
                     <a href="/socket/{{sockets[1]?.id}}">
-                        <p>Socket {{sockets[1]?.id}}</p>
+                        <p>Socket {{sockets[1]?.id}}
+                            <md-slide-toggle color="primary"
+                                [checked]="sockets[1]?.state" ngDefaultControl (change)="onChange(1, $event)">
+                            </md-slide-toggle>
+                        </p>
                     </a>
-                    <label class="switch">
-                                <input type="checkbox" [checked]="sockets[1]?.state" value="sockets[1]?.state">
-                                <div class="slider round"></div>
-                                </label>
                 </div>
                 <div class="col-md-4">
                     <a href="/socket/{{sockets[2]?.id}}">
-                        <p>Socket {{sockets[2]?.id}}</p>
+                        <p>Socket {{sockets[2]?.id}}
+                            <md-slide-toggle color="primary"
+                                [checked]="sockets[2]?.state" ngDefaultControl (change)="onChange(2, $event)">
+                            </md-slide-toggle>
+                        </p>
                     </a>
-                    <label class="switch">
-                                <input type="checkbox" [checked]="sockets[2]?.state" value="sockets[2]?.state">
-                                <div class="slider round"></div>
-                                </label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
                     <a href="/socket/{{sockets[3]?.id}}">
-                        <p>Socket {{sockets[3]?.id}}</p>
+                        <p>Socket {{sockets[3]?.id}}
+                            <md-slide-toggle color="primary"
+                                [checked]="sockets[3]?.state" ngDefaultControl (change)="onChange(3, $event)">
+                            </md-slide-toggle>
+                        </p>
                     </a>
-                    <label class="switch">
-                                <input type="checkbox" [checked]="sockets[3]?.state" value="sockets[3]?.state">
-                                <div class="slider round"></div>
-                                </label>
                 </div>
                 <div class="col-md-4">
                     <a href="/socket/{{sockets[4]?.id}}">
-                        <p>Socket {{sockets[4]?.id}}</p>
+                        <p>Socket {{sockets[4]?.id}}
+                            <md-slide-toggle color="primary"
+                                [checked]="sockets[4]?.state" ngDefaultControl (change)="onChange(4, $event)">
+                            </md-slide-toggle>
+                        </p>
                     </a>
-                    <label class="switch">
-                                <input type="checkbox" [checked]="sockets[4]?.state" value="sockets[4]?.state">
-                                <div class="slider round"></div>
-                                </label>
                 </div>
                 <div class="col-md-4">
                     <a href="/socket/{{sockets[5]?.id}}">
-                        <p>Socket {{sockets[5]?.id}}</p>
+                        <p>Socket {{sockets[5]?.id}}
+                            <md-slide-toggle color="primary"
+                                [checked]="sockets[5]?.state" ngDefaultControl (change)="onChange(5, $event)">
+                            </md-slide-toggle>
+                        </p>
                     </a>
-                    <label class="switch">
-                                <input type="checkbox" [checked]="sockets[5]?.state" value="sockets[5]?.state">
-                                <div class="slider round"></div>
-                                </label>
                 </div>
             </div>
         </div>
 
         <div class="w3-container w3-hide" id="panel-history">
             <md-input-container>
-                <input mdInput [mdDatepicker]="datePickerStart" placeholder="Choose a start date" 
-                [ngModel]="dateStart | date:'shortDate'" (ngModelChange)="dateStart=updateDate(1, $event)">
+                <input mdInput [mdDatepicker]="datePickerStart" placeholder="Choose a start date" [ngModel]="dateStart | date:'shortDate'"
+                    (ngModelChange)="dateStart=updateDate(1, $event)">
                 <button mdSuffix [mdDatepickerToggle]="datePickerStart"></button>
             </md-input-container>
             <md-datepicker #datePickerStart></md-datepicker>
 
             <md-input-container>
-                <input mdInput [mdDatepicker]="datePickerEnd" placeholder="Choose an end date"
-                [ngModel]="dateEnd | date:'shortDate'" (ngModelChange)="dateEnd=updateDate(2, $event)">
+                <input mdInput [mdDatepicker]="datePickerEnd" placeholder="Choose an end date" [ngModel]="dateEnd | date:'shortDate'" (ngModelChange)="dateEnd=updateDate(2, $event)">
                 <button mdSuffix [mdDatepickerToggle]="datePickerEnd"></button>
             </md-input-container>
             <md-datepicker #datePickerEnd></md-datepicker>
 
-            
-            <div class="w3-input">
-                <label> Time from : </label> <input [ngModel]="timeStart" 
-                (ngModelChange)="timeStart=updateDate(3, $event)" type="time" name="timeStart">
 
-                <label> To : </label> <input [ngModel]="timeEnd" 
-                (ngModelChange)="timeEnd=updateDate(4, $event)" type="time" name="timeEnd">
+            <div class="w3-input">
+                <label> Time from : </label> <input [ngModel]="timeStart" (ngModelChange)="timeStart=updateDate(3, $event)"
+                    type="time" name="timeStart">
+
+                <label> To : </label> <input [ngModel]="timeEnd" (ngModelChange)="timeEnd=updateDate(4, $event)" type="time"
+                    name="timeEnd">
             </div>
             <p class="w3-margin-top">
                 <button (click)="getHistory()" class="w3-btn w3-blue w3-hover-white">Chercher</button>

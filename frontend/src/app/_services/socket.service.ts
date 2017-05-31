@@ -14,8 +14,7 @@ export class SocketService{
 
     constructor(private http: Http) {
     }
-
-
+    
     getSocketStates(id: number, fromTimeStamp: number, toTimeStamp: number): Observable<any[]>{
         
         /*let params: URLSearchParams = new URLSearchParams();

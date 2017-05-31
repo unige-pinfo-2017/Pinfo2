@@ -32,6 +32,7 @@ export class SocketComponent implements OnInit, OnDestroy{
             this.mySocket = new Socket(+params['id']); 
             this.mySocket.toTimestamp = this.getTimestamp();
             this.mySocket.fromTimestamp = this.mySocket.toTimestamp-3600*1000;
+             
         });
         this.refreshData();
     }
@@ -55,6 +56,7 @@ export class SocketComponent implements OnInit, OnDestroy{
     private refreshData(): void{
         this.postsSubscription = this.socketService.getSocketStates(this.mySocket.id, this.mySocket.fromTimestamp, this.mySocket.toTimestamp)
             .subscribe(states => {this.mySocket.statesArray = states;
+                                this.mySocket.consommation = this.mySocket.statesArray[this.mySocket.statesArray.length -1].power;
                                 this.valuesForPlot= this.parseStatesArray();
                                 this.subscribeToData();
             });   

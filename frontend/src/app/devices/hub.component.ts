@@ -1,44 +1,47 @@
-import { Component } from '@angular/core' ;
+import { Component } from '@angular/core';
 import { Location } from "@angular/common";
-import { Hub } from '../_models/hub' ;
-import { Device } from '../_models/device' ;
+import { Hub } from '../_models/hub';
+import { Device } from '../_models/device';
 import { PlotComponent } from '../Plot/plot.component';
 import { DeviceService } from "../_services/devices.service";
-import { ActivatedRoute, Params } from '@angular/router' ;
+import { ActivatedRoute, Params } from '@angular/router';
 import { Socket } from "../_models/socket";
+import { SocketService } from "../_services/socket.service";
 
 @Component({
     selector: 'hub',
     templateUrl: 'hub.component.html',
     styleUrls: ['../sidenav/sidenav.component.css'],
-    providers: [DeviceService]
+    providers: [DeviceService, SocketService]
 })
 
 export class HubComponent {
     private hub: Hub;
-    private hubId: number;
-    private socketsId: number[];
     sockets = new Array<Socket>();
     private dstart = new Array<String>();
-    private dend = new Array<String>(); 
+    private dend = new Array<String>();
     private tstart = new Array<String>();
     private tend = new Array<String>();
     private isLiveData: boolean;
 
-    constructor(private deviceService: DeviceService, private route: ActivatedRoute, private loc: Location) { }
+    constructor(private deviceService: DeviceService, private route: ActivatedRoute, private loc: Location,
+    private socketService: SocketService) { }
 
     ngOnInit(): void {
         this.route.params
-      .switchMap((params: Params) => this.deviceService.getDevice(+params['id'], "hub"))
-      .subscribe(hub => { this.hub = hub; this.socketsId = hub.link });
-
-      for (let x of this.socketsId) {
-          this.deviceService.getDevice(x, "socket").then(sock => {this.sockets.push(sock);
-              console.log(sock.id);});
-      }
+            .switchMap((params: Params) => this.deviceService.getDevice(+params['id'], "hub"))
+            .subscribe(hub => {
+                this.hub = hub;
+                hub.link.forEach(id => {
+                    this.deviceService.getAllDevices().toPromise()
+                    .then(Device => Device.forEach(dev => {
+                        if ((new String(dev.id)).valueOf() === (new String(id)).valueOf()) {
+                            this.sockets.push(dev);
+                        }})
+                )})});      
     }
 
-  show_live() {
+    show_live() {
         let x = document.getElementById("panel-live");
         let y = document.getElementById("panel-history");
 
@@ -75,18 +78,30 @@ export class HubComponent {
         console.log(retour[0] + " " + retour[1]);
 
         return [dtstart, dtend];
-    } 
- 
-    updateDate(n: number, newValue) { 
+    }
+
+    updateDate(n: number, newValue) {
         let x = new String(newValue);
         if (n === 1) {
             this.dstart.push(x.valueOf());
-        } else if (n === 2) { 
-            this.dend.push(x.valueOf()); 
+        } else if (n === 2) {
+            this.dend.push(x.valueOf());
         } else if (n === 3) {
             this.tstart.push(x.valueOf());
         } else {
             this.tend.push(x.valueOf());
         }
-    } 
+    }
+
+    private onChange(n: number, event){
+        let mySocket: Socket = this.sockets[n];
+        
+        if (event.checked.toString() === "true"){
+            this.socketService.postSocketState(mySocket.id, true).subscribe(()=>console.log("après post true"));
+            this.sockets[n].state = true;
+        } else {
+            this.socketService.postSocketState(mySocket.id, false).subscribe(()=>console.log("après post false"));
+            this.sockets[n].state = false;
+        }
+    }
 }
