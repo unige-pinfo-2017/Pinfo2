@@ -22,10 +22,9 @@ services:
         image: "wildfly-pinfo2"
         volumes:
             - "wildfly-data:/opt/jboss/wildfly/standalone/deployments"
-        expose:
-            - "8080"
         ports:
             - "9990:9990"
+            - "8080:8080"
         depends_on:
             - "database"
         restart: always

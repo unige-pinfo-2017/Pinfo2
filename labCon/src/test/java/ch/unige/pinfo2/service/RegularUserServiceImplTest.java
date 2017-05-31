@@ -1,4 +1,4 @@
-/*package ch.unige.pinfo2.service;
+package ch.unige.pinfo2.service;
 
 import java.util.List;
 
@@ -45,12 +45,9 @@ public class RegularUserServiceImplTest {
 		userService.addUser(user1);
 		List<RegularUser> lUS = userService.getUserByFirstName("Rod");
 		if (!lUS.isEmpty()) {
+			
 			Assert.assertEquals(lUS.get(0).getFirstName(), user.getFirstName());
-			// Assert.assertEquals(lUS.get(0).getLastName(),
-			// user.getLastName());
 			Assert.assertEquals(lUS.get(1).getFirstName(), user1.getFirstName());
-			// Assert.assertEquals(lUS.get(1).getLastName(),
-			// user1.getLastName());
 		}
 		Assert.assertEquals(2, lUS.size());
 	}
@@ -162,6 +159,5 @@ public class RegularUserServiceImplTest {
 	 * Assert.assertNull(getUserByUsername(null)); }
 	 */
 
-/*
+
 }
- */
