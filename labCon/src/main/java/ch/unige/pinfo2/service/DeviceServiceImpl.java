@@ -7,7 +7,7 @@ import ch.unige.pinfo2.dom.Device;
 public class DeviceServiceImpl implements DeviceService {
 
 	@Override
-	public List<Device> getDevices() {
+	public List<String> getDeviceIds() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,6 +38,12 @@ public class DeviceServiceImpl implements DeviceService {
 
 	@Override
 	public String getWorkstation(String deviceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> getSocketIds(String workstation) {
 		// TODO Auto-generated method stub
 		return null;
 	}

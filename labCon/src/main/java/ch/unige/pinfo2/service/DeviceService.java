@@ -7,12 +7,11 @@ import ch.unige.pinfo2.dom.Device;
 public interface DeviceService {
 
 	/**
-	 * get all devices
+	 * get all devices identifiers
 	 * 
-	 * @return a List of Device in which every Device is a Device is a specific Device
+	 * @return a List of String in which every String identifies a device
 	 */
-	public List<Device> getDevices();
-	
+	public List<String> getDeviceIds();
 	
 	/**
 	 * add a new device to the database
@@ -48,4 +47,13 @@ public interface DeviceService {
 	 * @return a String identifying the workstation
 	 */
 	public String getWorkstation(String deviceId);
+	
+	/**
+	 * get all sockets assigned to a workstation
+	 * 
+	 * @param workstation the name of the workstaion
+	 * 
+	 * @return a List of String containing all socket ids
+	 */
+	public List<String> getSocketIds(String workstation);
 }

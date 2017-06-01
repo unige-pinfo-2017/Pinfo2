@@ -21,6 +21,23 @@ public class SocketServiceRs {
 
 	@Inject
 	private SocketService socketService;
+	
+	@GET
+	@Produces("application/json")
+	@Path("/getLastState")
+	public JsonObject getLastState(@QueryParam("deviceId") String deviceId) {
+		Socket socket = socketService.getLastState(deviceId);
+		
+		JsonBuilderFactory factory = Json.createBuilderFactory(null);
+		
+		JsonObject jsonSocket = factory.createObjectBuilder()
+				.add("socket", factory.createObjectBuilder()
+						.add("power", socket.getPower().doubleValue())
+						.add("onOffStatus", socket.getIsOn().booleanValue()))
+				.build();
+		
+		return jsonSocket;
+	}
 
 	@GET
 	@Produces("application/json")

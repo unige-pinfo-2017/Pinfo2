@@ -5,6 +5,15 @@ import java.util.List;
 import ch.unige.pinfo2.dom.Socket;
 
 public interface SocketService {
+	
+	/**
+	 * get a socket's latest state
+	 * 
+	 * @param deviceId a string identifying the socket
+	 * 
+	 * @return a Socket containing the last state
+	 */
+	public Socket getLastState(String deviceId);
 
 	/**
 	 * get the consumption of a socket over a period

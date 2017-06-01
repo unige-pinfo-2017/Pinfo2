@@ -7,6 +7,12 @@ import ch.unige.pinfo2.dom.Socket;
 public class SocketServiceImpl implements SocketService {
 
 	@Override
+	public Socket getLastState(String deviceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<Socket> getStates(String deviceId, Long from, Long to) {
 		// TODO Auto-generated method stub
 		return null;
@@ -17,5 +23,7 @@ public class SocketServiceImpl implements SocketService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

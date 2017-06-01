@@ -25,18 +25,19 @@ public class DeviceServiceImplMock implements DeviceService {
     private EntityManager em; 
 
 	@Override
-	public List<Device> getDevices() {
-		Random valueGenerator = new Random();
+	public List<String> getDeviceIds() {
+		List<String> deviceIds = new ArrayList<String>();
 		
-		List<Device> devices = new ArrayList<Device>();
-		
-		for(int i=0; i<3; i++) {
-			devices.add(new Light("light"+i,Math.abs(valueGenerator.nextLong()),valueGenerator.nextDouble()*15));
+		for(int i=1; i<=2; i++) {
+			deviceIds.add("light"+i);
 		}
-		for(int i=0; i<12; i++) {
-			devices.add(new Socket("socket"+i,Math.abs(valueGenerator.nextLong()),valueGenerator.nextDouble()*100,valueGenerator.nextDouble()*100));
+		for(int i=1; i<=12; i++) {
+			deviceIds.add("socket"+i);
 		}
-		return devices;
+		for(int i=1; i<=2; i++) {
+			deviceIds.add("hub"+i);
+		}
+		return deviceIds;
 	}
 
 	public void addDevice(Device newDevice) {
