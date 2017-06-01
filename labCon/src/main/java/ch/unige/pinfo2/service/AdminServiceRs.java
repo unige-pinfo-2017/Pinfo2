@@ -11,6 +11,9 @@ import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.RegularUser;
 
+/**
+ * Facade for the admin's services.
+ */
 @Path("/users")
 public class AdminServiceRs {
 
@@ -43,7 +46,7 @@ public class AdminServiceRs {
 		}
 
 	}
-	
+
 	@GET
 	@Path("/getAllUsers")
 	@Produces({ "application/json" })

@@ -10,6 +10,9 @@ import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.RegularUser;
 
+/**
+ * Facade for the RegularUser's services.
+ */
 @Path("/")
 public class RegularUserServiceRs {
 
