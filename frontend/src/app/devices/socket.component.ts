@@ -6,7 +6,7 @@ import 'rxjs/add/operator/switchMap';
 import {Observable } from 'rxjs/Rx';
 import { AnonymousSubscription} from 'rxjs/Subscription';
 import { BaseChartDirective } from 'ng2-charts';
-import {PlotComponent} from '../plot/plot.component'
+import {PlotComponent} from '../Plot/plot.component'
 
 
 
@@ -65,6 +65,7 @@ export class SocketComponent implements OnInit, OnDestroy{
         this.dataSubscription = this.socketService.getSocketStates(this.mySocket.id, this.mySocket.fromTimestamp, this.mySocket.toTimestamp)
             .subscribe(states => {
                                 this.mySocket.state = states[states.length -1].isOn;
+                                this.mySocket.consommation = states[states.length -1].power
                                 if (this.plotTime==1){
                                     this.mySocket.statesArray = states;
                                     /*let valuesForPlotTmp = this.parseStatesArray();

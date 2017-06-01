@@ -34,9 +34,6 @@
                 <md-radio-button value="3">Consumption from the last day</md-radio-button><br>
                 <md-radio-button value="4">Consumption from the last week</md-radio-button>
             </md-radio-group>
-            <div class="w3-container">
-                <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
-            </div>
         </div>
 
         <div class="w3-container w3-hide" id="panel-history">
