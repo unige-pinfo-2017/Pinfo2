@@ -1,4 +1,4 @@
-package ch.unige.pinfo2.service;
+package ch.unige.pinfo2.facade;
 
 import javax.inject.Inject;
 import javax.json.Json;
@@ -12,6 +12,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.Light;
+import ch.unige.pinfo2.service.LightService;
 
 /**
  * Facade for the light services.

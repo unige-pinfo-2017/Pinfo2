@@ -1,4 +1,4 @@
-package ch.unige.pinfo2.test;
+package ch.unige.pinfo2.app;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

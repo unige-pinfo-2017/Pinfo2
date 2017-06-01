@@ -1,4 +1,4 @@
-package ch.unige.pinfo2.service;
+package ch.unige.pinfo2.facade;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.Socket;
+import ch.unige.pinfo2.service.SocketService;
 
 /**
  * Facade for the socket services.

@@ -1,4 +1,4 @@
-package ch.unige.pinfo2.service;
+package ch.unige.pinfo2.facade;
 
 import javax.inject.Inject;
 import javax.json.JsonObject;
@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.RegularUser;
+import ch.unige.pinfo2.service.AdminService;
 
 /**
  * Facade for the admin's services.
