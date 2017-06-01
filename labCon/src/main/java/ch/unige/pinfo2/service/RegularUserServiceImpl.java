@@ -24,7 +24,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 	public void addUser(RegularUser user) {
 		if (!this.alreadyRegistered(user)) {
 			user.setToken(createToken());
-			user.setRole("regularUser");
+			user.setRole("RegularUser");
 			em.persist(user);
 		}
 	}
@@ -33,7 +33,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.username = :arg1";
 		Query query = em.createQuery(sql);
-		query.setParameter("arg1", user.getUserName());
+		query.setParameter("arg1", user.getUsername());
 		if (query.getResultList().isEmpty()) {
 			return false;
 		}

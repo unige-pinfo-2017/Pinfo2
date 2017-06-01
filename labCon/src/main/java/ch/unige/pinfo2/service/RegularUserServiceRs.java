@@ -45,7 +45,7 @@ public class RegularUserServiceRs {
 
 		if (service.getUserByUsername(username) == null) {
 			RegularUser user = new RegularUser();
-			user.setUserName(username);
+			user.setUsername(username);
 			user.setPassword(password);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
