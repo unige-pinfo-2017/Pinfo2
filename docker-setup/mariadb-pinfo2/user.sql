@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS RegularUser
 
 INSERT IGNORE INTO RegularUser VALUES ('Vincent','Cabrini','VincentCabrini','PasswordVC','regularUser', 'abcdefghijk', FALSE);
 INSERT IGNORE INTO RegularUser VALUES ('admin','admin','admin','admin','admin', 'qwertzuiop', FALSE);
+INSERT IGNORE INTO RegularUser VALUES ('Beni','Broohm','benibroohm','123','regularUser', 'zzzzzzzzz', FALSE);
 
 
 CREATE TABLE IF NOT EXISTS Device

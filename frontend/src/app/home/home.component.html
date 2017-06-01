@@ -1,4 +1,4 @@
-<div *ngIf="currentUser.role==='SYSTEMADMIN'">
+<div *ngIf="currentUser.role==='admin'">
 
   <div class="w3-card-2" style="margin-left:202px">
     <!-- Page Content -->
@@ -9,52 +9,47 @@
 
       <div class="w3-container">
         <h3> You're logged in {{currentUser.firstName}} !</h3>
-        <div>
+      </div>
 
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>
-                        Users
-                      </th>
-                      <th>
-                        Status
-                      </th>
-                      <th>
-                        Workspace
-                      </th>
-                      <th>
-                        Options
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                    Users
+                  </th>
+                  <th>
+                    Status
+                  </th>
+                  <th>
+                    Workspace
+                  </th>
+                  <th>
+                    Options
+                  </th>
+                </tr>
+              </thead>
 
-                    <tr class="success" *ngFor="let utilisateur of users">
-                      <td> {{utilisateur.name}}</td>
-                      <td> {{utilisateur.status}}</td>
-                      <td>{{utilisateur.workspace}}</td>
-                      <td>{{utilisateur.property}}</td>
-                    </tr>
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
+              <tbody>
+                <tr class="success" *ngFor="let utilisateur of users">
+                  <td> {{utilisateur.name}}</td>
+                  <td> {{utilisateur.status}}</td>
+                  <td>{{utilisateur.workspace}}</td>
+                  <td>{{utilisateur.property}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-
         </div>
       </div>
+
     </div>
   </div>
 </div>
 
-
-
-<div *ngIf="currentUser.role == 'USER'">
+<div *ngIf="currentUser.role==='regularUser'">
 
   <div class="w3-card-2" style="margin-left:202px">
     <!-- Page Content -->
@@ -63,26 +58,25 @@
         <h1>Home</h1>
       </header>
 
-      <div class="w3-container">
-        <h3> You're logged in {{currentUser.firstName}} !</h3>
-        <div class="w3-container w3-card-2">
-          <header class="w3-container w3-light-blue">Informations</header>
-          <p>Id : {{currentUser.id}</p>}
+      <div class="row">
+        <div class="w3-container w3-card-4">
+          <header class="w3-container w3-light-blue">
+            <h1>Informations</h1>
+          </header>
           <p>Firstname : {{currentUser.firstName}}</p>
           <p>Lastname : {{currentUser.lastName}}</p>
           <p>Role : {{currentUser.role}} </p>
           <p>Status : {{status}}</p>
         </div>
-      </div>
-
-        <div class="w3-card-2 w3-container">
+        <hr>
+        <div class="w3-card-4 w3-container ">
           <header class="w3-container w3-light-blue">
             <h1>Notifications <span class="w3-badge w3-blue">0</span></h1>
           </header>
           <h5>No notification yet </h5>
         </div>
       </div>
+
     </div>
   </div>
-
 </div>

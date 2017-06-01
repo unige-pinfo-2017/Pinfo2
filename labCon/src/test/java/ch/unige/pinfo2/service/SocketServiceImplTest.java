@@ -207,13 +207,13 @@ public class SocketServiceImplTest {
 		Long fromValue=2000L;
 		Long toValue=2000L;
 		Assert.assertEquals((toValue-fromValue)/20, ssm.getState("1", fromValue, toValue).size());	
-	}*/
+	}
 	
 	@Test
 	public void testSocketGetStateTwoLists(){
 		ssm=new SocketServiceMock();
 		Assert.assertNotSame(ssm.getState("1", 1980L, 2020L).size(), ssm.getState("2", 2000L, 2010L).size());	
-	}
-	*/
+	};*/
+	
 	
 }

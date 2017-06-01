@@ -15,12 +15,15 @@ export class HomeComponent implements OnInit{
     title = 'Home';
     currentUser: User;
     status: string;
-    
+    users = new Array<User>();
     
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.currentUser.status = true;
         this.status = "Connected";
+        if (this.currentUser.role === "admin") {
+            this.userService.getAll().subscribe(users => console.log(users.length + " " + users));
+        }        
     }
 
     ngOnInit() {
