@@ -7,11 +7,13 @@ CREATE TABLE IF NOT EXISTS RegularUser
 	lastName VARCHAR(25) NOT NULL,
 	username VARCHAR(25) PRIMARY KEY NOT NULL,
 	password VARCHAR(25) NOT NULL,
-	role VARCHAR(50) NOT NULL	
+	role VARCHAR(50) NOT NULL,
+	token VARCHAR(50) NOT NULL	
 );
 
 
-INSERT IGNORE INTO RegularUser VALUES ('Vincent','Cabrini','VincentCabrini','PasswordVC','regularUser');
+INSERT IGNORE INTO RegularUser VALUES ('Vincent','Cabrini','VincentCabrini','PasswordVC','regularUser', 'abcdefghijk');
+INSERT IGNORE INTO RegularUser VALUES ('admin','admin','admin','admin','admin', 'qwertzuiop');
 
 
 CREATE TABLE IF NOT EXISTS Device

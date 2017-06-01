@@ -6,8 +6,6 @@
         <class>ch.unige.pinfo2.dom.Light</class>
     	<class>ch.unige.pinfo2.dom.Socket</class>
         <class>ch.unige.pinfo2.dom.RegularUser</class>
-		<class>ch.unige.pinfo2.test.Personne</class>
-		<class>ch.unige.pinfo2.test.ValueForPlot</class>
         <properties>
             <properties>
             <property name="eclipselink.target-database" value="DERBY" />
