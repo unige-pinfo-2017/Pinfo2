@@ -7,4 +7,7 @@ export class User {
     lastName: string;
     role: string;
     devices: Device[];
+    workstation: number;
+    status: boolean;
+    property: string[];
 }

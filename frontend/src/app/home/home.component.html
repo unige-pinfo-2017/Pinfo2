@@ -1,4 +1,4 @@
-<div *ngIf="whichRole()=='SysAdmin'">
+<div *ngIf="currentUser.role==='sysAdmin'">
 
     <div class="w3-card-2" style="margin-left:202px">
     <!-- Page Content -->
@@ -126,7 +126,7 @@
 
 
 
-<div *ngIf="whichRole()=='User'">
+<div *ngIf="currentUser.role=='user'">
 
     <div class="w3-card-2" style="margin-left:202px">
     <!-- Page Content -->
@@ -143,13 +143,6 @@
             </div>
         </div>
     </div>
-
-</div>
-
-
-
-
-<div *ngIf="whichRole()=='Manager'">
 
 </div>
 
