@@ -11,7 +11,7 @@ public class LightServiceImpl implements LightService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public List<Light> getStates(String deviceId, Long from, Long to) {
 		// TODO Auto-generated method stub

@@ -12,23 +12,25 @@ import ch.unige.pinfo2.dom.RegularUser;
  */
 @Local
 public interface RegularUserService {
-	
+
 	/**
 	 * add a User to the DB
 	 * 
-	 * @param user to add
+	 * @param user
+	 *            to add
 	 *
 	 */
 	void addUser(@NotNull RegularUser user);
-	
+
 	/**
 	 * check if a User is already registered
 	 * 
-	 * @param user to verify 
+	 * @param user
+	 *            to verify
 	 *
 	 */
 	boolean alreadyRegistered(@NotNull RegularUser user);
-	
+
 	/**
 	 * check the login is correct and give the user's token
 	 * 
@@ -38,53 +40,52 @@ public interface RegularUserService {
 	 * @return the user's token
 	 */
 	String loginUser(String username, String password);
-	
+
 	/**
 	 * find a User by the token
 	 * 
-	 * @param token of the user
+	 * @param token
+	 *            of the user
 	 *
-	 *@return the user corresponding to the token
+	 * @return the user corresponding to the token
 	 */
 	RegularUser getUserByToken(String token);
-	
+
 	/**
 	 * find a User by the lastName
 	 * 
-	 * @param last name of the user
+	 * @param last
+	 *            name of the user
 	 *
-	 *@return the user corresponding to the last name
+	 * @return the user corresponding to the last name
 	 */
 	List<RegularUser> getUserByLastName(String lastName);
-	
+
 	/**
 	 * find a User by the firstName
 	 * 
-	 * @param first name of the user
+	 * @param first
+	 *            name of the user
 	 *
-	 *@return the user corresponding to the first name
+	 * @return the user corresponding to the first name
 	 */
 	List<RegularUser> getUserByFirstName(String firstName);
-	
+
 	/**
 	 * find a User by the firstName
 	 * 
-	 * @param first name of the user
+	 * @param first
+	 *            name of the user
 	 *
-	 *@return the user corresponding to the first name
+	 * @return the user corresponding to the first name
 	 */
 	RegularUser getUserByUsername(String username);
-	
+
 	/**
 	 * generate a unique Token
-
-	 *@return the token
+	 * 
+	 * @return the token
 	 */
 	String createToken();
-	
-	
-	
-	
-	
 
 }

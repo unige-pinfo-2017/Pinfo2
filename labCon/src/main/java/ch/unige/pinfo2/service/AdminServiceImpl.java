@@ -15,14 +15,14 @@ import ch.unige.pinfo2.dom.RegularUser;
  * Provides a set of service for the admin of the smartlab.
  */
 @Stateless
-public class AdminServiceImpl implements AdminService{
-	
+public class AdminServiceImpl implements AdminService {
+
 	@Inject
 	RegularUserService userService;
-	
-	@PersistenceContext(unitName="ProjectPersistence")
-    private EntityManager em;   
-	
+
+	@PersistenceContext(unitName = "ProjectPersistence")
+	private EntityManager em;
+
 	@Transactional
 	public boolean addUser(RegularUser user) {
 		if (!userService.alreadyRegistered(user)) {

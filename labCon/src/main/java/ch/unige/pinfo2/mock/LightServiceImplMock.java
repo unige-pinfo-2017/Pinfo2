@@ -15,22 +15,23 @@ public class LightServiceImplMock implements LightService {
 	@Override
 	public Light getLastState(String deviceId) {
 		Random valueGenerator = new Random();
-		return new Light(deviceId, new Long(Math.abs(valueGenerator.nextLong())), new Double(valueGenerator.nextDouble()*15));
+		return new Light(deviceId, new Long(Math.abs(valueGenerator.nextLong())),
+				new Double(valueGenerator.nextDouble() * 15));
 	}
-	
+
 	@Override
 	public List<Light> getStates(String deviceId, Long from, Long to) {
 		Random valueGenerator = new Random();
-		
+
 		List<Light> lights = new ArrayList<Light>();
-		
-		Long timestamp = from+Math.abs((int)(valueGenerator.nextDouble()*600000));
-				
-		while(timestamp.longValue() <= to.longValue()) {
-			lights.add(new Light(deviceId, timestamp, new Double(valueGenerator.nextDouble()*15)));
-			timestamp += Math.abs((int)(valueGenerator.nextDouble()*600000));
+
+		Long timestamp = from + Math.abs((int) (valueGenerator.nextDouble() * 600000));
+
+		while (timestamp.longValue() <= to.longValue()) {
+			lights.add(new Light(deviceId, timestamp, new Double(valueGenerator.nextDouble() * 15)));
+			timestamp += Math.abs((int) (valueGenerator.nextDouble() * 600000));
 		}
-		
+
 		return lights;
 	}
 
@@ -38,6 +39,5 @@ public class LightServiceImplMock implements LightService {
 	public Boolean setOnOrOff(String deviceId, String onOrOff) {
 		return true;
 	}
-	
-	
+
 }

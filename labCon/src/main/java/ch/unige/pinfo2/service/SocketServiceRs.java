@@ -16,26 +16,27 @@ import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.Socket;
 
+/**
+ * Facade for the socket services.
+ */
 @Path("/devices/sockets")
 public class SocketServiceRs {
 
 	@Inject
 	private SocketService socketService;
-	
+
 	@GET
 	@Produces("application/json")
 	@Path("/getLastState")
 	public JsonObject getLastState(@QueryParam("deviceId") String deviceId) {
 		Socket socket = socketService.getLastState(deviceId);
-		
+
 		JsonBuilderFactory factory = Json.createBuilderFactory(null);
-		
-		JsonObject jsonSocket = factory.createObjectBuilder()
-				.add("socket", factory.createObjectBuilder()
-						.add("power", socket.getPower().doubleValue())
-						.add("onOffStatus", socket.getIsOn().booleanValue()))
+
+		JsonObject jsonSocket = factory.createObjectBuilder().add("socket", factory.createObjectBuilder()
+				.add("power", socket.getPower().doubleValue()).add("onOffStatus", socket.getIsOn().booleanValue()))
 				.build();
-		
+
 		return jsonSocket;
 	}
 
@@ -45,22 +46,20 @@ public class SocketServiceRs {
 	public JsonObject getStates(@QueryParam("deviceId") String deviceId, @QueryParam("from") Long from,
 			@QueryParam("to") Long to) {
 		List<Socket> socketStates = socketService.getStates(deviceId, from, to);
-		
+
 		JsonBuilderFactory factory = Json.createBuilderFactory(null);
-		
+
 		JsonArrayBuilder jsonSocketStatesContentBuilder = factory.createArrayBuilder();
-		
-		for(Socket s : socketStates) {
+
+		for (Socket s : socketStates) {
 			jsonSocketStatesContentBuilder.add(factory.createObjectBuilder()
-					.add("timestamp", s.getTimestamp().longValue())
-					.add("power",s.getPower().doubleValue()));
-					
+					.add("timestamp", s.getTimestamp().longValue()).add("power", s.getPower().doubleValue()));
+
 		}
-		
+
 		JsonObject jsonSocketStates = factory.createObjectBuilder()
-				.add("socketStates", jsonSocketStatesContentBuilder.build())
-				.build();
-		
+				.add("socketStates", jsonSocketStatesContentBuilder.build()).build();
+
 		return jsonSocketStates;
 	}
 

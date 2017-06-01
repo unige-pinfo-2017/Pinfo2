@@ -12,41 +12,40 @@ import ch.unige.pinfo2.dom.DeviceType;
 import ch.unige.pinfo2.service.DeviceService;
 import javax.enterprise.inject.Alternative;
 
-
 @Alternative
 public class DeviceServiceImplMock implements DeviceService {
-	
-	@PersistenceContext(unitName="ProjectPersistence")
-    private EntityManager em; 
+
+	@PersistenceContext(unitName = "ProjectPersistence")
+	private EntityManager em;
 
 	@Override
 	public ArrayList<ArrayList<String>> getDeviceIds() {
 		ArrayList<ArrayList<String>> deviceIds = new ArrayList<ArrayList<String>>();
-		
-		for(int i=0; i<3; i++) {
+
+		for (int i = 0; i < 3; i++) {
 			deviceIds.add(new ArrayList<String>());
 		}
-		
-		for(int i=1; i<=2; i++) {
-			deviceIds.get(0).add("light"+i);
+
+		for (int i = 1; i <= 2; i++) {
+			deviceIds.get(0).add("light" + i);
 		}
-		
-		for(int i=1; i<=12; i++) {
-			deviceIds.get(1).add("socket"+i);
+
+		for (int i = 1; i <= 12; i++) {
+			deviceIds.get(1).add("socket" + i);
 		}
-		
-		for(int i=1; i<=2; i++) {
-			deviceIds.get(2).add("hub"+i);
+
+		for (int i = 1; i <= 2; i++) {
+			deviceIds.get(2).add("hub" + i);
 		}
-		
+
 		return deviceIds;
 	}
-	
+
 	public void addDevice(Device newDevice) {
-		if (!this.isInDatabase(newDevice.getId())){
+		if (!this.isInDatabase(newDevice.getId())) {
 			em.persist(newDevice);
 		}
-		
+
 	}
 
 	@Override
@@ -62,7 +61,7 @@ public class DeviceServiceImplMock implements DeviceService {
 
 	@Override
 	public void assignWorkstation(String deviceId, String workstation) {
-		if (this.isInDatabase(deviceId)){
+		if (this.isInDatabase(deviceId)) {
 			String sql = "UPDATE Device d SET d.workstation = :arg1 WHERE d.id = :arg2";
 			Query query = em.createQuery(sql);
 			query.setParameter("arg1", deviceId);
@@ -72,17 +71,17 @@ public class DeviceServiceImplMock implements DeviceService {
 
 	@Override
 	public void denyWorkstation(String deviceId) {
-		if (this.isInDatabase(deviceId)){
+		if (this.isInDatabase(deviceId)) {
 			String sql = "UPDATE Device d SET d.workstation = :arg1 WHERE d.id = :arg2";
 			Query query = em.createQuery(sql);
 			query.setParameter("arg1", deviceId);
 			query.setParameter("arg2", null);
-		}	
+		}
 	}
 
 	@Override
 	public String getWorkstation(String deviceId) {
-		if (this.isInDatabase(deviceId)){
+		if (this.isInDatabase(deviceId)) {
 			String sql = "SELECT d.workstation FROM Device d WHERE d.id = :arg1";
 			Query query = em.createQuery(sql);
 			query.setParameter("arg1", deviceId);
@@ -90,7 +89,8 @@ public class DeviceServiceImplMock implements DeviceService {
 		}
 		return null;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<String> getSocketIds(String workstation) {
 		String sql = "SELECT d.id FROM Device d WHERE d.workstation = :arg1 and d.type= 'SOCKET'";
 		Query query = em.createQuery(sql);

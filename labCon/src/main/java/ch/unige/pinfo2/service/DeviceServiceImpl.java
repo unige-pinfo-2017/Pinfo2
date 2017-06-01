@@ -6,6 +6,9 @@ import java.util.List;
 import ch.unige.pinfo2.dom.Device;
 import ch.unige.pinfo2.dom.DeviceType;
 
+/**
+ * Provides a set of service for the device of the smartlab.
+ */
 public class DeviceServiceImpl implements DeviceService {
 
 	@Override
@@ -17,7 +20,7 @@ public class DeviceServiceImpl implements DeviceService {
 	@Override
 	public void addDevice(Device newDevice) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -29,13 +32,13 @@ public class DeviceServiceImpl implements DeviceService {
 	@Override
 	public void assignWorkstation(String deviceId, String workstation) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void denyWorkstation(String deviceId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -49,7 +52,7 @@ public class DeviceServiceImpl implements DeviceService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public DeviceType getDeviceType(String deviceId) {
 		// TODO Auto-generated method stub
