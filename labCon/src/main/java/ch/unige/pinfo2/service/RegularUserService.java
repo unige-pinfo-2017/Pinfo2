@@ -34,7 +34,7 @@ public interface RegularUserService {
 	 * 
 	 * @return the user's token
 	 */
-	Integer loginUser(String username, String password);
+	String loginUser(String username, String password);
 	
 	/**
 	 * find a User by the token
@@ -43,7 +43,7 @@ public interface RegularUserService {
 	 *
 	 *@return the user corresponding to the token
 	 */
-	RegularUser getUserByToken(Integer token);
+	RegularUser getUserByToken(String token);
 	
 	/**
 	 * find a User by the lastName

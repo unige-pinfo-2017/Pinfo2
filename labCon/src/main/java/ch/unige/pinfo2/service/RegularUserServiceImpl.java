@@ -40,7 +40,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 		return true;
 	}
 
-	public Integer loginUser(String username, String password) {
+	public String loginUser(String username, String password) {
 
 		String sql = "SELECT u.token FROM RegularUser u WHERE u.username = :arg1 AND u.password = :arg2";
 		Query query = em.createQuery(sql);
@@ -49,10 +49,10 @@ public class RegularUserServiceImpl implements RegularUserService {
 		if (query.getResultList().isEmpty()) {
 			return null;
 		}
-		return (Integer) query.getSingleResult();
+		return (String) query.getSingleResult();
 	}
 
-	public RegularUser getUserByToken(Integer token) {
+	public RegularUser getUserByToken(String token) {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.token = :arg1";
 		Query query = em.createQuery(sql);
