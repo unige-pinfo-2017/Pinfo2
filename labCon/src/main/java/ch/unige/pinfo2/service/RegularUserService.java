@@ -77,7 +77,7 @@ public interface RegularUserService {
 
 	 *@return the token
 	 */
-	Integer createToken();
+	String createToken();
 	
 	
 	

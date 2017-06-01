@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="RegularUser")
+@Table(name = "RegularUser")
 public class RegularUser implements Serializable {
 
 	/**
@@ -18,21 +18,23 @@ public class RegularUser implements Serializable {
 	private static final long serialVersionUID = 4561966035983412307L;
 
 	@Id
-	@Column(name="username")
+	@Column(name = "username")
 	private String username;
 
-	@Column(name="firstName")
+	@Column(name = "firstName")
 	private String firstName;
 
-	@Column(name="lastName")
+	@Column(name = "lastName")
 	private String lastName;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	private String password;
 	
-	@Column(name="token")
+	@Column(name = "token")
+	private String token;
 	
-	private Integer token;
+	@Column(name = "role")
+	private String role;
 
 	public RegularUser() {
 	}
@@ -69,16 +71,32 @@ public class RegularUser implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Integer getToken() {
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getToken() {
 		return token;
 	}
 
-	public void setToken(Integer token) {
+	public void setToken(String token) {
 		this.token = token;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }
