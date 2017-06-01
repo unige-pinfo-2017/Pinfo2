@@ -1,4 +1,4 @@
-package ch.unige.pinfo2.service;
+package ch.unige.pinfo2.facade;
 
 import javax.inject.Inject;
 import javax.json.JsonObject;
@@ -10,7 +10,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.RegularUser;
+import ch.unige.pinfo2.service.AdminService;
 
+/**
+ * Facade for the admin's services.
+ */
 @Path("/users")
 public class AdminServiceRs {
 
@@ -34,6 +38,7 @@ public class AdminServiceRs {
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setRole(role);
+		user.setStatus(false);
 		boolean success = service.addUser(user);
 		if (success) {
 			return Response.ok(user).build();
@@ -42,7 +47,7 @@ public class AdminServiceRs {
 		}
 
 	}
-	
+
 	@GET
 	@Path("/getAllUsers")
 	@Produces({ "application/json" })

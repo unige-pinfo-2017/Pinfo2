@@ -1,167 +1,308 @@
-/*package ch.unige.pinfo2.service;
-
+package ch.unige.pinfo2.service;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
-import javax.inject.Inject;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.runners.MethodSorters;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+
 
 import ch.unige.pinfo2.dom.RegularUser;
 import junit.framework.Assert;
 
-@SuppressWarnings("deprecation")
-@RunWith(Arquillian.class)
-public class RegularUserServiceImplTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class RegularUserServiceImplTest{
 
-	@Deployment
-	public static JavaArchive create() {
-		return ShrinkWrap.create(JavaArchive.class, "regularUserTest.jar").addPackages(true, "ch.unige.pinfo2")
-				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-				.addAsManifestResource("META-INF/test-persistence.xml", "persistence.xml");
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("TestPersistence");
+	EntityManager em = emf.createEntityManager();
+	
+	public void addUser(RegularUser user) {
+		if (!this.alreadyRegistered(user)) {
+			if((user.getFirstName()!=null)&&(user.getLastName()!=null)&&(user.getUsername()!=null)&&(user.getPassword()!=null)){
+				user.setToken(createToken());
+				user.setRole("regularUser");
+				em.getTransaction().begin();
+				em.persist(user);
+				em.getTransaction().commit();
+			}
+		}
 	}
 
-	@Inject
-	RegularUserService userService;
+	public boolean alreadyRegistered(RegularUser user) {
 
+		String sql = "SELECT u FROM RegularUser u WHERE u.username = :arg1";
+		Query query = em.createQuery(sql);
+		query.setParameter("arg1", user.getUsername());
+		if (query.getResultList().isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	public String loginUser(String username, String password) {
+
+		String sql = "SELECT u.token FROM RegularUser u WHERE u.username = :arg1 AND u.password = :arg2";
+		Query query = em.createQuery(sql);
+		query.setParameter("arg1", username);
+		query.setParameter("arg2", password);
+		if (query.getResultList().isEmpty()) {
+			return null;
+		}
+		return (String) query.getSingleResult();
+	}
+
+	public RegularUser getUserByToken(String token) {
+
+		String sql = "SELECT u FROM RegularUser u WHERE u.token = :arg1";
+		Query query = em.createQuery(sql);
+		query.setParameter("arg1", token);
+		if (query.getResultList().isEmpty()) {
+			return null;
+		}
+		return (RegularUser) query.getResultList().get(0);
+	}
+
+	public List<RegularUser> getUserByLastName(String lastName) {
+
+		String sql = "SELECT u FROM RegularUser u WHERE u.lastName = :arg1";
+		Query query = em.createQuery(sql);
+		query.setParameter("arg1", lastName);
+		return query.getResultList();
+	}
+
+	public List<RegularUser> getUserByFirstName(String firstName) {
+
+		String sql = "SELECT u FROM RegularUser u WHERE u.firstName = :arg1";
+		Query query = em.createQuery(sql);
+		query.setParameter("arg1", firstName);
+		return query.getResultList();
+	}
+
+	public RegularUser getUserByUsername(String username) {
+
+		String sql = "SELECT u FROM RegularUser u WHERE u.username = :arg1";
+		Query query = em.createQuery(sql);
+		query.setParameter("arg1", username);
+		if (query.getResultList().isEmpty()) {
+			return null;
+		}
+		return (RegularUser) query.getResultList().get(0);
+	}
+
+	public String createToken() {
+		SecureRandom random = new SecureRandom();
+		return new BigInteger(130, random).toString(32);
+	}
+	
+	@Test
+	public void dropTable(){
+		em.getTransaction().begin();
+		em.createQuery("DELETE FROM RegularUser ru").executeUpdate();
+		em.getTransaction().commit();
+	}
+	
+	
+	
+	
+	@Test
+	public void testAddUserNotAlreadyRegistered() {
+		RegularUser user = new RegularUser();
+		user.setFirstName("Fred");
+		user.setLastName("Martinico");
+		user.setUsername("MaxBeni");
+		user.setPassword("VincRod");
+		addUser(user);
+		Assert.assertTrue(alreadyRegistered(user));
+	}
+	
+	@Test 
+	public void testAddUserAndLogin(){ 
+		RegularUser user=new RegularUser(); 
+		user.setFirstName("Rod"); 
+		user.setLastName("Bou");
+		user.setUsername("RodBou"); 
+		user.setPassword("PWDRodBou"); 
+		addUser(user);
+		Assert.assertNotNull(loginUser(user.getUsername(), user.getPassword()));
+	}
+	
+	 @Test 
+	 public void testAddUserAndGetUserByToken(){ 
+		 RegularUser user=new RegularUser(); 
+		 user.setFirstName("Fred"); 
+		 user.setLastName("Sal");
+		 user.setUsername("FredSal"); 
+		 user.setPassword("PWDFredSal"); 
+		 addUser(user);
+		 RegularUser user1=new RegularUser();
+		 user1.setFirstName("Tho");
+		 user1.setLastName("Mar"); 
+		 user1.setUsername("ThoMar");
+		 user1.setPassword("PWDThoMar"); 
+		 addUser(user1); 
+		 RegularUser ru=getUserByToken(user.getToken());  
+		 Assert.assertEquals(user.getUsername(), ru.getUsername());
+		 Assert.assertNotSame(user1.getUsername(), ru.getUsername());
+	}
+	 
+	
 	@Test
 	public void testAddUserAndGetUserByFN() {
 		RegularUser user = new RegularUser();
-		user.setFirstName("Rod");
-		user.setLastName("Bou");
-		user.setUserName("RodBou");
-		user.setPassword("PWD");
-		RegularUser user1 = new RegularUser();
-		user1.setFirstName("Rod");
-		user1.setLastName("Bou1");
-		user1.setUserName("RodBou2");
-		user1.setPassword("PWD");
-		userService.addUser(user);
-		userService.addUser(user1);
-		List<RegularUser> lUS = userService.getUserByFirstName("Rod");
+		user.setFirstName("Fred");
+		user.setLastName("MartiNico");
+		user.setUsername("MaxBeni");
+		user.setPassword("VincRod");
+		addUser(user);
+		List<RegularUser> lUS = getUserByFirstName("Fred");
 		if (!lUS.isEmpty()) {
 			Assert.assertEquals(lUS.get(0).getFirstName(), user.getFirstName());
-			// Assert.assertEquals(lUS.get(0).getLastName(),
-			// user.getLastName());
-			Assert.assertEquals(lUS.get(1).getFirstName(), user1.getFirstName());
-			// Assert.assertEquals(lUS.get(1).getLastName(),
-			// user1.getLastName());
 		}
-		Assert.assertEquals(2, lUS.size());
+		Assert.assertEquals(1, lUS.size());
 	}
+	
+	@Test
+	public void testAddUserAndGetUserByLN() {
+		RegularUser user = new RegularUser();
+		user.setFirstName("Fred");
+		user.setLastName("MartiNico");
+		user.setUsername("MaxBeni");
+		user.setPassword("VincRod");
+		List<RegularUser> lUS = getUserByLastName("MartiNico");
+		if (!lUS.isEmpty()) {
+			Assert.assertEquals(lUS.get(0).getLastName(), user.getLastName());
+		}
+		Assert.assertEquals(1, lUS.size());
+	}
+	
+	@Test
+	public void testAddUserAndGetUserByUN() {
+		RegularUser user = new RegularUser();
+		user.setFirstName("Fred");
+		user.setLastName("MartiNico");
+		user.setUsername("MaxBeni");
+		user.setPassword("VincRod");
+		RegularUser rUS = getUserByUsername("MaxBeni");
+		Assert.assertEquals(rUS.getFirstName(), user.getFirstName());
+		Assert.assertEquals(rUS.getLastName(), user.getLastName());
+		Assert.assertEquals(rUS.getUsername(), user.getUsername());
+	}
+	
+	@Test 
+	public void testAddUserFirstNameNull(){ 
+		RegularUser user=new RegularUser(); 
+		user.setFirstName(null); 
+		user.setLastName("Cab");
+		user.setUsername("VinCab2545"); 
+		user.setPassword("PWD"); 
+		addUser(user);
+		Assert.assertEquals(false, alreadyRegistered(user)); 
+		}
+	
+		@Test 
+		public void testAddUserLastNameNull(){ 
+			RegularUser user=new RegularUser(); 
+			user.setFirstName("Tho"); 
+			user.setLastName(null);
+			user.setUsername("ThoMar2537g4h"); 
+			user.setPassword("PWD"); 
+			addUser(user);
+			Assert.assertEquals(false, alreadyRegistered(user));
+		}
+			 
+		@Test 	
+		public void testAddUserUserNameNull(){ 
+			RegularUser user=new RegularUser(); 
+			user.setFirstName("Nico"); 
+			user.setLastName("Pap");
+			user.setUsername(null);
+			user.setPassword("PWD");
+			addUser(user);
+			Assert.assertEquals(false, alreadyRegistered(user));
+		}
 
-	/*
-	 * @Test public void testAddUserAndGetUserByLN() { RegularUser user=new
-	 * RegularUser(); user.setFirstName("Rod"); user.setLastName("Bou");
-	 * user.setUserName("RodBou"); user.setPassword("PWD"); addUser(user);
-	 * RegularUser user1=new RegularUser(); user1.setFirstName("Rod");
-	 * user1.setLastName("Bou1"); user1.setUserName("RodBou2");
-	 * user1.setPassword("PWD"); addUser(user1); List<RegularUser>
-	 * lUS=getUserByLastName("Rod"); if(!lUS.isEmpty()){
-	 * Assert.assertEquals(lUS.get(0).getFirstName(), user.getFirstName());
-	 * Assert.assertEquals(lUS.get(0).getLastName(), user.getLastName());
-	 * Assert.assertEquals(lUS.get(1).getFirstName(), user1.getFirstName());
-	 * Assert.assertEquals(lUS.get(1).getLastName(), user1.getLastName()); } }
-	 * 
-	 * @Test public void testAddUserAndGetUserByUN() { RegularUser user=new
-	 * RegularUser(); user.setFirstName("Rod"); user.setLastName("Bou");
-	 * user.setUserName("RodBou"); user.setPassword("PWD"); addUser(user);
-	 * RegularUser user1=new RegularUser(); user1.setFirstName("Rod");
-	 * user1.setLastName("Bou1"); user1.setUserName("RodBou2");
-	 * user1.setPassword("PWD"); addUser(user1); RegularUser
-	 * ru=getUserByUsername("RodBou"); Assert.assertEquals(ru.getFirstName(),
-	 * user.getFirstName()); Assert.assertEquals(ru.getLastName(),
-	 * user.getLastName()); RegularUser ru1=getUserByUsername("RodBou2");
-	 * Assert.assertEquals(ru1.getFirstName(), user1.getFirstName());
-	 * Assert.assertEquals(ru1.getLastName(), user1.getLastName()); }
-	 * 
-	 * @Test public void testAddUserAndAlreadyRegistered() { RegularUser
-	 * user=new RegularUser(); user.setFirstName("Rod");
-	 * user.setLastName("Bou"); user.setUserName("RodBou");
-	 * user.setPassword("PWD"); RegularUser user1=new RegularUser();
-	 * user1.setFirstName("Rod"); user1.setLastName("Bou1");
-	 * user1.setUserName("RodBou2"); user1.setPassword("PWD"); addUser(user1);
-	 * Assert.assertEquals(false, alreadyRegistered(user));
-	 * Assert.assertEquals(true, alreadyRegistered(user1)); }
-	 * 
-	 * @Test public void testAddUserAndLogin(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Rod"); user.setLastName("Bou");
-	 * user.setUserName("RodBou"); user.setPassword("PWD"); addUser(user);
-	 * Assert.assertNotNull(loginUser(user.getUserName(), user.getPassword()));
-	 * }
-	 * 
-	 * @Test public void testAddUserAndGetUserByToken(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Rod"); user.setLastName("Bou");
-	 * user.setUserName("RodBou"); user.setPassword("PWD"); addUser(user);
-	 * RegularUser user1=new RegularUser(); user1.setFirstName("Rod");
-	 * user1.setLastName("Bou1"); user1.setUserName("RodBou2");
-	 * user1.setPassword("PWD"); addUser(user1); RegularUser
-	 * ru=getUserByToken(user.getToken());
-	 * 
-	 * if(ru!=null){ Assert.assertEquals(user.getUserName(), ru.getUserName());
-	 * } }
-	 * 
-	 * 
-	 * 
-	 * @Test public void addUserFirstNameNull(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName(null); user.setLastName("Cab");
-	 * user.setUserName("VinCab"); user.setPassword("PWD"); addUser(user);
-	 * Assert.assertEquals(false, alreadyRegistered(user)); }
-	 * 
-	 * @Test public void addUserLastNameNull(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Tho"); user.setLastName(null);
-	 * user.setUserName("ThoMar"); user.setPassword("PWD"); addUser(user);
-	 * Assert.assertEquals(false, alreadyRegistered(user)); }
-	 * 
-	 * @Test public void addUserUserNameNull(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Nico"); user.setLastName("Pap");
-	 * user.setUserName(null); user.setPassword("PWD"); addUser(user);
-	 * Assert.assertEquals(false, alreadyRegistered(user)); }
-	 * 
-	 * 
-	 * @Test public void addUserPassWordNull(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Fre"); user.setLastName("Sal");
-	 * user.setUserName("FreSal"); user.setPassword(null); addUser(user);
-	 * Assert.assertEquals(false, alreadyRegistered(user)); }
-	 * 
-	 * @Test public void notAlreadyRegistered(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Tho"); user.setLastName("Mar");
-	 * user.setUserName("ThoMar"); user.setPassword("PWD");
-	 * Assert.assertEquals(false, alreadyRegistered(user)); }
-	 * 
-	 * @Test public void loginWrongUsernameGoodPassword(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Fre"); user.setLastName("Sal");
-	 * user.setUserName("FreSal"); user.setPassword("PWD"); addUser(user);
-	 * Assert.assertNull(loginUser("FreSal2", "PWD")); }
-	 * 
-	 * @Test public void loginWrongUsernameWrongPassword(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Fre"); user.setLastName("Sal");
-	 * user.setUserName("FreSal"); user.setPassword("PWD"); addUser(user);
-	 * Assert.assertNull(loginUser("FreSal2", "PWD2")); }
-	 * 
-	 * @Test public void loginGoodUsernameWrongPassword(){ RegularUser user=new
-	 * RegularUser(); user.setFirstName("Fre"); user.setLastName("Sal");
-	 * user.setUserName("FreSal"); user.setPassword("PWD"); addUser(user);
-	 * Assert.assertNull(loginUser("FreSal", "PWD2")); }
-	 * 
-	 * @Test public void tokenNullGetUserByToken(){
-	 * Assert.assertNull(getUserByToken(null)); }
-	 * 
-	 * @Test public void emptyListGetUserByLastName(){
-	 * Assert.assertTrue(getUserByLastName(null).isEmpty()); }
-	 * 
-	 * @Test public void emptyListGetUserByFirstName(){
-	 * Assert.assertTrue(getUserByFirstName(null).isEmpty()); }
-	 * 
-	 * @Test public void nullUsernameGetUserByUserName(){
-	 * Assert.assertNull(getUserByUsername(null)); }
-	 */
+		@Test 
+		public void testAddUserPassWordNull(){ 
+			RegularUser user=new RegularUser(); 
+			user.setFirstName("Fre"); 
+			user.setLastName("Sal");
+			user.setUsername("FreSal24gh"); 
+			user.setPassword(null); 
+			addUser(user);
+			Assert.assertEquals(false, alreadyRegistered(user)); 
+		}
+		
+		@Test 
+		public void testNotAlreadyRegistered(){ 
+			RegularUser user=new RegularUser(); 
+			user.setFirstName("Tho"); 
+			user.setLastName("Mar");
+			user.setUsername("ThoMar5454");
+			user.setPassword("PWD");
+			Assert.assertEquals(false, alreadyRegistered(user)); 
+			 
+		}
+		
+		@Test 
+		public void testLoginWrongUsernameGoodPassword(){ 
+			RegularUser user=new RegularUser(); 
+			user.setFirstName("Fre"); 
+			user.setLastName("Sal");
+			user.setUsername("FreSal");
+			user.setPassword("PWD");
+			addUser(user);
+			Assert.assertNull(loginUser("FreSal2", "PWD")); 
+		}
+			  
+		@Test 
+		public void testLoginWrongUsernameWrongPassword(){ 
+			RegularUser user=new RegularUser(); 
+			user.setFirstName("Fre");
+			user.setLastName("Sal");
+			user.setUsername("FreSal"); 
+			user.setPassword("PWD"); 
+			addUser(user);
+			Assert.assertNull(loginUser("FreSal2", "PWD2")); 
+		}
+			  
+		@Test 
+		public void testLoginGoodUsernameWrongPassword(){ 
+			RegularUser user=new RegularUser(); 
+			user.setFirstName("Fre"); 
+			user.setLastName("Sal");
+			user.setUsername("FreSal"); 
+			user.setPassword("PWD"); 
+			addUser(user);
+			Assert.assertNull(loginUser("FreSal", "PWD2"));
+		}
 
-/*
+		
+		@Test 
+		public void testTokenNullGetUserByToken(){
+			Assert.assertNull(getUserByToken(null));
+		}
+			 
+		@Test 
+		public void testEmptyListGetUserByLastName(){
+			Assert.assertTrue(getUserByLastName(null).isEmpty()); 
+		} 
+			  
+		@Test 
+		public void testEmptyListGetUserByFirstName(){
+			Assert.assertTrue(getUserByFirstName(null).isEmpty());
+		}
+			 
+		@Test 
+		public void testNullUsernameGetUserByUserName(){
+			 Assert.assertNull(getUserByUsername(null));
+		}
+	
 }
- */
+
+
+

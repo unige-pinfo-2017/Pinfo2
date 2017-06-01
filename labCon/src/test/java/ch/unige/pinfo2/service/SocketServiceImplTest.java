@@ -119,9 +119,15 @@ public class SocketServiceImplTest {
 	@Test
 	public void testSocketIsOff(){
 		ssm=new SocketServiceImplMock();
-		Socket socket=ssm.getStates("1", 2000L, 2010L).get(0);
-		socket.setIsOn(false);
-		Assert.assertTrue(!socket.getIsOn());
+		List<Socket> sockets=ssm.getStates("1", 2000L, 2010L);
+		boolean flag = true;
+		for(Socket s : sockets) {
+			s.setIsOn(new Boolean(false));
+			if(s.getIsOn()) {
+				flag = false;
+			}
+		}
+		Assert.assertTrue(flag);
 	}
 	
 	@Test

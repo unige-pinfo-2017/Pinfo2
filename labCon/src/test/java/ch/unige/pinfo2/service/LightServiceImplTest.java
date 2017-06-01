@@ -66,20 +66,6 @@ public class LightServiceImplTest {
 		Assert.assertNotNull(lights);
 	}
 	
-	/*@Test
-	public void testStatesSizeZero(){
-		ls=new LightServiceImplMock();
-		List<Light> lights = ls.getStates("1", 2000L, 2000L);
-		Assert.assertTrue(lights.size()>=0);
-	}*/
-	
-	@Test
-	public void testStatesSizeNotZero(){
-		ls=new LightServiceImplMock();
-		List<Light> lights = ls.getStates("1", 2000L, 3000L);
-		Assert.assertTrue(lights.size()>0);
-	}
-	
 	@Test
 	public void testStatesSizeZero2(){
 		ls=new LightServiceImplMock();

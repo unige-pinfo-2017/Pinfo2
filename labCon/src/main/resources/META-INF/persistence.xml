@@ -9,6 +9,7 @@
 		<jta-data-source>projetinfodb</jta-data-source>
 
 		<class>ch.unige.pinfo2.dom.Device</class>
+		<class>ch.unige.pinfo2.dom.Hub</class>
 		<class>ch.unige.pinfo2.dom.Light</class>
 		<class>ch.unige.pinfo2.dom.Socket</class>
 		<class>ch.unige.pinfo2.dom.RegularUser</class>
