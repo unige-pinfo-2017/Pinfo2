@@ -22,8 +22,6 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 
-
-
 public class DeviceServiceImplTest {
 	
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("TestPersistence");
