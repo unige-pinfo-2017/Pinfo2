@@ -24,7 +24,7 @@
                 </div>
                 <div class="w3-container w3-border-bottom w3-center">
                     <h3>Power consumption : {{mySocket.consommation}}</h3>
-                </div>                
+                </div>
             </div>
 
             <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
@@ -34,18 +34,20 @@
                 <md-radio-button value="3">Consumption from the last day</md-radio-button><br>
                 <md-radio-button value="4">Consumption from the last week</md-radio-button>
             </md-radio-group>
+
         </div>
 
         <div class="w3-container w3-hide" id="panel-history">
             <md-input-container>
-                <input mdInput [mdDatepicker]="datePickerStart" placeholder="Choose a start date" [ngModel]="dateStart | date:'shortDate'"
+                <input mdInput [mdDatepicker]="datePickerStart" placeholder="Choose a start date" [ngModel]="dateStart"
                     (ngModelChange)="dateStart=updateDate(1, $event)">
                 <button mdSuffix [mdDatepickerToggle]="datePickerStart"></button>
             </md-input-container>
             <md-datepicker #datePickerStart></md-datepicker>
 
             <md-input-container>
-                <input mdInput [mdDatepicker]="datePickerEnd" placeholder="Choose an end date" [ngModel]="dateEnd | date:'shortDate'" (ngModelChange)="dateEnd=updateDate(2, $event)">
+                <input mdInput [mdDatepicker]="datePickerEnd" placeholder="Choose an end date" [ngModel]="dateEnd"
+                (ngModelChange)="dateEnd=updateDate(2, $event)">
                 <button mdSuffix [mdDatepickerToggle]="datePickerEnd"></button>
             </md-input-container>
             <md-datepicker #datePickerEnd></md-datepicker>
@@ -59,8 +61,23 @@
                     name="timeEnd">
             </div>
             <p class="w3-margin-top">
-                <button (click)="getHistory()" class="w3-btn w3-blue w3-hover-white">Chercher</button>
+                <button md-raised-button (click)="getHistory()">Search</button>
             </p>
+
+            <!-- The Modal -->
+            <div id="id01" class="w3-container w3-center w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <header class="w3-container w3-blue">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">
+                                &times;
+                            </span>
+                        </header>
+                        <plot *ngIf="valuesForPlotHistory" [lineChartData]="valuesForPlotHistory.lineChartData" [lineChartLabels]="valuesForPlotHistory.lineChartLabels">
+                        </plot>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
