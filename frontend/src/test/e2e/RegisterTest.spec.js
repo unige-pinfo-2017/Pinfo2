@@ -1,50 +1,50 @@
 describe("Register Tests",function(){
 
-	xit("Url Register", function(){
+	it("Url Register", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/register');
 		});		
 	});
 
-	xit("Verification 4 inputs", function(){
+	it("Verification 4 inputs", function(){
 		var countInput=element.all(by.id("input")).count();
 		expect(countInput,4);		
 	});
 
-	xit("Nom First Name", function(){
+	it("Nom First Name", function(){
 		var countFirstName=element.all(by.name("First Name")).count();
 		expect(countFirstName,1);		
 	});
 
-	xit("Nom Last Name", function(){
+	it("Nom Last Name", function(){
 		var countLastName=element.all(by.name("Last Name")).count();
 		expect(countLastName,1);		
 	});
 
-	xit("Nom Username", function(){
+	it("Nom Username", function(){
 		var countUsername=element.all(by.name("Username")).count();
 		expect(countUsername,1);
 	});
 
-	xit("Nom Password", function(){
+	it("Nom Password", function(){
 		var countPassword=element.all(by.name("Password")).count();
 		expect(countPassword,1);		
 	});
 
-	xit("Compte le nombre de boutons", function(){
+	it("Compte le nombre de boutons", function(){
 		expect(element.all(by.id("button")).count(),2);	
 	});
 
-	xit("Verifie si il y a un bouton Register", function(){
+	it("Verifie si il y a un bouton Register", function(){
 		expect(element.all(by.buttonText("Register")).count(),1);	
 	});
 
-	xit("Verifie si il y a un bouton Cancel", function(){
+	it("Verifie si il y a un bouton Cancel", function(){
 		expect(element.all(by.linkText("Cancel")).count(),1);
 	});
 	
-	xit("Essai Register sans FirstName", function(){
+	it("Essai Register sans FirstName", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastName=element(by.css('[name="lastName"]'))
@@ -60,7 +60,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans LastName", function(){
+	it("Essai Register sans LastName", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
@@ -76,7 +76,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans UserName", function(){
+	it("Essai Register sans UserName", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
@@ -92,7 +92,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans Password", function(){
+	it("Essai Register sans Password", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
@@ -108,7 +108,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans FirstName et sans LastName", function(){
+	it("Essai Register sans FirstName et sans LastName", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
@@ -122,7 +122,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans FirstName et sans Username", function(){
+	it("Essai Register sans FirstName et sans Username", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="lastName"]'))
@@ -136,7 +136,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans FirstName et sans Password", function(){
+	it("Essai Register sans FirstName et sans Password", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="lastName"]'))
@@ -150,7 +150,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans LastName et sans Username", function(){
+	it("Essai Register sans LastName et sans Username", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="firstName"]'))
@@ -164,7 +164,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans LastName et sans Password", function(){
+	it("Essai Register sans LastName et sans Password", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="firstName"]'))
@@ -178,7 +178,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans Username et sans Password", function(){
+	it("Essai Register sans Username et sans Password", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="firstName"]'))
@@ -192,7 +192,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans LastName, sans Username et sans Password", function(){
+	it("Essai Register sans LastName, sans Username et sans Password", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="firstName"]'))
@@ -204,7 +204,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans FirstName, sans Username et sans Password", function(){
+	it("Essai Register sans FirstName, sans Username et sans Password", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="lastName"]'))
@@ -216,7 +216,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans FirstName, sans Lastname et sans Password", function(){
+	it("Essai Register sans FirstName, sans Lastname et sans Password", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="username"]'))
@@ -228,7 +228,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans FirstName, sans Lastname et sans Username", function(){
+	it("Essai Register sans FirstName, sans Lastname et sans Username", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputLastname=element(by.css('[name="password"]'))
@@ -240,7 +240,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Essai Register sans FirstName, sans Lastname, sans Username et sans Password", function(){
+	it("Essai Register sans FirstName, sans Lastname, sans Username et sans Password", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			element.all(by.buttonText("Register")).click();
@@ -250,7 +250,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Verification Cancel", function(){
+	it("Verification Cancel", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			element.all(by.linkText("Cancel")).click();
@@ -260,7 +260,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Register User déjà crée", function(){
+	it("Register User déjà crée", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
@@ -279,7 +279,7 @@ describe("Register Tests",function(){
 		});
 	});
 
-	xit("Register User non crée", function(){
+	it("Register User non crée", function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
@@ -306,13 +306,13 @@ describe("Register Tests",function(){
 			var inputLastname=element(by.css('[name="lastName"]'))
 			inputLastname.sendKeys("oui5");
 			var inputUsername=element(by.css('[name="username"]'))
-			inputUsername.sendKeys("ouiTestLog");
+			inputUsername.sendKeys("ouiTestLog3");
 			var inputPassword=element(by.css('[name="password"]'))
 			inputPassword.sendKeys("oui5");
 			element.all(by.buttonText("Register")).click();
 			browser.driver.sleep(5000).then(function(){
         			var inputUsernameLog=element(by.css('[name="username"]'))
-				inputUsernameLog.sendKeys("ouiTestLog");
+				inputUsernameLog.sendKeys("ouiTestLog3");
 				var inputPasswordLog=element(by.css('[name="password"]'))
 				inputPasswordLog.sendKeys("oui5");
 				browser.driver.sleep(1000).then(function(){
@@ -320,8 +320,11 @@ describe("Register Tests",function(){
 					browser.driver.sleep(5000).then(function(){
 						expect(browser.getCurrentUrl()).toEqual('http://localhost/');
 						expect(element.all(by.name("You're logged in oui5 !")).count(),1);
+						element(by.linkText("Sign out")).click();
+						browser.driver.sleep(3000).then(function(){
+						});
+					});
 				});
-			});
 			});		
 		});
 	});
