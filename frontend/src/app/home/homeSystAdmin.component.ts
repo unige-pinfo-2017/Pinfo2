@@ -11,7 +11,7 @@ import { SidenavComponent } from "../sidenav/sidenav.component";
     templateUrl: 'homeSystAdmin.component.html'
 })
 
-export class HomeComponent implements OnInit{
+export class HomeComponentSysAdmin implements OnInit{
     title = 'Home';
     currentUser: User;
     selectedWs: Workstation;

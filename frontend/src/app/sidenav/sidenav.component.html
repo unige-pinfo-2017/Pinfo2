@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 <div class="w3-sidebar w3-blue w3-bar-block w3-card-2" style="width:200px">
     <h3 class="w3-bar-item">Menu</h3>
-        <!--span mdTooltip="Home">
+    <!--span mdTooltip="Home">
             <a md-mini-fab [routerLink]="['']"> <md-icon>home</md-icon></a>
         </span>
         <span mdTooltip="Logout">
@@ -10,23 +10,23 @@
     <a class="w3-button w3-hover-white w3-blue w3-bar-item" [routerLink]="['']">
         <i class="fa fa-home w3-xlarge"></i> Home
     </a>
-    
-    <div id="idl" class="w3-dropdown-click">
-        <button (click)="show('li')" class="w3-button w3-hover-white w3-blue">
-            <i class="fa fa-lightbulb-o w3-xlarge"></i> Lights</button>
-        <div id="li" class="w3-dropdown-content">
-            <ul class="w3-ul w3-bar-block">
-                <li *ngFor="let light of lights">
-                    <a [routerLink]="['/light', light?.id]">
-                        <p>{{light?.id}}</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
+    <div class="w3-dropdown-hover">
+            <button class="w3-button w3-hover-white w3-blue">
+                <i class="fa fa-lightbulb-o w3-xlarge"></i> Lights
+            </button>
+            <div id="li" class="w3-dropdown-content">
+                <ul class="w3-ul w3-bar-block">
+                    <li *ngFor="let light of lights">
+                        <a [routerLink]="['/light', light?.id]">
+                            <p>{{light?.id}}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
     </div>
 
-    <div id="idh" class="w3-dropdown-click">
-        <button (click)="show('hu')" class="w3-button w3-hover-white w3-blue">
+    <div class="w3-dropdown-hover">
+        <button class="w3-button w3-hover-white w3-blue">
             <i class="material-icons w3-large">device_hub</i> Hubs
         </button>
         <div id="hu" class="w3-dropdown-content">
@@ -40,8 +40,8 @@
         </div>
     </div>
 
-    <div id="ids" class="w3-dropdown-click">
-        <button (click)="show('so')" class="w3-button w3-hover-white w3-blue">
+    <div class="w3-dropdown-hover">
+        <button class="w3-button w3-hover-white w3-blue">
             <i class="fa fa fa-plug w3-xlarge"></i> Sockets
         </button>
         <div id="so" class="w3-dropdown-content">

@@ -8,8 +8,6 @@ import {Observable } from 'rxjs/Rx';
 import { AnonymousSubscription} from 'rxjs/Subscription';
 
 
-
-
 @Component({
     selector: 'light',
     templateUrl: 'light.component.html',
@@ -76,16 +74,5 @@ export class LightComponent implements OnInit, OnDestroy {
     /*this.route.params.switchMap(
                 (params: Params) => this.deviceService.getDevice(+params['id'], "light"))
             .subscribe(light => this.myLight = light);*/
-
-
-    /*setLight(id: number): void {
-      this.deviceService.getValues().subscribe(devices => {
-      devices.forEach(element => {
-            if (element.name === 'light' && element.id === id) {
-                this.myLight = element;
-            }
-      });
-    });
-    }*/
 
 }

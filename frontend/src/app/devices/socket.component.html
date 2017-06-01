@@ -5,16 +5,26 @@
         </h1>
     </header>
     <!-- Page Content -->
+    <div>
 
-    <div class="w3-container row">
-        <div class="col-md-12">
-            <div class="w3-container w3-center row">
-                <div class="w3-container col-md-6">
-                    <h3 class="w3-tag">State</h3>
+        <div class="w3-bar w3-blue">
+            <button (click)="show_live()" class="w3-button w3-hover-white w3-bar-item">Live</button>
+            <button (click)="show_history()" class="w3-button w3-hover-white w3-bar-item">History</button>
+        </div>
+
+        <div class="w3-container row" id="panel-live">
+            <div class="col-md-12">
+                <div class="w3-container w3-center w3-border-bottom row">
+                    <div class="w3-container">
+                        <h3>State
+                            <md-slide-toggle ngDefaultControl (change)="onChange($event)" [checked]="mySocket.state">
+                            </md-slide-toggle>
+                        </h3>
+                    </div>
                 </div>
-                <div class="w3-container col-md-6">
-                    <md-slide-toggle ngDefaultControl (change)="onChange($event)" [checked]="mySocket.state" ></md-slide-toggle>
-                </div>
+                <div class="w3-container w3-border-bottom w3-center">
+                    <h3>Power consumption : {{mySocket.consommation}}</h3>
+                </div>                
             </div>
 
             <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
@@ -24,6 +34,36 @@
                 <md-radio-button value="3">Consumption from the last day</md-radio-button><br>
                 <md-radio-button value="4">Consumption from the last week</md-radio-button>
             </md-radio-group>
+            <div class="w3-container">
+                <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
+            </div>
+        </div>
+
+        <div class="w3-container w3-hide" id="panel-history">
+            <md-input-container>
+                <input mdInput [mdDatepicker]="datePickerStart" placeholder="Choose a start date" [ngModel]="dateStart | date:'shortDate'"
+                    (ngModelChange)="dateStart=updateDate(1, $event)">
+                <button mdSuffix [mdDatepickerToggle]="datePickerStart"></button>
+            </md-input-container>
+            <md-datepicker #datePickerStart></md-datepicker>
+
+            <md-input-container>
+                <input mdInput [mdDatepicker]="datePickerEnd" placeholder="Choose an end date" [ngModel]="dateEnd | date:'shortDate'" (ngModelChange)="dateEnd=updateDate(2, $event)">
+                <button mdSuffix [mdDatepickerToggle]="datePickerEnd"></button>
+            </md-input-container>
+            <md-datepicker #datePickerEnd></md-datepicker>
+
+
+            <div class="w3-input">
+                <label> Time from : </label> <input [ngModel]="timeStart" (ngModelChange)="timeStart=updateDate(3, $event)"
+                    type="time" name="timeStart">
+
+                <label> To : </label> <input [ngModel]="timeEnd" (ngModelChange)="timeEnd=updateDate(4, $event)" type="time"
+                    name="timeEnd">
+            </div>
+            <p class="w3-margin-top">
+                <button (click)="getHistory()" class="w3-btn w3-blue w3-hover-white">Chercher</button>
+            </p>
         </div>
     </div>
 
