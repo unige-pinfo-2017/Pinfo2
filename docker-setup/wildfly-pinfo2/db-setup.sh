@@ -11,7 +11,7 @@ curl "https://downloads.mariadb.com/Connectors/java/connector-java-${MARIADB_REL
 
 # Start the jboss-cli script using given environement variables.
 JDB_CONNECTOR_PATH="$(dirname $0)/mariadb-java-client-${MARIADB_RELEASE}.jar"
-DB_TABLE_NAME=meskyne
+DB_TABLE_NAME=projetinfodb
 DB_URL=jdbc:mariadb://database:3306
 DB_USER=root
 DB_PASS=admin

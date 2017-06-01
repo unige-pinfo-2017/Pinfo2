@@ -37,7 +37,7 @@ public class LightServiceImplTest {
 		Assert.assertNotNull(light.getTimestamp());
 	}
 	
-
+	//Bug ici, timestamp peut etre n�gatif
 	@Test
 	public void testLastStateTimestampPositive(){
 		ls=new LightServiceImplMock();
@@ -66,6 +66,12 @@ public class LightServiceImplTest {
 		Assert.assertNotNull(lights);
 	}
 	
+	/*@Test
+	public void testStatesSizeZero(){
+		ls=new LightServiceImplMock();
+		List<Light> lights = ls.getStates("1", 2000L, 2000L);
+		Assert.assertTrue(lights.size()>=0);
+	}*/
 	
 	@Test
 	public void testStatesSizeNotZero(){
@@ -153,8 +159,7 @@ public class LightServiceImplTest {
 			}
 		}
 		Assert.assertTrue(flag);
-	}	
-	
+	}
 	
 }
 
