@@ -27,15 +27,15 @@ public class DeviceServiceImplMock implements DeviceService {
 		}
 
 		for (int i = 1; i <= 2; i++) {
-			deviceIds.get(0).add("light" + i);
+			deviceIds.get(0).add("Light" + i);
 		}
 
 		for (int i = 1; i <= 12; i++) {
-			deviceIds.get(1).add("socket" + i);
+			deviceIds.get(1).add("Socket" + i);
 		}
 
 		for (int i = 1; i <= 2; i++) {
-			deviceIds.get(2).add("hub" + i);
+			deviceIds.get(2).add("Hub" + i);
 		}
 
 		return deviceIds;
