@@ -13,14 +13,17 @@
                     <h3 class="w3-tag">State</h3>
                 </div>
                 <div class="w3-container col-md-6">
-                    <label class="switch">
-                        <input type="checkbox" [checked]="mySocket.state" value="mySocket.state">
-                        <div class="slider round"></div>
-                    </label>
+                    <md-slide-toggle ngDefaultControl (change)="onChange($event)" [checked]="mySocket.state" ></md-slide-toggle>
                 </div>
             </div>
 
             <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
+            <md-radio-group [(ngModel)]="plotTime" (change)="switchPlot($event)">
+                <md-radio-button value="1">Live consumption</md-radio-button><br>
+                <md-radio-button value="2">Consumption from the last hour</md-radio-button><br>
+                <md-radio-button value="3">Consumption from the last day</md-radio-button><br>
+                <md-radio-button value="4">Consumption from the last week</md-radio-button>
+            </md-radio-group>
         </div>
     </div>
 

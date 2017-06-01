@@ -6,7 +6,6 @@ export abstract class Device {
     link: number[];
     consommation: number;
     statesArray: any[];
-    valuesForPlot: any;
 
     constructor(idd: number){
         this.id = idd;
