@@ -14,10 +14,13 @@ import { SidenavComponent } from "../sidenav/sidenav.component";
 export class HomeComponent implements OnInit{
     title = 'Home';
     currentUser: User;
-    selectedWs: Workstation;
+    status: string;
+    
     
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.currentUser.status = true;
+        this.status = "Connected";
     }
 
     ngOnInit() {
