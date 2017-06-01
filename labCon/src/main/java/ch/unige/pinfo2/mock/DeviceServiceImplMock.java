@@ -97,4 +97,11 @@ public class DeviceServiceImplMock implements DeviceService {
 		return query.getResultList();
 	}
 
+	public DeviceType getDeviceType(String deviceId) {
+		String sql = "SELECT d.type FROM Device d WHERE d.id=:arg1";
+		Query query = em.createQuery(sql);
+		query.setParameter("arg1", deviceId);
+		return (DeviceType) query.getResultList().get(0);
+	}
+
 }

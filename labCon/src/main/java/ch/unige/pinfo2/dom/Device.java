@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
 @Entity
-@MappedSuperclass
+//@MappedSuperclass
 @Table(name = "Device")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE) 
 public abstract class Device implements Serializable{

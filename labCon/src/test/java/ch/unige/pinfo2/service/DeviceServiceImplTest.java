@@ -96,6 +96,21 @@ public class DeviceServiceImplTest {
 		return query.getResultList();
 	}
 	
+	public DeviceType getDeviceType(String deviceId) {
+		String sql = "SELECT d.type FROM Device d WHERE d.id=:arg1";
+		Query query = em.createQuery(sql);
+		query.setParameter("arg1", deviceId);
+		return (DeviceType) query.getResultList().get(0);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -261,6 +276,12 @@ public class DeviceServiceImplTest {
 		//Assert.assertSame(ws2Sockets,ws2SocketsVerif);
 	}
 	
-	
+	@Test
+	public void testGetDeviceType(){
+		Light l=new Light("LightGetDeviceType",50L,20D);
+		addDevice(l);
+		DeviceType dt=getDeviceType("LightGetDeviceType");
+		Assert.assertEquals(DeviceType.LIGHT, dt);
+	}
 	
 }

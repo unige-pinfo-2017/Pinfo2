@@ -3,6 +3,7 @@ package ch.unige.pinfo2.service;
 import java.util.List;
 
 import ch.unige.pinfo2.dom.Device;
+import ch.unige.pinfo2.dom.DeviceType;
 
 public interface DeviceService {
 
@@ -48,4 +49,12 @@ public interface DeviceService {
 	 * @return a String identifying the workstation
 	 */
 	public String getWorkstation(String deviceId);
+	
+	/**
+     * 
+     * @param deviceId a String identifying a Device
+     * 
+     * @return the type of the device
+     */
+    public DeviceType getDeviceType(String deviceId);
 }
