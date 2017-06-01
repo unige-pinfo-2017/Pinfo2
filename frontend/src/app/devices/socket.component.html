@@ -22,12 +22,18 @@
                         </h3>
                     </div>
                 </div>
-
                 <div class="w3-container w3-border-bottom w3-center">
                     <h3>Power consumption : {{mySocket.consommation}}</h3>
-                </div>
+                </div>                
             </div>
 
+            <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
+            <md-radio-group [(ngModel)]="plotTime" (change)="switchPlot($event)">
+                <md-radio-button value="1">Live consumption</md-radio-button><br>
+                <md-radio-button value="2">Consumption from the last hour</md-radio-button><br>
+                <md-radio-button value="3">Consumption from the last day</md-radio-button><br>
+                <md-radio-button value="4">Consumption from the last week</md-radio-button>
+            </md-radio-group>
             <div class="w3-container">
                 <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
             </div>

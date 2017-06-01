@@ -22,7 +22,7 @@ import { AlertService, AuthenticationService, UserService, DataForPlotService, D
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
-import { PlotComponent } from './Plot/plot.component';
+import { PlotComponent } from './plot/plot.component';
 import { HubComponent, LightComponent, SocketComponent } from './devices/index' ;
 import { SidenavComponent } from "./sidenav/sidenav.component";
 
