@@ -25,6 +25,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 		if (!this.alreadyRegistered(user)) {
 			user.setToken(createToken());
 			user.setRole("RegularUser");
+			user.setStatus(false);
 			em.persist(user);
 		}
 	}

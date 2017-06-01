@@ -35,6 +35,9 @@ public class RegularUser implements Serializable {
 	
 	@Column(name = "role")
 	private String role;
+	
+	@Column(name = "status")
+	private boolean status;
 
 	public RegularUser() {
 	}
@@ -89,6 +92,14 @@ public class RegularUser implements Serializable {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

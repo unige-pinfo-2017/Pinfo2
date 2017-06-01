@@ -34,6 +34,7 @@ public class AdminServiceRs {
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setRole(role);
+		user.setStatus(false);
 		boolean success = service.addUser(user);
 		if (success) {
 			return Response.ok(user).build();
