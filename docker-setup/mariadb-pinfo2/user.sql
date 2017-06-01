@@ -8,12 +8,13 @@ CREATE TABLE IF NOT EXISTS RegularUser
 	username VARCHAR(25) PRIMARY KEY NOT NULL,
 	password VARCHAR(25) NOT NULL,
 	role VARCHAR(50) NOT NULL,
-	token VARCHAR(50) NOT NULL	
+	token VARCHAR(50) NOT NULL,
+	status BOOLEAN NOT NULL
 );
 
 
-INSERT IGNORE INTO RegularUser VALUES ('Vincent','Cabrini','VincentCabrini','PasswordVC','regularUser', 'abcdefghijk');
-INSERT IGNORE INTO RegularUser VALUES ('admin','admin','admin','admin','admin', 'qwertzuiop');
+INSERT IGNORE INTO RegularUser VALUES ('Vincent','Cabrini','VincentCabrini','PasswordVC','regularUser', 'abcdefghijk', FALSE);
+INSERT IGNORE INTO RegularUser VALUES ('admin','admin','admin','admin','admin', 'qwertzuiop', FALSE);
 
 
 CREATE TABLE IF NOT EXISTS Device

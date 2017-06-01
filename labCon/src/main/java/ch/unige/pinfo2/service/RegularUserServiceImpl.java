@@ -12,19 +12,23 @@ import javax.transaction.Transactional;
 
 import ch.unige.pinfo2.dom.RegularUser;
 
-
+/**
+ * 
+ * Provides a set of services for the RegularUser object.
+ * 
+ */
 @Stateless
 public class RegularUserServiceImpl implements RegularUserService {
-		
-	@PersistenceContext(unitName="ProjectPersistence")
-    private EntityManager em;   
 
-    
+	@PersistenceContext(unitName = "ProjectPersistence")
+	private EntityManager em;
+
 	@Transactional
 	public void addUser(RegularUser user) {
 		if (!this.alreadyRegistered(user)) {
 			user.setToken(createToken());
-			user.setRole("regularUser");
+			user.setRole("RegularUser");
+			user.setStatus(false);
 			em.persist(user);
 		}
 	}
@@ -33,7 +37,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.username = :arg1";
 		Query query = em.createQuery(sql);
-		query.setParameter("arg1", user.getUserName());
+		query.setParameter("arg1", user.getUsername());
 		if (query.getResultList().isEmpty()) {
 			return false;
 		}
@@ -63,6 +67,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 		return (RegularUser) query.getResultList().get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<RegularUser> getUserByLastName(String lastName) {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.lastName = :arg1";
@@ -71,6 +76,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<RegularUser> getUserByFirstName(String firstName) {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.firstName = :arg1";
@@ -95,8 +101,5 @@ public class RegularUserServiceImpl implements RegularUserService {
 		SecureRandom random = new SecureRandom();
 		return new BigInteger(130, random).toString(32);
 	}
-
-
-	
 
 }

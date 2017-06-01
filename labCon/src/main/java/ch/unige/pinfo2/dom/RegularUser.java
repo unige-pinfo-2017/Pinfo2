@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Models a regular user of the labCon application.
+ * 
+ */
 @Entity
 @Table(name = "RegularUser")
 public class RegularUser implements Serializable {
@@ -16,35 +20,37 @@ public class RegularUser implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4561966035983412307L;
-
+	
+	/** The username. Unique per user */
 	@Id
 	@Column(name = "username")
 	private String username;
-
+	
+	/** The first name */
 	@Column(name = "firstName")
 	private String firstName;
-
+	
+	/** The last name */
 	@Column(name = "lastName")
 	private String lastName;
-
+	
+	/** The password */
 	@Column(name = "password")
 	private String password;
 	
+	/** The token. It's like a cookie. */
 	@Column(name = "token")
 	private String token;
 	
+	/** The role (RegularUser/admin) */
 	@Column(name = "role")
 	private String role;
-
+	
+	/** The status: true for connected, false for disconnected. */
+	@Column(name = "status")
+	private boolean status;
+	
 	public RegularUser() {
-	}
-
-	public String getUserName() {
-		return username;
-	}
-
-	public void setUserName(String userName) {
-		this.username = userName;
 	}
 
 	public String getPassword() {
@@ -97,6 +103,14 @@ public class RegularUser implements Serializable {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

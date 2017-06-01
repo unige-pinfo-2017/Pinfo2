@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 
 import ch.unige.pinfo2.dom.RegularUser;
 
+/**
+ * Defines the contract of the RegularUser service.
+ */
 @Local
 public interface RegularUserService {
 	
