@@ -42,9 +42,9 @@ public class SocketServiceRs {
 	@GET
 	@Produces("application/json")
 	@Path("/getStates")
-	public JsonObject getStates(@QueryParam("deviceId") String deviceId, @QueryParam("from") Long fromDate,
-			@QueryParam("to") Long toDate) {
-		List<Socket> socketStates = socketService.getStates(deviceId, fromDate, toDate);
+	public JsonObject getStates(@QueryParam("deviceId") String deviceId, @QueryParam("from") Long from,
+			@QueryParam("to") Long to) {
+		List<Socket> socketStates = socketService.getStates(deviceId, from, to);
 		
 		JsonBuilderFactory factory = Json.createBuilderFactory(null);
 		

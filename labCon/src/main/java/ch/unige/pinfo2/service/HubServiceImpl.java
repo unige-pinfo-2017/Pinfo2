@@ -3,7 +3,6 @@ package ch.unige.pinfo2.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 
 import ch.unige.pinfo2.dom.Hub;
@@ -12,7 +11,6 @@ import ch.unige.pinfo2.service.DeviceService;
 import ch.unige.pinfo2.service.HubService;
 import ch.unige.pinfo2.service.SocketService;
 
-@Alternative
 public class HubServiceImpl implements HubService{
 	
 	@Inject
@@ -57,12 +55,14 @@ public class HubServiceImpl implements HubService{
 						fusedSocketStates.add(new Socket("fusedSocket",socketStates2.get(0).getTimestamp(),socketStates2.get(0).getCurrent()+lastCurrent1,socketStates2.get(0).getPower()+lastPower1));
 						socketStates2.remove(0);
 					}
+					return fusedSocketStates;
 				}
 				if(socketStates2.isEmpty()) {
 					while(!socketStates1.isEmpty()) {
 						fusedSocketStates.add(new Socket("fusedSocket",socketStates1.get(0).getTimestamp(),socketStates1.get(0).getCurrent()+lastCurrent2,socketStates1.get(0).getPower()+lastPower2));
 						socketStates1.remove(0);
 					}
+					return fusedSocketStates;
 				}
 				
 				// find the first element of the two lists and add it taking into account the last known state of the other socket at a time prior or equal
@@ -120,7 +120,7 @@ public class HubServiceImpl implements HubService{
 
 	@Override
 	public Hub getLastState(String deviceId) {
-
+		
 		String hubWorkstation = deviceService.getWorkstation(deviceId);
 		
 		List<String> socketIds = deviceService.getSocketIds(hubWorkstation);

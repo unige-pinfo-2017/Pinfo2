@@ -1,13 +1,15 @@
 package ch.unige.pinfo2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.unige.pinfo2.dom.Device;
+import ch.unige.pinfo2.dom.DeviceType;
 
 public class DeviceServiceImpl implements DeviceService {
 
 	@Override
-	public List<String> getDeviceIds() {
+	public ArrayList<ArrayList<String>> getDeviceIds() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -44,6 +46,12 @@ public class DeviceServiceImpl implements DeviceService {
 
 	@Override
 	public List<String> getSocketIds(String workstation) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public DeviceType getDeviceType(String deviceId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

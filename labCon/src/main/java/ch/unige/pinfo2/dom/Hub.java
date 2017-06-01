@@ -1,5 +1,8 @@
 package ch.unige.pinfo2.dom;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Hub extends Device {
 	
 	/**
@@ -7,15 +10,17 @@ public class Hub extends Device {
 	 */
 	private static final long serialVersionUID = -3939494759384288631L;
 
-	private Double current;
+	private Double hubCurrent;
 	
 	private Double power;
 	
 	private Boolean onOffStatus;
 	
-	public Hub(String deviceId, Long timestamp, Double current, Double power) {
+	public Hub() {}
+	
+	public Hub(String deviceId, Long timestamp, Double hubCurrent, Double power) {
 		super(deviceId, DeviceType.HUB, timestamp);
-		this.current = current;
+		this.hubCurrent = hubCurrent;
 		this.power = power;
 		if(power.doubleValue() != 0) {
 			onOffStatus = new Boolean(true);
@@ -24,8 +29,8 @@ public class Hub extends Device {
 		}
 	}
 	
-	public Double getCurrent() {
-		return current;
+	public Double getHubCurrent() {
+		return hubCurrent;
 	}
 	
 	public Double getPower() {

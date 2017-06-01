@@ -30,9 +30,8 @@ public class HubServiceRs {
 		
 		JsonObject jsonHub = factory.createObjectBuilder()
 				.add("hub", factory.createObjectBuilder()
-						.add("power", hub.getPower().doubleValue())
-						.add("onOffStatus", hub.getOnOffStatus().booleanValue()))
-				.build();
+						.add("power", hub.getPower().doubleValue()))
+						.build();
 		
 		return jsonHub;
 	}
@@ -40,9 +39,9 @@ public class HubServiceRs {
 	@GET
 	@Produces("application/json")
 	@Path("/getStates")
-	public JsonObject getStates(@QueryParam("deviceId") String deviceId, @QueryParam("from") Long fromDate,
-			@QueryParam("to") Long toDate) {
-		List<Hub> hubStates = hubService.getStates(deviceId, fromDate, toDate);
+	public JsonObject getStates(@QueryParam("deviceId") String deviceId, @QueryParam("from") Long from,
+			@QueryParam("to") Long to) {
+		List<Hub> hubStates = hubService.getStates(deviceId, from, to);
 		
 		JsonBuilderFactory factory = Json.createBuilderFactory(null);
 		

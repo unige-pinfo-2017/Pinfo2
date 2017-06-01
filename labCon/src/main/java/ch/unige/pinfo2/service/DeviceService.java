@@ -1,17 +1,19 @@
 package ch.unige.pinfo2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.unige.pinfo2.dom.Device;
+import ch.unige.pinfo2.dom.DeviceType;
 
 public interface DeviceService {
 
 	/**
 	 * get all devices identifiers
 	 * 
-	 * @return a List of String in which every String identifies a device
+	 * @return an ArrayList of ArrayList of String in which every ArrayList contains Strings identifying a device of a specific type
 	 */
-	public List<String> getDeviceIds();
+	public ArrayList<ArrayList<String>> getDeviceIds();
 	
 	/**
 	 * add a new device to the database
@@ -56,4 +58,11 @@ public interface DeviceService {
 	 * @return a List of String containing all socket ids
 	 */
 	public List<String> getSocketIds(String workstation);
+        
+	/** 
+	 * @param deviceId a String identifying a Device
+     * 
+     * @return the type of the device
+     */
+	public DeviceType getDeviceType(String deviceId);
 }
