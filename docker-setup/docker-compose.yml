@@ -39,7 +39,7 @@ services:
             - "mysql-data:/var/lib/mysql"
         environment:
             MYSQL_ROOT_PASSWORD: "admin"
-            MYSQL_DATABASE: "meskyne"
+            MYSQL_DATABASE: "projetinfodb"
         expose:
             - "3306"
         restart: always

@@ -1,27 +1,34 @@
 package ch.unige.pinfo2.service;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+
 import ch.unige.pinfo2.dom.RegularUser;
 
-
+/**
+ * 
+ * Provides a set of services for the RegularUser object.
+ * 
+ */
 @Stateless
 public class RegularUserServiceImpl implements RegularUserService {
-		
-	@PersistenceContext(unitName="ProjectPersistence")
-    private EntityManager em;   
 
-    
+	@PersistenceContext(unitName = "ProjectPersistence")
+	private EntityManager em;
+
 	@Transactional
 	public void addUser(RegularUser user) {
 		if (!this.alreadyRegistered(user)) {
 			user.setToken(createToken());
+			user.setRole("RegularUser");
+			user.setStatus(false);
 			em.persist(user);
 		}
 	}
@@ -30,14 +37,14 @@ public class RegularUserServiceImpl implements RegularUserService {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.username = :arg1";
 		Query query = em.createQuery(sql);
-		query.setParameter("arg1", user.getUserName());
+		query.setParameter("arg1", user.getUsername());
 		if (query.getResultList().isEmpty()) {
 			return false;
 		}
 		return true;
 	}
 
-	public Integer loginUser(String username, String password) {
+	public String loginUser(String username, String password) {
 
 		String sql = "SELECT u.token FROM RegularUser u WHERE u.username = :arg1 AND u.password = :arg2";
 		Query query = em.createQuery(sql);
@@ -46,10 +53,10 @@ public class RegularUserServiceImpl implements RegularUserService {
 		if (query.getResultList().isEmpty()) {
 			return null;
 		}
-		return (Integer) query.getSingleResult();
+		return (String) query.getSingleResult();
 	}
 
-	public RegularUser getUserByToken(Integer token) {
+	public RegularUser getUserByToken(String token) {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.token = :arg1";
 		Query query = em.createQuery(sql);
@@ -60,6 +67,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 		return (RegularUser) query.getResultList().get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<RegularUser> getUserByLastName(String lastName) {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.lastName = :arg1";
@@ -68,6 +76,7 @@ public class RegularUserServiceImpl implements RegularUserService {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<RegularUser> getUserByFirstName(String firstName) {
 
 		String sql = "SELECT u FROM RegularUser u WHERE u.firstName = :arg1";
@@ -88,18 +97,9 @@ public class RegularUserServiceImpl implements RegularUserService {
 	}
 
 	@Override
-	public Integer createToken() {
-		Random r = new Random();
-		Integer token;
-		while (true) {
-			token = r.nextInt();
-			if (this.getUserByToken(token) == null) {
-				return token;
-			}
-		}
+	public String createToken() {
+		SecureRandom random = new SecureRandom();
+		return new BigInteger(130, random).toString(32);
 	}
-
-
-	
 
 }

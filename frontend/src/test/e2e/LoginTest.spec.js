@@ -1,29 +1,29 @@
 describe("Login Tests",function(){
 
-	xit("Url Login", function(){
-		browser.get('http://localhost/');
+	it("Url Login", function(){
+		browser.get('http://localhost/login');
 		browser.driver.sleep(5000).then(function(){
-			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2F');
+			expect(browser.getCurrentUrl()).toEqual('http://localhost/login');
 		});		
 	});
 
-	xit("Compte le nombre de champs", function(){
+	it("Compte le nombre de champs", function(){
 		expect(element.all(by.id("input")).count(),2);	
 	});
 
-	xit("Compte le nombre de boutons", function(){
+	it("Compte le nombre de boutons", function(){
 		expect(element.all(by.id("button")).count(),2);	
 	});
 
-	xit("Verifie si il y a un bouton Login", function(){
+	it("Verifie si il y a un bouton Login", function(){
 		expect(element.all(by.buttonText("Login")).count(),1);	
 	});
 
-	xit("Verifie si il y a un bouton Register", function(){
+	it("Verifie si il y a un bouton Register", function(){
 		expect(element.all(by.linkText("Register")).count(),1);
 	});
 
-	xit("Ajoute un String au champ Username", function(){
+	it("Ajoute un String au champ Username", function(){
 		var inputUsername=element(by.css('[name="username"]'))
 		inputUsername.sendKeys("Username");
 		browser.driver.sleep(1000).then(function(){
@@ -33,7 +33,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Ajoute un String au champ Password", function(){
+	it("Ajoute un String au champ Password", function(){
 		var inputPassword=element(by.css('[name="password"]'))
 		inputPassword.sendKeys("Password");
 		browser.driver.sleep(1000).then(function(){
@@ -43,7 +43,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Essai Login sans password", function(){
+	it("Essai Login sans password", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
@@ -59,7 +59,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Essai Login sans Username", function(){
+	it("Essai Login sans Username", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var inputPassword=element(by.css('[name="password"]'))
@@ -75,7 +75,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Essai Login sans Username et sans Password", function(){
+	it("Essai Login sans Username et sans Password", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			element.all(by.buttonText("Login")).click();
@@ -86,43 +86,43 @@ describe("Login Tests",function(){
 			});		
 		});
 	});
-	//PEUT ETRE UN BUG
-	xit("Essai acces menu hub sans login", function(){
+
+	it("Essai acces menu hub sans login", function(){
 		browser.get('http://localhost/hub');
 		browser.driver.sleep(5000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2Fhub');
 		});
 	});
 
-	xit("Essai acces menu light sans login", function(){
+	it("Essai acces menu light sans login", function(){
 		browser.get('http://localhost/light');
 		browser.driver.sleep(5000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2F');
 		});
 	});
 	
-	xit("Essai acces menu socket sans login", function(){
+	it("Essai acces menu socket sans login", function(){
 		browser.get('http://localhost/socket');
 		browser.driver.sleep(5000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2F');
 		});
 	});
 
-	xit("Essai acces hub particulier sans login", function(){
+	it("Essai acces hub particulier sans login", function(){
 		browser.get('http://localhost/hub/110');
 		browser.driver.sleep(5000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2Fhub%2F110');
 		});
 	});
 
-	xit("Essai acces light particulier sans login", function(){
+	it("Essai acces light particulier sans login", function(){
 		browser.get('http://localhost/light/100');
 		browser.driver.sleep(5000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2Flight%2F100');
 		});
 	});
 
-	xit("Essai acces socket particulier sans login", function(){
+	it("Essai acces socket particulier sans login", function(){
 		browser.get('http://localhost/socket/200');
 		browser.driver.sleep(5000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2Fsocket%2F200');
@@ -130,7 +130,7 @@ describe("Login Tests",function(){
 	});
 
 
-	xit("Bon Username mauvais password", function(){
+	it("Bon Username mauvais password", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
@@ -144,7 +144,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Bon Password mauvais username", function(){
+	it("Bon Password mauvais username", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
@@ -158,7 +158,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Mauvais Password mauvais username", function(){
+	it("Mauvais Password mauvais username", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
@@ -172,7 +172,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Login->Register", function(){
+	it("Login->Register", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			element.all(by.linkText("Register")).click();
@@ -184,7 +184,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Login->Register->Login", function(){
+	it("Login->Register->Login", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			element.all(by.linkText("Register")).click();
@@ -198,7 +198,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Login", function(){
+	it("Login", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
@@ -208,14 +208,16 @@ describe("Login Tests",function(){
 			browser.driver.sleep(1000).then(function(){
 				element.all(by.buttonText("Login")).click();
 				browser.driver.sleep(5000).then(function(){
-					expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2F');
-					expect(element.all(by.name("You're logged in oui !")).count(),1);
+					expect(browser.getCurrentUrl()).toEqual('http://localhost/');
+					element(by.linkText("Sign out")).click();
+					browser.driver.sleep(3000).then(function(){
+					});
 				});
 			});
 		});
 	});
 
-	xit("Mot Username existe", function(){
+	it("Mot Username existe", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var countNameUsername=element.all(by.name("Username")).count();
@@ -223,7 +225,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Mot Password existe", function(){
+	it("Mot Password existe", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var countNamePassword=element.all(by.name("Password")).count();
@@ -231,7 +233,7 @@ describe("Login Tests",function(){
 		});
 	});
 
-	xit("Mot Login existe", function(){
+	it("Mot Login existe", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var countNameLogin=element.all(by.name("Login")).count();

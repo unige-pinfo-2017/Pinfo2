@@ -1,4 +1,4 @@
-package ch.unige.pinfo2.service;
+package ch.unige.pinfo2.facade;
 
 import javax.inject.Inject;
 import javax.json.Json;
@@ -12,30 +12,32 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import ch.unige.pinfo2.dom.Light;
+import ch.unige.pinfo2.service.LightService;
 
+/**
+ * Facade for the light services.
+ */
 @Path("/devices/lights")
 public class LightServiceRs {
-	
+
 	@Inject
 	private LightService lightService;
-	
+
 	@GET
 	@Produces("application/json")
 	@Path("/getLastState")
 	public JsonObject getLastState(@QueryParam("deviceId") String deviceId) {
 		Light light = lightService.getLastState(deviceId);
-		
+
 		JsonBuilderFactory factory = Json.createBuilderFactory(null);
-		
-		JsonObject jsonLight = factory.createObjectBuilder()
-				.add("light", factory.createObjectBuilder()
-						.add("power", light.getPower().doubleValue())
-						.add("onOffStatus", light.getOnOffStatus().booleanValue()))
+
+		JsonObject jsonLight = factory.createObjectBuilder().add("light", factory.createObjectBuilder()
+				.add("power", light.getPower().doubleValue()).add("onOffStatus", light.getOnOffStatus().booleanValue()))
 				.build();
-		
+
 		return jsonLight;
 	}
-	
+
 	@POST
 	@Produces("application/json")
 	@Path("/setOnOrOff")

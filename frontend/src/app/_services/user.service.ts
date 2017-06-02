@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-
+import { Observable } from 'rxjs/Observable';
 import { User } from '../_models/index';
 
 import {labConConfig} from 'labCon-config';
@@ -9,9 +9,12 @@ import {labConConfig} from 'labCon-config';
 export class UserService {
     constructor(private http: Http) { }
 
-    getAll() {
+    getAll(): Observable<User[]> {
         let headers = this.jwtHeader();
-        return this.http.get(labConConfig.mockApiUrlUsers, this.jwtResponse(headers)).map((response: Response) => response.json());
+        return this.http.get(labConConfig.mockApiUrlUsers, this.jwtResponse(headers)).map((response: Response) => {
+            let x = response.json();
+            return x.User || { };
+        });
     }
 
     getById(id: number) {
