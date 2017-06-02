@@ -1,5 +1,5 @@
 export var labConConfig = {
-    restServerApiUrl : "http://localhost/restapi/",
+	restServerApiUrl : window.location.origin + "/restapi/",
     //restServerApiUrl : "localhost/restapi/",
     mockApiUrlAuthenticate : "/api/authenticate",
     mockApiUrlUsers : "/api/users"
