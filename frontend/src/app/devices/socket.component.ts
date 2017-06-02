@@ -39,7 +39,7 @@ export class SocketComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
-            this.mySocket = new Socket(+params['id']);
+            this.mySocket = new Socket(params['id']);
             this.mySocket.toTimestamp = this.getTimestamp();
             this.mySocket.fromTimestamp = this.mySocket.toTimestamp - 60000;
 
@@ -65,12 +65,18 @@ export class SocketComponent implements OnInit, OnDestroy {
     }
 
     private refreshData(): void {
-        this.dataSubscription = this.socketService.getSocketStates(this.mySocket.id, this.mySocket.fromTimestamp, this.mySocket.toTimestamp)
-            .subscribe(states => {
-                this.mySocket.state = states[states.length - 1].isOn;
-                this.mySocket.consommation = states[states.length - 1].power
+        this.dataSubscription = this.socketService.getSocketLastState(this.mySocket.id/*, this.mySocket.fromTimestamp, this.mySocket.toTimestamp*/)
+            .subscribe(socket => {
+                console.log(this.mySocket.fromTimestamp)
+                console.log(this.mySocket.toTimestamp)
+                console.log(socket);
+                //this.mySocket.state = states[states.length - 1].isOn;
+                //this.mySocket.consommation = states[states.length - 1].power
+
+                this.mySocket.state = socket.onOffStatus;
+                this.mySocket.consommation = socket.power;
                 if (this.plotTime == 1) {
-                    this.mySocket.statesArray = states;
+                    this.mySocket.statesArray = [{power:socket.power, timestamp:this.mySocket.toTimestamp}];
                     /*let valuesForPlotTmp = this.parseStatesArray();
                     this.valuesForPlot= [];
                     this.valuesForPlot = valuesForPlotTmp;
@@ -110,6 +116,15 @@ export class SocketComponent implements OnInit, OnDestroy {
         dateString = dateString + ", " + date.getHours().toString() + ":" + date.getMinutes().toString();
         return dateString;
     }
+
+    private getDayMonthHourMinuteFromTimeStamp(timestamp: number) {
+        let date: Date = new Date(timestamp);
+        let dateString: String = date.getDate().toString();
+        dateString = dateString + ", " + date.getMonth() + ',  ' + date.getHours().toString() + ":" + date.getMinutes().toString();
+        return dateString;
+    }
+
+
 
     private parseStatesArray(): any {
         let data: number[] = [];
@@ -224,6 +239,8 @@ export class SocketComponent implements OnInit, OnDestroy {
             .subscribe(states => {
                 this.stateArrayHistory = states;
                 this.valuesForPlotHistory = this.parseStatesArrayHistory();
+                this.plot.chart.chart.config.data.labels = this.valuesForPlot.lineChartLabels;
+
             });
     }
 
@@ -370,7 +387,7 @@ export class SocketComponent implements OnInit, OnDestroy {
 
         for (let x of lineChartLabels) {
 
-            lineChartLabelsCorrectSyntax.push(this.getDayHourMinuteFromTimeStamp(x));
+            lineChartLabelsCorrectSyntax.push(this.getDayMonthHourMinuteFromTimeStamp(x));
         }
         label = "Consumption from " + lineChartLabelsCorrectSyntax[0] + " to "
             + lineChartLabelsCorrectSyntax[lineChartLabelsCorrectSyntax.length - 1];

@@ -1,13 +1,13 @@
 import { Workstation } from './workstation';
 export abstract class Device {
-    id: number;
+    id: string;
     name: string;
     state: boolean;
-    link: number[];
+    link: string[];
     consommation: number;
     statesArray: any[];
 
-    constructor(idd: number){
+    constructor(idd: string){
         this.id = idd;
     }
 

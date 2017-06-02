@@ -17,12 +17,12 @@ export class LightService{
     }
 
 
-    getLightLastState(id: number): Observable<any>{
+    getLightLastState(id: string): Observable<any>{
         
         /*let params: URLSearchParams = new URLSearchParams();
         params.append('deviceId', id.toString());
         let options : RequestOptions = new RequestOptions({search: params});*/
-        return this.http.get(this.restServerApiUrl+'getLastState?deviceId='+id.toString()).map(this.extractLightLastState).catch(this.handleError);
+        return this.http.get(this.restServerApiUrl+'getLastState?deviceId='+id).map(this.extractLightLastState).catch(this.handleError);
     }
 
     private extractLightLastState(res: Response){
@@ -30,11 +30,11 @@ export class LightService{
         return body.light || { };
     }
 
-    postLightState(id: number, state: boolean): Observable<any>{
+    postLightState(id: string, state: boolean): Observable<any>{
         let body = JSON.stringify({  });
         /*let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });*/
-        return this.http.post(this.restServerApiUrl+'setOnOrOff?deviceId='+id.toString()+'&onOrOff='+state, body).map(() =>1).catch(this.handleError);
+        return this.http.post(this.restServerApiUrl+'setOnOrOff?deviceId=' + '&onOrOff='+state, body).map(() =>1).catch(this.handleError);
     }
 
     private handleError(error: Response | any) {

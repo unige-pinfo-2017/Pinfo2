@@ -11,7 +11,7 @@ export class UserService {
 
     getAll(): Observable<User[]> {
         let headers = this.jwtHeader();
-        return this.http.get(labConConfig.mockApiUrlUsers, this.jwtResponse(headers)).map((response: Response) => {
+        return this.http.get('/assets/users.json', this.jwtResponse(headers)).map((response: Response) => {
             let x = response.json();
             return x.User || { };
         });

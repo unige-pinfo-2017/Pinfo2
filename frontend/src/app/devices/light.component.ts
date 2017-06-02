@@ -28,7 +28,7 @@ export class LightComponent implements OnInit, OnDestroy {
     
      ngOnInit(): void {
          this.route.params.subscribe(params => {
-            this.myLight = new Light(+params['id']); 
+            this.myLight = new Light(params['id']); 
         });
          this.refreshData();
         /*this.deviceService.getLightLastState(this.myLight.id).subscribe(light => {this.myLight.state = light.onOffStatus;

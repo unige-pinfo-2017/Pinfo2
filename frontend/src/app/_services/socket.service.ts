@@ -15,24 +15,33 @@ export class SocketService{
     constructor(private http: Http) {
     }
     
-    getSocketStates(id: number, fromTimeStamp: number, toTimeStamp: number): Observable<any[]>{
+    getSocketStates(id: string, fromTimeStamp: number, toTimeStamp: number): Observable<any[]>{
         
         /*let params: URLSearchParams = new URLSearchParams();
         params.append('deviceId', id.toString());
         let options : RequestOptions = new RequestOptions({search: params});*/
-        return this.http.get(this.restServerApiUrl+'getStates?deviceId='+id.toString() + '&from=' + fromTimeStamp.toString() + '&to=' + toTimeStamp.toString() ).map(this.extractSockeStates).catch(this.handleError);
-    }
+        return this.http.get(this.restServerApiUrl+'getStates?deviceId='+id + '&from=' + fromTimeStamp.toString() + '&to=' + toTimeStamp.toString() ).map(this.extractSockeStates).catch(this.handleError);
+    }  
 
     private extractSockeStates(res: Response){
         let body = res.json();
-        return body || { };
+        return body.socketStates || { };
     }
 
-    postSocketState(id: number, state: boolean): Observable<any>{
+    getSocketLastState(id: string) : Observable<any>{
+        return this.http.get(this.restServerApiUrl+'getLastState?deviceId='+id).map(this.extractSocketLastState).catch(this.handleError);
+    }
+
+    private extractSocketLastState(res: Response){
+        let body = res.json();
+        return body.socket || { };
+    }
+
+    postSocketState(id: string, state: boolean): Observable<any>{
         let body = JSON.stringify({  });
         /*let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });*/
-        return this.http.post(this.restServerApiUrl+'setState?deviceId='+id.toString()+'&onOrOff='+state, body).map(() =>1).catch(this.handleError);
+        return this.http.post(this.restServerApiUrl+'setState?deviceId='+id +'&onOrOff='+state, body).map(() =>1).catch(this.handleError);
     }
 
     private handleError(error: Response | any) {

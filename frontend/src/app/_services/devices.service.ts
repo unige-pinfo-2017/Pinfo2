@@ -9,19 +9,19 @@ import {labConConfig} from 'labCon-config';
 
 @Injectable()
 export class DeviceService {
-    private devicesUrl = '/assets/devices.json';
-    private restServerApiUrl = labConConfig.restServerApiUrl + '/devices/';
+    private devicesMockUrl = '/assets/devices.json';
+    private restServerApiUrl = labConConfig.restServerApiUrl + 'devices/';
     private dev: Device;
     constructor(private http: Http) {
     }
     
-    getAllDevices(): Observable<Device[]> {
-        return this.http.get(this.devicesUrl).map(this.extractAllDevices).catch(this.handleError);
+    getAllDevices(): Observable<any> {
+        return this.http.get(this.restServerApiUrl + 'getIds').map(this.extractAllDevices).catch(this.handleError);
     }
 
     private extractAllDevices(res: Response) {
         let body = res.json();
-        return body.Device || { };
+        return body.deviceIds || { };
     }
 
     private handleError(error: Response | any) {
@@ -37,8 +37,26 @@ export class DeviceService {
         return Promise.reject(errMsg);
     }
 
-    getDevice(id: number, typeName: String): Promise<Device> {
-        return this.getAllDevices().toPromise().then(Device => Device.find(element => element.id === id && element.name===typeName))      
+    getWorkstation(id: string): Observable<any>{
+        return this.http.get(this.restServerApiUrl + 'getWorkstation?deviceId=' + id).map(this.extractWorkstation).catch(this.handleError);
     }
+
+    private extractWorkstation(res: Response) {
+        let body = res.json();
+        return body.workstation || { };
+    }
+
+    getWorkstationSocketIds(workstationId: string): Observable<any[]>{
+        return this.http.get(this.restServerApiUrl + 'getWorkstationSocketIds?workstation=' + workstationId).map(this.extractWorkstationSocketIds).catch(this.handleError);
+    }
+
+    private extractWorkstationSocketIds(res: Response) {
+        let body = res.json();
+        return body.socketIds || { };
+    }
+
+    /*getDevice(id: number, typeName: String): Promise<any> {
+        return this.getAllDevices().toPromise().then(Device => Device.find(element => element.id === id && element.name===typeName))      
+    }*/
 
 }

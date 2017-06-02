@@ -25,8 +25,18 @@ export class SidenavComponent {
     selectedSocket: Socket;
     
     setDevices(): void {
-      this.deviceService.getAllDevices().subscribe(devices => {
-      devices.forEach(element => {
+      this.deviceService.getAllDevices().subscribe(deviceIds => {
+          deviceIds.lightIds.forEach(element => {
+              this.lights.push(new Light(element))
+          });
+          deviceIds.socketIds.forEach(element => {
+              this.sockets.push(new Socket(element))
+          });
+          deviceIds.hubIds.forEach(element => {
+              this.hubs.push(new Hub(element))
+          });
+          
+     /* devices.forEach(element => {
             if (element.name === 'hub') {
                 this.hubs.push(element);
             } else if (element.name === 'light') {
@@ -34,7 +44,7 @@ export class SidenavComponent {
             } else if (element.name === 'socket') {
                 this.sockets.push(element);
             }
-      });
+      });*/
     },
             error => this.errorMessage = <any> error);
 
