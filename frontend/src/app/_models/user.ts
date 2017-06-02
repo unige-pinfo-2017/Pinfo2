@@ -5,5 +5,10 @@ export class User {
     password: string;
     firstName: string;
     lastName: string;
+    role: string;
     devices: Device[];
+    workstation: number;
+    status: boolean;
+    property: string[];
+    statusString: string;
 }

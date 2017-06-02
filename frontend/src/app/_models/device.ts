@@ -1,11 +1,13 @@
 import { Workstation } from './workstation';
 export abstract class Device {
-    id: number;
+    id: string;
     name: string;
     state: boolean;
+    link: string[];
     consommation: number;
+    statesArray: any[];
 
-    constructor(idd: number){
+    constructor(idd: string){
         this.id = idd;
     }
 
@@ -24,4 +26,6 @@ export abstract class Device {
             this.setState(true);
         }
     }
+    fromTimestamp : number;
+    toTimestamp: number
 }

@@ -1,20 +1,123 @@
+<div *ngIf="currentUser.role==='admin'">
 
-
-<!-- Page Content -->
-<div>
-    <div class="page-header">
-        <h1>Home</h1>
-    </div>
-
+  <div class="w3-card-2" style="margin-left:202px">
+    <!-- Page Content -->
     <div>
-        <p> You're logged in {{currentUser.firstName}} !</p>
-        <div> </div>
-        
-        <div class="w3-container">
-            <plot> </plot>
+      <header class="w3-container w3-blue">
+        <h1>Home</h1>
+      </header>
+
+      <div class="w3-container">
+        <h3> You're logged in {{currentUser.firstName}} ! Welcome to the SysAdmin home page</h3>
+        <div>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>
+                        Users
+                      </th>
+                      <th>
+                        Status
+                      </th>
+                      <th>
+                        Role
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr class="success" *ngFor="let utilisateur of users">
+                      <td>{{utilisateur.firstName}}</td>
+                      <td>{{utilisateur.statusString}}</td>
+                      <td>{{utilisateur.role}}</td>
+                    </tr>
+
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <form role="form">
+                <div class="form-group">
+
+                  <label for="exampleInputEmail1">
+                      User Name
+                    </label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" />
+                </div>
+                <div class="form-group">
+
+                  <label for="exampleInputPassword1">
+                      Password
+                    </label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <div class="form-group">
+
+                  <label for="exampleInputPassword1">
+                      First Name
+                    </label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <div class="form-group">
+
+                  <label for="exampleInputPassword1">
+                      Last Name
+                    </label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <button type="submit" class="btn btn-default">
+                    Add
+                  </button>
+              </form>
+            </div>
+          </div>
         </div>
 
-        <p> <a [routerLink]="['/login']">Logout</a> </p>
+      </div>
     </div>
+  </div>
 </div>
 
+<div *ngIf="currentUser.role==='regularUser'">
+
+  <div class="w3-card-2" style="margin-left:202px">
+    <!-- Page Content -->
+    <div>
+      <header class="w3-container w3-blue">
+        <h1>Home</h1>
+      </header>
+
+      <div class="row">
+        <div class="w3-container w3-card-4">
+          <header class="w3-container w3-light-blue">
+            <h1>Informations</h1>
+          </header>
+          <p>Firstname : {{currentUser.firstName}}</p>
+          <p>Lastname : {{currentUser.lastName}}</p>
+          <p>Role : {{currentUser.role}} </p>
+          <p>Status : {{status}}</p>
+        </div>
+        <hr>
+        <div class="w3-card-4 w3-container ">
+          <header class="w3-container w3-light-blue">
+            <h1>Notifications <span class="w3-badge w3-blue">0</span></h1>
+          </header>
+          <h5>No notification yet </h5>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

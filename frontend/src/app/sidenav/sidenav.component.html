@@ -1,0 +1,62 @@
+<!-- Sidebar -->
+<div class="w3-sidebar w3-blue w3-bar-block w3-card-2" style="width:200px">
+    <h3 class="w3-bar-item">Menu</h3>
+    <!--span mdTooltip="Home">
+            <a md-mini-fab [routerLink]="['']"> <md-icon>home</md-icon></a>
+        </span>
+        <span mdTooltip="Logout">
+            <a md-mini-fab [routerLink]="['/login']"> <md-icon>exit_to_app</md-icon></a>
+        </span-->
+    <a class="w3-button w3-hover-white w3-blue w3-bar-item" [routerLink]="['']">
+        <i class="fa fa-home w3-xlarge"></i> Home
+    </a>
+    <div class="w3-dropdown-hover">
+            <button class="w3-button w3-hover-white w3-blue">
+                <i class="fa fa-lightbulb-o w3-xlarge"></i> Lights
+            </button>
+            <div id="li" class="w3-dropdown-content">
+                <ul class="w3-ul w3-bar-block">
+                    <li *ngFor="let light of lights">
+                        <a [routerLink]="['/light', light?.id]">
+                            <p>{{light?.id}}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+
+    <div class="w3-dropdown-hover">
+        <button class="w3-button w3-hover-white w3-blue">
+            <i class="material-icons w3-large">device_hub</i> Hubs
+        </button>
+        <div id="hu" class="w3-dropdown-content">
+            <ul class="w3-ul w3-bar-block">
+                <li *ngFor="let hub of hubs">
+                    <a [routerLink]="[ '/hub', hub?.id]">
+                        <p>{{hub?.id}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="w3-dropdown-hover">
+        <button class="w3-button w3-hover-white w3-blue">
+            <i class="fa fa fa-plug w3-xlarge"></i> Sockets
+        </button>
+        <div id="so" class="w3-dropdown-content">
+            <ul class="w3-ul w3-bar-block">
+                <li *ngFor="let socket of sockets">
+                    <a [routerLink]="[ '/socket', socket?.id]">
+                        <p>{{socket?.id}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <a class="w3-button w3-hover-white w3-blue w3-bar-item" [routerLink]="['/login']">
+        <i class="fa fa fa-sign-out w3-xlarge"></i> Sign out
+    </a>
+
+</div>

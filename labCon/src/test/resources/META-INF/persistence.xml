@@ -2,10 +2,11 @@
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="TestPersistence" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        
+		<class>ch.unige.pinfo2.dom.Device</class>
+		<class>ch.unige.pinfo2.dom.Hub</class>
+        <class>ch.unige.pinfo2.dom.Light</class>
+    	<class>ch.unige.pinfo2.dom.Socket</class>
         <class>ch.unige.pinfo2.dom.RegularUser</class>
-		<class>ch.unige.pinfo2.test.Personne</class>
-		<class>ch.unige.pinfo2.test.ValueForPlot</class>
         <properties>
             <properties>
             <property name="eclipselink.target-database" value="DERBY" />

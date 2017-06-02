@@ -4,13 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Models a regular user of the labCon application.
+ * 
+ */
 @Entity
-@Table(name="RegularUser")
+@Table(name = "RegularUser")
 public class RegularUser implements Serializable {
 
 	/**
@@ -18,35 +20,36 @@ public class RegularUser implements Serializable {
 	 */
 	private static final long serialVersionUID = 4561966035983412307L;
 
+	/** The username. Unique per user */
 	@Id
-	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "username")
+	private String username;
 
-	@Column(name="FIRSTNAME")
+	/** The first name */
+	@Column(name = "firstName")
 	private String firstName;
 
-	@Column(name="LASTNAME")
+	/** The last name */
+	@Column(name = "lastName")
 	private String lastName;
-	
-	@Column(name="USERNAME")
-	private String userName;
-	
-	@Column(name="PASSWORD")
+
+	/** The password */
+	@Column(name = "password")
 	private String password;
-	
-	@Column(name="TOKEN")
-	private Long token;
+
+	/** The token. It's like a cookie. */
+	@Column(name = "token")
+	private String token;
+
+	/** The role (RegularUser/admin) */
+	@Column(name = "role")
+	private String role;
+
+	/** The status: true for connected, false for disconnected. */
+	@Column(name = "status")
+	private boolean status;
 
 	public RegularUser() {
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -55,14 +58,6 @@ public class RegularUser implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -81,16 +76,40 @@ public class RegularUser implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Long getToken() {
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getToken() {
 		return token;
 	}
 
-	public void setToken(Long token) {
+	public void setToken(String token) {
 		this.token = token;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

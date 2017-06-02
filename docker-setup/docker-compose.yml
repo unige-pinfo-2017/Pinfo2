@@ -24,6 +24,8 @@ services:
             - "wildfly-data:/opt/jboss/wildfly/standalone/deployments"
         expose:
             - "8080"
+        ports:
+            - "9990:9990"
         depends_on:
             - "database"
         restart: always
@@ -37,7 +39,7 @@ services:
             - "mysql-data:/var/lib/mysql"
         environment:
             MYSQL_ROOT_PASSWORD: "admin"
-            MYSQL_DATABASE: "meskyne"
+            MYSQL_DATABASE: "projetinfodb"
         expose:
             - "3306"
         restart: always

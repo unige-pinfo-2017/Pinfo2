@@ -2,27 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule} from 'ng2-charts';
+import { HomeComponentSysAdmin } from "./home/homeSystAdmin.component";
 
 import 'hammerjs';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers/index';
+/*import { fakeBackendProvider } from './_helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
+import { BaseRequestOptions } from '@angular/http';*/
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService, DataForPlotService, DeviceService } from './_services/index';
+import { AlertService, AuthenticationService, UserService  } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { PlotComponent } from './Plot/plot.component';
-import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from './devices/index' ;
+import { HubComponent, LightComponent, SocketComponent } from './devices/index' ;
+import { SidenavComponent } from "./sidenav/sidenav.component";
 
 //import { dashconConfig } from '../dashcon-config';
 
@@ -35,17 +37,20 @@ import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from 
       LoginComponent,
       RegisterComponent,
       PlotComponent,
-      DevicesComponent,
       HubComponent,
       LightComponent,
-      SocketComponent
+      SocketComponent,
+      SidenavComponent,
+      HomeComponentSysAdmin
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    MaterialModule.forRoot(),
+    MaterialModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     BrowserAnimationsModule,
     ChartsModule
   ],
@@ -53,14 +58,12 @@ import { DevicesComponent, HubComponent, LightComponent, SocketComponent } from 
     AuthGuard,
     AlertService,
     AuthenticationService,
-    UserService,
-    DeviceService,
-    //DataForPlotService,
-
+    UserService
+    //DeviceService,
     // providers used to create fake backend
-    fakeBackendProvider,
+    /*fakeBackendProvider,
     MockBackend,
-    BaseRequestOptions
+    BaseRequestOptions*/
   ],
   bootstrap: [AppComponent]
 })

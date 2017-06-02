@@ -1,19 +1,84 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-				<div class="col-md-6">
-					 <p class="badge">Socket {{socket?.id}}</p>
-				</div>
-				<div class="col-md-6">
-					 <label class="switch">
-                        <input type="checkbox">
-                        <div class="slider round"></div>
-                    </label>
-				</div>
-			</div>
+<div *ngIf="mySocket" class="w3-card-2" style="margin-left:202px">
+    <header class="w3-container w3-blue">
+        <h1>
+            {{mySocket.id}}
+        </h1>
+    </header>
+    <!-- Page Content -->
+    <div>
 
-            <plot></plot>
+        <div class="w3-bar w3-blue">
+            <button (click)="show_live()" class="w3-button w3-hover-white w3-bar-item">Live</button>
+            <button (click)="show_history()" class="w3-button w3-hover-white w3-bar-item">History</button>
+        </div>
+
+        <div class="w3-container row" id="panel-live">
+            <div class="col-md-12">
+                <div class="w3-container w3-center w3-border-bottom row">
+                    <div class="w3-container">
+                        <h3>State
+                            <md-slide-toggle ngDefaultControl (change)="onChange($event)" [checked]="mySocket.state">
+                            </md-slide-toggle>
+                        </h3>
+                    </div>
+                </div>
+                <div class="w3-container w3-border-bottom w3-center">
+                    <h3>Live power consumption : {{mySocket.consommation}}</h3>
+                </div>
+            </div>
+
+            <plot *ngIf="valuesForPlot" [lineChartData]="valuesForPlot.lineChartData" [lineChartLabels]="valuesForPlot.lineChartLabels"></plot>
+            <md-radio-group [(ngModel)]="plotTime" (change)="switchPlot($event)">
+                <md-radio-button value="1">Live consumption</md-radio-button><br>
+                <md-radio-button value="2">Consumption from the last hour</md-radio-button><br>
+                <md-radio-button value="3">Consumption from the last day</md-radio-button><br>
+                <md-radio-button value="4">Consumption from the last week</md-radio-button>
+            </md-radio-group>
+
+        </div>
+
+        <div class="w3-container w3-hide" id="panel-history">
+            <md-input-container>
+                <input mdInput [mdDatepicker]="datePickerStart" placeholder="Choose a start date" [ngModel]="dateStart"
+                    (ngModelChange)="dateStart=updateDate(1, $event)">
+                <button mdSuffix [mdDatepickerToggle]="datePickerStart"></button>
+            </md-input-container>
+            <md-datepicker #datePickerStart></md-datepicker>
+
+            <md-input-container>
+                <input mdInput [mdDatepicker]="datePickerEnd" placeholder="Choose an end date" [ngModel]="dateEnd"
+                (ngModelChange)="dateEnd=updateDate(2, $event)">
+                <button mdSuffix [mdDatepickerToggle]="datePickerEnd"></button>
+            </md-input-container>
+            <md-datepicker #datePickerEnd></md-datepicker>
+
+
+            <div class="w3-input">
+                <label> Time from : </label> <input [ngModel]="timeStart" (ngModelChange)="timeStart=updateDate(3, $event)"
+                    type="time" name="timeStart">
+
+                <label> To : </label> <input [ngModel]="timeEnd" (ngModelChange)="timeEnd=updateDate(4, $event)" type="time"
+                    name="timeEnd">
+            </div>
+            <p class="w3-margin-top">
+                <button md-raised-button (click)="getHistory()">Search</button>
+            </p>
+
+            <!-- The Modal -->
+            <div id="id01" class="w3-container w3-center w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <header class="w3-container w3-blue">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">
+                                &times;
+                            </span>
+                        </header>
+                        <plot *ngIf="valuesForPlotHistory" [lineChartData]="valuesForPlotHistory.lineChartData" [lineChartLabels]="valuesForPlotHistory.lineChartLabels">
+                        </plot>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>

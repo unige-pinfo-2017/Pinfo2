@@ -1,0 +1,10 @@
+{"User": [
+      {"property": ["read", "write"] ,"status": false, "workspace": 10, "firstName":"Fred", "role": "user"},
+      {"property": ["read", "write"] ,"status": false, "workspace": 3,  "firstName":"Max", "role": "sysAdmin"},
+      {"property": ["read", "write"] ,"status": false, "workspace": 27, "firstName":"Thomas", "role": "user"},
+      {"property": ["read", "write"] ,"status": true, "workspace": 44, "firstName":"Nico", "role": "user"},
+      {"property": ["read", "write"] ,"status": true, "workspace": 67, "firstName":"Vinc", "role": "user"},
+      {"property": ["read", "write"] ,"status": false, "workspace": 99, "firstName":"Beni", "role": "user"},
+      {"property": ["read", "write"] ,"status": false, "workspace": 66, "firstName":"Rodé", "role": "user"}
+    ]
+}
