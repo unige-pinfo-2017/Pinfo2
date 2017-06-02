@@ -12,18 +12,25 @@ import { SidenavComponent } from "../sidenav/sidenav.component";
 })
 
 export class HomeComponent implements OnInit{
-    title = 'Home';
-    currentUser: User;
-    status: string;
-    users = new Array<User>();
+    private title = 'Home';
+    private currentUser: User;
+    private status: string;
+    private users: any[];
+
+    islogged(status: boolean): string {
+        if (status) return "Online";
+        else return "Offline";
+    }
     
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        console.log(this.currentUser.role);
         this.currentUser.status = true;
         this.status = "Connected";
         if (this.currentUser.role === "admin") {
-            this.userService.getAll().subscribe(users => console.log(users.length + " " + users));
+            this.userService.getAll().subscribe(users => {
+                this.users = users;
+                this.users.forEach(user => user.statusString = this.islogged(user.status));
+            });
         }        
     }
 

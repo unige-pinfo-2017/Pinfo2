@@ -7,13 +7,15 @@ import {labConConfig} from 'labCon-config';
 
 @Injectable()
 export class UserService {
+    private restServerApiUrl = labConConfig.restServerApiUrl + 'users/';
+
     constructor(private http: Http) { }
 
-    getAll(): Observable<User[]> {
+    getAll(): Observable<any[]> {
         let headers = this.jwtHeader();
-        return this.http.get('/assets/users.json', this.jwtResponse(headers)).map((response: Response) => {
+        return this.http.get(this.restServerApiUrl + "getAllUsers", this.jwtResponse(headers)).map((response: Response) => {
             let x = response.json();
-            return x.User || { };
+            return x || { };
         });
     }
 

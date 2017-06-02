@@ -10,4 +10,5 @@ export class User {
     workstation: number;
     status: boolean;
     property: string[];
+    statusString: string;
 }

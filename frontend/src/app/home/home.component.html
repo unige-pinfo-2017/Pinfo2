@@ -2,208 +2,93 @@
 
   <div class="w3-card-2" style="margin-left:202px">
     <!-- Page Content -->
-        <!--<div>
-            <header class="w3-container w3-blue">
-                <h1>Home</h1>
-            </header>
-
-            <div class="w3-container">
-                <h3> You're logged in {{currentUser.firstName}} ! Welcome to the SysAdmin home page</h3>
-                <div>
-
-                    <div class="container-fluid">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th>
-                                  Users
-                                </th>
-                                <th>
-                                  Status
-                                </th>
-                                <th>
-                                  Workspace
-                                </th>
-                                <th>
-                                  Options
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-
-                              <tr class = "success" *ngFor="let utilisateur of users">
-                                <td> {{utilisateur.name}}</td>
-                                <td> {{utilisateur.status}}</td>
-                                <td>{{utilisateur.workspace}}</td>
-                                <td>{{utilisateur.property}}</td>
-                              </tr>
-
-
-
-                              <!<tr>
-                                <td>
-                                  User_1
-                                </td>
-                                <td>
-                                  Connected
-                                </td>
-                                <td>
-                                  Workspace 1
-                                </td>
-                                <td>
-                                  Default
-                                </td>
-                              </tr>
-                              <tr class="active">
-                                <td>
-                                  User_2
-                                </td>
-                                <td>
-                                  Connected
-                                </td>
-                                <td>
-                                  Workspace 2
-                                </td>
-                                <td>
-                                  Default
-                                </td>
-                              </tr>
-                              <tr class="success">
-                                <td>
-                                  User_3
-                                </td>
-                                <td>
-                                  Disconnected
-                                </td>
-                                <td>
-                                  Workspace 3
-                                </td>
-                                <td>
-                                  Default
-                                </td>
-                              </tr>
-                              <tr class="warning">
-                                <td>
-                                  User_4
-                                </td>
-                                <td>
-                                  Disconnected
-                                </td>
-                                <td>
-                                  Workspace 4
-                                </td>
-                                <td>
-                                  Default
-                                </td>
-                              </tr>
-                              <tr class="danger">
-                                <td>
-                                  User_5
-                                </td>
-                                <td>
-                                  Connected
-                                </td>
-                                <td>
-                                  Workspace 5
-                                </td>
-                                <td>
-                                  Default
-                                </td>
-                              </tr>-->
-                            <!--</tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-
-                </div>
-            </div>-->
     <div>
       <header class="w3-container w3-blue">
         <h1>Home</h1>
       </header>
 
       <div class="w3-container">
-        <h3> You're logged in {{currentUser.firstName}} !</h3>
-      </div>
+        <h3> You're logged in {{currentUser.firstName}} ! Welcome to the SysAdmin home page</h3>
+        <div>
 
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>
-                    Users
-                  </th>
-                  <th>
-                    Status
-                  </th>
-                  <th>
-                    Workspace
-                  </th>
-                  <th>
-                    Options
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr class="success" *ngFor="let utilisateur of users">
-                  <td> {{utilisateur.name}}</td>
-                  <td> {{utilisateur.status}}</td>
-                  <td>{{utilisateur.workspace}}</td>
-                  <td>{{utilisateur.property}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="row">
+          <div class="container-fluid">
+            <div class="row">
               <div class="col-md-12">
-                <form role="form">
-                  <div class="form-group">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>
+                        Users
+                      </th>
+                      <th>
+                        Status
+                      </th>
+                      <th>
+                        Role
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-                    <label for="exampleInputEmail1">
-                      User Name
-                    </label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" />
-                  </div>
-                  <div class="form-group">
+                    <tr class="success" *ngFor="let utilisateur of users">
+                      <td>{{utilisateur.firstName}}</td>
+                      <td>{{utilisateur.statusString}}</td>
+                      <td>{{utilisateur.role}}</td>
+                    </tr>
 
-                    <label for="exampleInputPassword1">
-                      Password
-                    </label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
-                  </div>
-                  <div class="form-group">
-
-                    <label for="exampleInputPassword1">
-                      First Name
-                    </label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
-                  </div>
-                  <div class="form-group">
-
-                    <label for="exampleInputPassword1">
-                      Last Name
-                    </label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
-                  </div>
-                  <button type="submit" class="btn btn-default">
-                    Add
-                  </button>
-                </form>
+                </table>
               </div>
             </div>
           </div>
 
         </div>
       </div>
+      <div>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <form role="form">
+                <div class="form-group">
+
+                  <label for="exampleInputEmail1">
+                      User Name
+                    </label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" />
+                </div>
+                <div class="form-group">
+
+                  <label for="exampleInputPassword1">
+                      Password
+                    </label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <div class="form-group">
+
+                  <label for="exampleInputPassword1">
+                      First Name
+                    </label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <div class="form-group">
+
+                  <label for="exampleInputPassword1">
+                      Last Name
+                    </label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+                <button type="submit" class="btn btn-default">
+                    Add
+                  </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
+</div>
 
 <div *ngIf="currentUser.role==='regularUser'">
 
