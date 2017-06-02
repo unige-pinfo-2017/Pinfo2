@@ -6,8 +6,6 @@ services:
     proxy:
         build: "nginx-pinfo2"
         image: "nginx-pinfo2"
-        volumes:
-            - "webapp-data:/usr/share/nginx/html/"
         ports:
             - "80:80"
         depends_on:
@@ -20,8 +18,6 @@ services:
     appserver:
         build: "wildfly-pinfo2"
         image: "wildfly-pinfo2"
-        volumes:
-            - "wildfly-data:/opt/jboss/wildfly/standalone/deployments"
         expose:
             - "8080"
         ports:
@@ -35,8 +31,6 @@ services:
     database:
         build: "mariadb-pinfo2"
         image: "mariadb-pinfo2"
-        volumes:
-            - "mysql-data:/var/lib/mysql"
         environment:
             MYSQL_ROOT_PASSWORD: "admin"
             MYSQL_DATABASE: "projetinfodb"
@@ -45,11 +39,6 @@ services:
         restart: always
         networks:
             - default
-
-volumes:
-    mysql-data:
-    webapp-data:
-    wildfly-data:
 
 networks:
     masterproxy:
