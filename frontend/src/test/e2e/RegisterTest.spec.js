@@ -2,7 +2,7 @@ describe("Register Tests",function(){
 
 	it("Url Register", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/register');
 		});		
 	});
@@ -46,7 +46,7 @@ describe("Register Tests",function(){
 	
 	it("Essai Register sans FirstName", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastName=element(by.css('[name="lastName"]'))
 			inputLastName.sendKeys("LastName");
 			var inputUsername=element(by.css('[name="username"]'))
@@ -62,7 +62,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans LastName", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
 			inputFirstName.sendKeys("FirstName");
 			var inputUsername=element(by.css('[name="username"]'))
@@ -78,7 +78,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans UserName", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
 			inputFirstName.sendKeys("FirstName");
 			var inputLastname=element(by.css('[name="lastName"]'))
@@ -94,7 +94,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans Password", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
 			inputFirstName.sendKeys("FirstName");
 			var inputLastname=element(by.css('[name="lastName"]'))
@@ -110,7 +110,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans FirstName et sans LastName", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
 			inputUsername.sendKeys("Username");
 			var inputPassword=element(by.css('[name="password"]'))
@@ -124,7 +124,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans FirstName et sans Username", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="lastName"]'))
 			inputLastname.sendKeys("Lastname");
 			var inputPassword=element(by.css('[name="password"]'))
@@ -138,7 +138,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans FirstName et sans Password", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="lastName"]'))
 			inputLastname.sendKeys("Lastname");
 			var inputPassword=element(by.css('[name="username"]'))
@@ -152,7 +152,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans LastName et sans Username", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="firstName"]'))
 			inputLastname.sendKeys("Firstname");
 			var inputPassword=element(by.css('[name="password"]'))
@@ -166,7 +166,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans LastName et sans Password", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="firstName"]'))
 			inputLastname.sendKeys("Firstname");
 			var inputPassword=element(by.css('[name="username"]'))
@@ -180,7 +180,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans Username et sans Password", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="firstName"]'))
 			inputLastname.sendKeys("Firstname");
 			var inputPassword=element(by.css('[name="lastName"]'))
@@ -194,7 +194,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans LastName, sans Username et sans Password", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="firstName"]'))
 			inputLastname.sendKeys("Firstname");
 			element.all(by.buttonText("Register")).click();
@@ -206,7 +206,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans FirstName, sans Username et sans Password", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="lastName"]'))
 			inputLastname.sendKeys("Lastname");
 			element.all(by.buttonText("Register")).click();
@@ -218,7 +218,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans FirstName, sans Lastname et sans Password", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="username"]'))
 			inputLastname.sendKeys("Username");
 			element.all(by.buttonText("Register")).click();
@@ -230,7 +230,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans FirstName, sans Lastname et sans Username", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			var inputLastname=element(by.css('[name="password"]'))
 			inputLastname.sendKeys("Password");
 			element.all(by.buttonText("Register")).click();
@@ -242,7 +242,7 @@ describe("Register Tests",function(){
 
 	it("Essai Register sans FirstName, sans Lastname, sans Username et sans Password", function(){
 		browser.get('http://localhost/register');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			element.all(by.buttonText("Register")).click();
 			browser.driver.sleep(1000).then(function(){
 				expect(element.all(by.className("help-block")).getText()).toEqual(['First Name is required', 'Last Name is required', 'Username is required', 'Password is required']);
@@ -268,7 +268,7 @@ describe("Register Tests",function(){
 			var inputLastname=element(by.css('[name="lastName"]'))
 			inputLastname.sendKeys("oui");
 			var inputFirstName=element(by.css('[name="username"]'))
-			inputFirstName.sendKeys("oui");
+			inputFirstName.sendKeys("VincentCabrini");
 			var inputPassword=element(by.css('[name="password"]'))
 			inputPassword.sendKeys("oui");
 			element.all(by.buttonText("Register")).click();
@@ -283,13 +283,13 @@ describe("Register Tests",function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
-			inputFirstName.sendKeys("oui5");
+			inputFirstName.sendKeys("oui");
 			var inputLastname=element(by.css('[name="lastName"]'))
-			inputLastname.sendKeys("oui5");
+			inputLastname.sendKeys("oui");
 			var inputFirstName=element(by.css('[name="username"]'))
-			inputFirstName.sendKeys("oui4");
+			inputFirstName.sendKeys("ouihgdfhdf");
 			var inputPassword=element(by.css('[name="password"]'))
-			inputPassword.sendKeys("oui5");
+			inputPassword.sendKeys("oui");
 			element.all(by.buttonText("Register")).click();
 			browser.driver.sleep(5000).then(function(){
         			var countMessage=element.all(by.name("Registration successful")).count();
@@ -302,24 +302,23 @@ describe("Register Tests",function(){
 		browser.get('http://localhost/register');
 		browser.driver.sleep(5000).then(function(){
 			var inputFirstName=element(by.css('[name="firstName"]'))
-			inputFirstName.sendKeys("oui5");
+			inputFirstName.sendKeys("oui");
 			var inputLastname=element(by.css('[name="lastName"]'))
-			inputLastname.sendKeys("oui5");
+			inputLastname.sendKeys("oui");
 			var inputUsername=element(by.css('[name="username"]'))
-			inputUsername.sendKeys("ouiTestLog3");
+			inputUsername.sendKeys("ouihgdfdjhf2");
 			var inputPassword=element(by.css('[name="password"]'))
-			inputPassword.sendKeys("oui5");
+			inputPassword.sendKeys("oui");
 			element.all(by.buttonText("Register")).click();
 			browser.driver.sleep(5000).then(function(){
         			var inputUsernameLog=element(by.css('[name="username"]'))
-				inputUsernameLog.sendKeys("ouiTestLog3");
+				inputUsernameLog.sendKeys("ouihgdfdjhf2");
 				var inputPasswordLog=element(by.css('[name="password"]'))
-				inputPasswordLog.sendKeys("oui5");
+				inputPasswordLog.sendKeys("oui");
 				browser.driver.sleep(1000).then(function(){
 					element.all(by.buttonText("Login")).click();
 					browser.driver.sleep(5000).then(function(){
 						expect(browser.getCurrentUrl()).toEqual('http://localhost/');
-						expect(element.all(by.name("You're logged in oui5 !")).count(),1);
 						element(by.linkText("Sign out")).click();
 						browser.driver.sleep(3000).then(function(){
 						});

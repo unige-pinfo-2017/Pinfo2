@@ -2,7 +2,7 @@ describe("Login Tests",function(){
 
 	it("Url Login", function(){
 		browser.get('http://localhost/login');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login');
 		});		
 	});
@@ -26,7 +26,7 @@ describe("Login Tests",function(){
 	it("Ajoute un String au champ Username", function(){
 		var inputUsername=element(by.css('[name="username"]'))
 		inputUsername.sendKeys("Username");
-		browser.driver.sleep(1000).then(function(){
+		browser.driver.sleep(2000).then(function(){
 			inputUsername.getAttribute("ng-reflect-model").then(function(value){
 			expect(value).toEqual("Username");
 			});
@@ -36,7 +36,7 @@ describe("Login Tests",function(){
 	it("Ajoute un String au champ Password", function(){
 		var inputPassword=element(by.css('[name="password"]'))
 		inputPassword.sendKeys("Password");
-		browser.driver.sleep(1000).then(function(){
+		browser.driver.sleep(2000).then(function(){
 			inputPassword.getAttribute("ng-reflect-model").then(function(value){
 				expect(value).toEqual("Password");
 			});
@@ -44,8 +44,8 @@ describe("Login Tests",function(){
 	});
 
 	it("Essai Login sans password", function(){
-		browser.get('http://localhost/');
-		browser.driver.sleep(5000).then(function(){
+		browser.get('http://localhost/login');
+		browser.driver.sleep(10000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
 			inputUsername.sendKeys("Username");
 			browser.driver.sleep(1000).then(function(){
@@ -89,18 +89,18 @@ describe("Login Tests",function(){
 
 	it("Essai acces menu hub sans login", function(){
 		browser.get('http://localhost/hub');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2Fhub');
 		});
 	});
 
 	it("Essai acces menu light sans login", function(){
 		browser.get('http://localhost/light');
-		browser.driver.sleep(5000).then(function(){
+		browser.driver.sleep(10000).then(function(){
 			expect(browser.getCurrentUrl()).toEqual('http://localhost/login?returnUrl=%2F');
 		});
 	});
-	
+
 	it("Essai acces menu socket sans login", function(){
 		browser.get('http://localhost/socket');
 		browser.driver.sleep(5000).then(function(){
@@ -129,17 +129,20 @@ describe("Login Tests",function(){
 		});
 	});
 
-
 	it("Bon Username mauvais password", function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
-			inputUsername.sendKeys("oui");
+			inputUsername.sendKeys("max");
 			var inputPassword=element(by.css('[name="password"]'))
-			inputPassword.sendKeys("jkhf");
-			browser.driver.sleep(1000).then(function(){
+			inputPassword.sendKeys("max2");
+			browser.driver.sleep(3000).then(function(){
 				var countErrorMessage=element.all(by.name("Response with status: 401 Unauthorized for URL: http://localhost/restapi/login")).count();
-        			expect(countErrorMessage,1);
+				
+				expect(countErrorMessage,1);
+				
+        			
+				
 			});
 		});
 	});
@@ -202,9 +205,9 @@ describe("Login Tests",function(){
 		browser.get('http://localhost/');
 		browser.driver.sleep(5000).then(function(){
 			var inputUsername=element(by.css('[name="username"]'))
-			inputUsername.sendKeys("oui");
+			inputUsername.sendKeys("VincentCabrini");
 			var inputPassword=element(by.css('[name="password"]'))
-			inputPassword.sendKeys("oui");
+			inputPassword.sendKeys("PasswordVC");
 			browser.driver.sleep(1000).then(function(){
 				element.all(by.buttonText("Login")).click();
 				browser.driver.sleep(5000).then(function(){
