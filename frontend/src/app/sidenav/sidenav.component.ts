@@ -35,34 +35,15 @@ export class SidenavComponent {
           deviceIds.hubIds.forEach(element => {
               this.hubs.push(new Hub(element))
           });
-          
-     /* devices.forEach(element => {
-            if (element.name === 'hub') {
-                this.hubs.push(element);
-            } else if (element.name === 'light') {
-                this.lights.push(element);
-            } else if (element.name === 'socket') {
-                this.sockets.push(element);
-            }
-      });*/
     },
-            error => this.errorMessage = <any> error);
-
+        error => this.errorMessage = <any> error);
     }
 
     ngOnInit(): void {
         this.setDevices();
     }
-    constructor(private deviceService: DeviceService, private _router: Router) { }
 
-    show(elem: string) {
-        let x = document.getElementById(elem);
-        if (x.className.indexOf("w3-show") === -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
+    constructor(private deviceService: DeviceService, private _router: Router) { }
 
     selectLight(light: Light) {
         this.selectedLight = light;

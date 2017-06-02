@@ -36,4 +36,8 @@ export class HomeComponent implements OnInit{
 
     ngOnInit() {
     }
+
+    addUser() {
+        document.getElementById('id01').style.display = 'block';
+    }
 }

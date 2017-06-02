@@ -48,7 +48,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-              <form role="form">
+              <form role="form" action="">
                 <div class="form-group">
 
                   <label for="exampleInputEmail1">
@@ -77,10 +77,24 @@
                     </label>
                   <input type="password" class="form-control" id="exampleInputPassword1" />
                 </div>
-                <button type="submit" class="btn btn-default">
+                <button (click) = "addUser()" type="submit" class="w3-btn w3-blue">
                     Add
                   </button>
               </form>
+
+              <div id="id01" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
+                        <header class="w3-container w3-blue">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">
+                                &times;
+                            </span>
+                        </header>
+                        <h5>The new user has been successfully added.</h5>
+                    </div>
+                </div>
+            </div>
+
             </div>
           </div>
         </div>

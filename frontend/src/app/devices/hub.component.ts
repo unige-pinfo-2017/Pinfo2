@@ -35,8 +35,6 @@ export class HubComponent implements OnInit, OnDestroy{
     private valuesForPlotArrived: boolean = false;
     private plotTime: number = 1;
 
-
-
     private dstart = new Array<String>();
     private dend = new Array<String>();
     private tstart = new Array<String>();
@@ -64,18 +62,7 @@ export class HubComponent implements OnInit, OnDestroy{
                                                 });
                 })
                 this.refreshData();
-
-
-
-            /*.subscribe(hub => {
-                this.hub = hub;
-                hub.link.forEach(id => {
-                    this.deviceService.getAllDevices().toPromise()
-                    .then(Device => Device.forEach(dev => {
-                        if ((new String(dev.id)).valueOf() === (new String(id)).valueOf()) {
-                            this.sockets.push(dev);
-                        }})
-                )})}); */     
+ 
     }
 
 
@@ -100,9 +87,6 @@ export class HubComponent implements OnInit, OnDestroy{
     private refreshData(): void {
         this.dataSubscription = this.hubService.getHubLastState(this.hub.id)
             .subscribe(hub => {
-                console.log(this.hub.fromTimestamp)
-                console.log(this.hub.toTimestamp)
-                console.log(hub);
                 //this.hub.state = states[states.length - 1].isOn;
                 //this.hub.consommation = states[states.length - 1].power
 
@@ -292,24 +276,7 @@ export class HubComponent implements OnInit, OnDestroy{
         }
     }
 
-    /*private onChange(event) {
-
-        if (event.checked.toString() === "true") {
-            this.socketService.postSocketState(this.hub.id, true).subscribe();
-            this.hub.setState(true);
-        }
-        else {
-            this.socketService.postSocketState(this.hub.id, false).subscribe();
-            this.hub.setState(false);
-        }
-    }*/
-
     @ViewChild(PlotComponent) plot: PlotComponent;
-
-
-
-
-
 
     show_live() {
         let x = document.getElementById("panel-live");

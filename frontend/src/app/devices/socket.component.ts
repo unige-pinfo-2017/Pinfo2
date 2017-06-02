@@ -89,10 +89,6 @@ export class SocketComponent implements OnInit, OnDestroy {
             });
     }
 
-
-
-
-
     private getTimestamp(): number {
         return +new Date();
     }
@@ -123,8 +119,6 @@ export class SocketComponent implements OnInit, OnDestroy {
         dateString = dateString + ", " + date.getMonth() + ',  ' + date.getHours().toString() + ":" + date.getMinutes().toString();
         return dateString;
     }
-
-
 
     private parseStatesArray(): any {
         let data: number[] = [];
@@ -203,8 +197,6 @@ export class SocketComponent implements OnInit, OnDestroy {
             lineChartLabelsCorrectSyntax.unshift(tmp2);
 
         }
-
-
 
         let lineChartData: any[] = [{ data: data, label: label }];
 
